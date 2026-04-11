@@ -1,6 +1,6 @@
 # Hybrid Workforce — 技术架构文档 v0.1
 
-> **作者：** pm-Octopus  
+> **作者：** SuperBoss（基于 pm-Octopus backup 版修订）  
 > **日期：** 2026-04-11  
 > **状态：** Draft  
 > **来源：** #discussion-hybrid-workforce 频道讨论共识
@@ -30,21 +30,36 @@
 
 ## 3. 技术选型
 
-### 最终 MVP 技术栈
+### 3.1 最终 MVP 技术栈
 
 ```
 OpenClaw/Hermes (Harness) + Git Repo (知识库) + AgentSkills + CLI (Tools)
 ```
 
-### 砍掉的方案及原因
+**外部依赖仅 2 个：OpenClaw + AgentSkills。** 其余全用已有基础设施，不造轮子。
 
-| 方案 | 决策 | 原因 | 提出人 |
-|------|------|------|--------|
-| MCP | ❌ 砍掉 | 太重，Skills + CLI 覆盖 90% 需求 | Juanjuan |
-| LangGraph | ❌ 砍掉 | MVP 不需要，OpenClaw 现有 subagent/cron 够用 | Juanjuan |
-| Mem0 | ⏸ 降级备选 | 先用 Git Repo 管结构化知识，repo = 共享知识空间 | Juanjuan |
+### 3.2 各层选型明细
 
-### Kill Switch 方案（双层）
+| 层级 | 选型 | 说明 |
+|------|------|------|
+| Harness | OpenClaw/Hermes | 在现有基础上扩展，不重写 |
+| Knowledge | Git Repo | 结构化知识：决策/规范/PRD。版本控制内置、多 agent 协作、人类可读、权限天然隔离 |
+| Learning | AgentSkills 标准 + 自研管线 | 复用 Skill 持久化/加载机制，自研纠正→规则沉淀管线 |
+| Orchestration | OpenClaw 现有能力 | subagent/cron/消息路由，MVP 阶段够用 |
+| Tools | AgentSkills + CLI | 轻量、agent 天然会用 |
+
+### 3.3 砍掉的方案及原因
+
+| 方案 | 决策 | 原因 | 远期是否复活 |
+|------|------|------|-------------|
+| MCP | ❌ 砍掉 | 太重，Skills + CLI 覆盖 90% 需求 | 远期候选，等生态成熟 |
+| LangGraph | ❌ 砍掉 | MVP 不需要，OpenClaw 现有 subagent/cron 够用 | 远期候选，复杂编排场景 |
+| Mem0 | ⏸ 降级备选 | 先用 Git Repo 管结构化知识，repo = 共享知识空间 | MVP v1 考虑轻量语义索引 |
+| Temporal | ⏸ 暂不引入 | 架构重，需要单独部署。MVP 用 OpenClaw 的消息路由做轻量编排 | 远期候选，工作流复杂化后考虑 |
+
+### 3.4 Kill Switch 方案（双层）
+
+Kill Switch 是兜底机制，不是 Flow 的主角。
 
 1. **Gateway 层：** 中断 LLM 调用、冻结 session（快速止血）
 2. **Proxy 层：** tool call 拦截 + 规则引擎（参考 Invariant Guardrails，agent 无法绕过）
@@ -66,22 +81,43 @@ OpenClaw/Hermes (Harness) + Git Repo (知识库) + AgentSkills + CLI (Tools)
 
 ## 5. Train 层参考实现
 
-**基础：** 参考 Hermes Agent 的自学习循环，复用 AgentSkills 标准的 Skill 持久化和加载机制。
+### 5.1 参考基础
 
-**关键改造（与 Hermes 原生的区别）：**
+参考 Hermes Agent（⭐17K+）的自学习循环。Hermes 是 tech-landscape 调研中唯一同时覆盖 Build + Train 的框架，核心能力：
+
+- **Autonomous Skill Creation** — 完成复杂任务后自动提炼经验为 Skill
+- **AgentSkills 标准** — 结构化的 SKILL.md + 脚本，按需加载
+- **Self-improvement Loop** — 内置学习循环，跨 session 记忆
+- **模型无关** — 支持 200+ endpoints
+
+### 5.2 关键改造
+
+**一句话概括区别：Hermes 解决「成功经验怎么沉淀」，我们要解决「错误怎么变成永久记忆」。**
 
 | 维度 | Hermes 原生 | Hybrid Workforce 改造 |
 |------|------------|----------------------|
-| 触发方式 | Agent 自主学习 | 人类纠正触发 |
-| 审批环节 | 无 | 加人类审批 |
-| 共享范围 | 单 agent | 跨 agent 团队共享 |
+| 触发方式 | Agent 自主学习（成功后提炼） | 人类纠正触发（错误后学习） |
+| 沉淀物 | Skill 文件 | 行为规则（if-then，含红线/建议分级） |
+| 审批环节 | 无（全自动） | 人类审批（agent 提议规则→人类确认才生效） |
+| 共享范围 | 单 agent | 跨 agent 团队共享（PM 学到的规则可推送给同角色的其他 agent） |
+| 学习内容 | 技能（怎么做事） | 行为约束（什么不能做/必须做） |
 
-**四层记忆保障：**
+### 5.3 四层记忆保障机制
 
-1. **场景触发** — 识别当前场景，匹配已有规则
-2. **行为前检查** — 执行前检查是否有相关规则约束
-3. **失败记忆召回** — 召回历史上类似场景的失败经验
-4. **渐进式强化** — 规则随纠正次数增强权重
+详见 `teach-once-remember-forever.md`，核心架构：
+
+1. **场景触发式规则** — 规则按场景标签组织，执行验收时只加载验收规则，不读整本手册
+2. **行为前检查点** — 关键动作执行前强制过规则检查，不通过就阻断（类似代码的 lint + CI）
+3. **失败记忆优先召回** — 犯错经历存为失败记忆，下次类似场景优先召回「上次在这里栽过」
+4. **渐进式强化** — 同一规则被违反 N 次后自动升级（建议→重要→红线），长期未违反可降级
+
+### 5.4 纠正→规则沉淀管线（核心自研）
+
+```
+人类纠正 → 系统检测纠正行为 → 提炼规则提案 → 人类审批 → 写入行为准则 → 跨 session 生效
+                                              ↓（可选）
+                                    推送给同角色其他 agent
+```
 
 ---
 
@@ -149,7 +185,16 @@ PM 开 issue → 更新 PRD + 设计稿 → 人类审批 → 审批通过 → De
 
 ---
 
-## 11. 决策记录
+## 11. 估算
+
+| 交付物 | 人力 | 时间 | 备注 |
+|--------|------|------|------|
+| Agent Builder Demo | 1 dev | 2 周 | 表单 + 模板渲染 + OpenClaw 集成 |
+| MVP 完整产品 | 2 dev + 1 PM | 3 个月 | 含四块自研 + Cloud 部署 |
+
+---
+
+## 12. 决策记录
 
 | # | 决策 | 提出人 | 达成共识时间 | 备注 |
 |---|------|--------|-------------|------|
