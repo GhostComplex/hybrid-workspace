@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent Builder — Hybrid Workforce UI Design</title>
+<style>
+:root{--bg:#0a0a14;--surface:#12122a;--surface2:#1a1a3e;--purple:#6c5ce7;--blue:#00d2ff;--green:#00e676;--red:#ff5252;--yellow:#ffd740;--text:#e8e8f0;--text2:#8888aa;--border:#2a2a4e;--radius:12px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+.page-label{text-align:center;padding:40px 20px 0;font-size:14px;color:var(--blue);letter-spacing:3px;text-transform:uppercase}
+.page-label span{background:var(--surface);padding:4px 16px;border-radius:20px;border:1px solid var(--blue)}
+
+/* Nav */
+.nav{display:flex;justify-content:space-between;align-items:center;padding:20px 40px;border-bottom:1px solid var(--border)}
+.logo{font-size:20px;font-weight:700;background:linear-gradient(135deg,var(--purple),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:24px;font-size:14px;color:var(--text2)}
+
+/* Container */
+.container{max-width:1100px;margin:0 auto;padding:40px 20px}
+h1{font-size:36px;text-align:center;margin-bottom:8px}
+h1 span{background:linear-gradient(135deg,var(--purple),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{text-align:center;color:var(--text2);margin-bottom:48px;font-size:16px}
+
+/* Step indicator */
+.steps{display:flex;justify-content:center;gap:32px;margin-bottom:40px}
+.step-dot{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2)}
+.step-dot .dot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;border:2px solid var(--border);color:var(--text2)}
+.step-dot.active .dot{border-color:var(--purple);background:var(--purple);color:#fff}
+.step-dot.done .dot{border-color:var(--green);background:var(--green);color:#000}
+
+/* Role Cards */
+.section-title{font-size:13px;text-transform:uppercase;letter-spacing:2px;color:var(--text2);margin-bottom:16px}
+.roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:40px}
+.role-card{background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:24px;text-align:center;cursor:pointer;transition:.2s}
+.role-card.selected{border-color:var(--purple);box-shadow:0 0 20px rgba(108,92,231,.25)}
+.role-card.unselected{opacity:.4}
+.role-emoji{font-size:40px;margin-bottom:12px}
+.role-name{font-size:18px;font-weight:600;margin-bottom:4px}
+.role-desc{font-size:13px;color:var(--text2)}
+.role-check{width:20px;height:20px;border-radius:50%;border:2px solid var(--border);margin:12px auto 0;display:flex;align-items:center;justify-content:center;font-size:12px}
+.role-card.selected .role-check{border-color:var(--purple);background:var(--purple);color:#fff}
+
+/* Config Panel */
+.config{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:40px}
+@media(max-width:700px){.config{grid-template-columns:1fr}.roles{grid-template-columns:1fr}}
+.panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px}
+.panel-title{font-size:15px;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.skill-item,.rule-item{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-radius:8px;margin-bottom:6px;font-size:13px;background:var(--surface2)}
+.skill-item .lock{color:var(--text2);font-size:11px}
+.skill-desc{color:var(--text2);font-size:11px}
+.toggle{width:36px;height:20px;border-radius:10px;background:var(--border);position:relative;cursor:pointer;flex-shrink:0}
+.toggle.on{background:var(--purple)}
+.toggle.locked{background:var(--text2);opacity:.5;cursor:not-allowed}
+.toggle::after{content:'';width:16px;height:16px;border-radius:50%;background:#fff;position:absolute;top:2px;left:2px;transition:.2s}
+.toggle.on::after{left:18px}
+
+/* Launch button */
+.launch-area{text-align:center;margin:40px 0}
+.btn-launch{background:linear-gradient(135deg,var(--purple),var(--blue));color:#fff;border:none;padding:16px 48px;font-size:18px;font-weight:700;border-radius:60px;cursor:pointer;letter-spacing:1px;transition:.2s;box-shadow:0 4px 30px rgba(108,92,231,.4)}
+.btn-launch:hover{transform:translateY(-2px);box-shadow:0 8px 40px rgba(108,92,231,.5)}
+
+/* Loading state */
+.loading-panel{background:var(--surface);border-radius:var(--radius);padding:32px;max-width:500px;margin:0 auto;text-align:left}
+.load-item{display:flex;align-items:center;gap:12px;padding:10px 0;font-size:15px;border-bottom:1px solid var(--border)}
+.load-item:last-child{border:none}
+.load-item .status{font-size:18px}
+.spinner{width:18px;height:18px;border:2px solid var(--border);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Success */
+.success-page{text-align:center;padding:60px 20px}
+.success-icon{font-size:80px;margin-bottom:20px}
+.success-title{font-size:32px;font-weight:700;margin-bottom:8px}
+.success-sub{color:var(--text2);font-size:16px;margin-bottom:32px}
+.btn-discord{background:var(--surface);border:2px solid var(--purple);color:var(--text);padding:14px 36px;font-size:16px;font-weight:600;border-radius:60px;cursor:pointer;transition:.2s}
+.btn-discord:hover{background:var(--purple);color:#fff}
+.agent-cards{display:flex;justify-content:center;gap:16px;margin:32px 0;flex-wrap:wrap}
+.agent-live{background:var(--surface);border:1px solid var(--green);border-radius:var(--radius);padding:16px 24px;text-align:center;min-width:150px}
+.agent-live .dot-live{width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block;margin-right:6px;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* Divider */
+.divider{border:none;border-top:2px dashed var(--border);margin:60px 0}
+.section-break{text-align:center;padding:20px;color:var(--text2);font-size:13px;letter-spacing:2px}
+</style>
+</head>
+<body>
+
+<!-- ===== STATE 1: Builder Main Page ===== -->
+<div class="page-label"><span>State 1 — Builder Main Page (Default)</span></div>
+
+<nav class="nav">
+  <div class="logo">⚡ Hybrid Workforce</div>
+  <div class="nav-links"><span>Demo</span><span>Docs</span><span>GitHub</span></div>
+</nav>
+
+<div class="container">
+  <h1>Build Your <span>AI Team</span></h1>
+  <p class="subtitle">Select roles, configure skills, and launch your team to Discord in one click.</p>
+
+  <!-- Steps -->
+  <div class="steps">
+    <div class="step-dot active"><div class="dot">1</div>Roles</div>
+    <div class="step-dot"><div class="dot">2</div>Configure</div>
+    <div class="step-dot"><div class="dot">3</div>Launch</div>
+  </div>
+
+  <!-- Role Cards -->
+  <div class="section-title">Select Roles</div>
+  <div class="roles">
+    <div class="role-card selected">
+      <div class="role-emoji">🐙</div>
+      <div class="role-name">Product Manager</div>
+      <div class="role-desc">需求分析 · PRD 撰写 · 产品验收</div>
+      <div class="role-check">✓</div>
+    </div>
+    <div class="role-card selected">
+      <div class="role-emoji">🦊</div>
+      <div class="role-name">Developer</div>
+      <div class="role-desc">代码实现 · PR 提交 · Code Review</div>
+      <div class="role-check">✓</div>
+    </div>
+    <div class="role-card selected">
+      <div class="role-emoji">🦅</div>
+      <div class="role-name">QA Engineer</div>
+      <div class="role-desc">功能验收 · Bug 报告 · E2E 测试</div>
+      <div class="role-check">✓</div>
+    </div>
+  </div>
+
+  <!-- Config Panels -->
+  <div class="config">
+    <!-- Skills Panel -->
+    <div class="panel">
+      <div class="panel-title">⚡ Skills <span style="color:var(--text2);font-weight:400;font-size:12px">— PM selected</span></div>
+
+      <div style="font-size:11px;color:var(--text2);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px">🔒 Base Skills</div>
+      <div class="skill-item"><div>Discord 沟通规范 <span class="lock">🔒</span><br><span class="skill-desc">@人、频道规则、消息格式</span></div><div class="toggle locked on"></div></div>
+      <div class="skill-item"><div>任务管理 <span class="lock">🔒</span><br><span class="skill-desc">建 task folder、写 README</span></div><div class="toggle locked on"></div></div>
+      <div class="skill-item"><div>Git 基本操作 <span class="lock">🔒</span><br><span class="skill-desc">clone、commit、push、PR</span></div><div class="toggle locked on"></div></div>
+      <div class="skill-item"><div>Onboarding <span class="lock">🔒</span><br><span class="skill-desc">读 memory、读 channel context</span></div><div class="toggle locked on"></div></div>
+      <div class="skill-item"><div>记忆管理 <span class="lock">🔒</span><br><span class="skill-desc">daily notes、channel memory</span></div><div class="toggle locked on"></div></div>
+
+      <div style="font-size:11px;color:var(--text2);margin:12px 0 8px;text-transform:uppercase;letter-spacing:1px">⚡ Role Skills</div>
+      <div class="skill-item"><div>PRD 撰写<br><span class="skill-desc">用户流程、功能清单、边界场景</span></div><div class="toggle on"></div></div>
+      <div class="skill-item"><div>产品验收<br><span class="skill-desc">对照设计稿逐项验收</span></div><div class="toggle on"></div></div>
+      <div class="skill-item"><div>UI 走查<br><span class="skill-desc">截图对比设计稿</span></div><div class="toggle on"></div></div>
+      <div class="skill-item"><div>竞品分析<br><span class="skill-desc">市场研究、差异化分析</span></div><div class="toggle on"></div></div>
+    </div>
+
+    <!-- Rules Panel -->
+    <div class="panel">
+      <div class="panel-title">📋 Rules</div>
+
+      <div style="font-size:11px;color:var(--text2);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px">🔴 Red Lines (locked)</div>
+      <div class="rule-item"><div>不越权派活<br><span class="skill-desc">不能直接给 Dev 派活，必须经过 Manager</span></div><div class="toggle locked on"></div></div>
+      <div class="rule-item"><div>区分 Bug 与需求<br><span class="skill-desc">严格区分 bug 修复和需求变更</span></div><div class="toggle locked on"></div></div>
+      <div class="rule-item"><div>验收必须有截图<br><span class="skill-desc">没有截图证据不算通过</span></div><div class="toggle locked on"></div></div>
+      <div class="rule-item"><div>诚实原则<br><span class="skill-desc">无证据不报 Pass，不虚报结果</span></div><div class="toggle locked on"></div></div>
+      <div class="rule-item"><div>停止指令立即执行<br><span class="skill-desc">收到停止指令，立刻停止一切操作</span></div><div class="toggle locked on"></div></div>
+
+      <div style="font-size:11px;color:var(--text2);margin:12px 0 8px;text-transform:uppercase;letter-spacing:1px">🟡 Suggested (toggleable)</div>
+      <div class="rule-item"><div>消息频率限制<br><span class="skill-desc">不超过 3 条/分钟</span></div><div class="toggle on"></div></div>
+      <div class="rule-item"><div>长任务拆分<br><span class="skill-desc">耗时任务 spawn subagent</span></div><div class="toggle on"></div></div>
+      <div class="rule-item"><div>Daily Notes<br><span class="skill-desc">每次对话结束写 daily notes</span></div><div class="toggle on"></div></div>
+    </div>
+  </div>
+
+  <!-- Launch -->
+  <div class="launch-area">
+    <button class="btn-launch">Launch Team 🚀</button>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ===== STATE 2: Role Unselected ===== -->
+<div class="page-label"><span>State 2 — QA Unselected</span></div>
+<div class="container">
+  <div class="roles">
+    <div class="role-card selected">
+      <div class="role-emoji">🐙</div>
+      <div class="role-name">Product Manager</div>
+      <div class="role-desc">需求分析 · PRD 撰写 · 产品验收</div>
+      <div class="role-check">✓</div>
+    </div>
+    <div class="role-card selected">
+      <div class="role-emoji">🦊</div>
+      <div class="role-name">Developer</div>
+      <div class="role-desc">代码实现 · PR 提交 · Code Review</div>
+      <div class="role-check">✓</div>
+    </div>
+    <div class="role-card unselected">
+      <div class="role-emoji">🦅</div>
+      <div class="role-name">QA Engineer</div>
+      <div class="role-desc">功能验收 · Bug 报告 · E2E 测试</div>
+      <div class="role-check"></div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ===== STATE 3: Launching (Loading) ===== -->
+<div class="page-label"><span>State 3 — Launching (Loading)</span></div>
+<div class="container">
+  <div class="steps">
+    <div class="step-dot done"><div class="dot">✓</div>Roles</div>
+    <div class="step-dot done"><div class="dot">✓</div>Configure</div>
+    <div class="step-dot active"><div class="dot">3</div>Launch</div>
+  </div>
+
+  <div class="loading-panel">
+    <div class="load-item"><span class="status">✅</span> Initializing PM (pm-Octopus)...</div>
+    <div class="load-item"><span class="status">✅</span> Initializing Dev (dev-Fox)...</div>
+    <div class="load-item"><div class="spinner"></div> Initializing QA (qa-Eagle)...</div>
+    <div class="load-item"><span class="status" style="color:var(--text2)">⏳</span> <span style="color:var(--text2)">Connecting to Discord...</span></div>
+  </div>
+
+  <div class="launch-area">
+    <button class="btn-launch" style="opacity:.5;cursor:not-allowed">Launching...</button>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ===== STATE 4: Success ===== -->
+<div class="page-label"><span>State 4 — Team is Live (Success)</span></div>
+<div class="success-page">
+  <div class="success-icon">🎉</div>
+  <div class="success-title">Your AI Team is Live!</div>
+  <div class="success-sub">Head over to Discord to see them in action.</div>
+
+  <div class="agent-cards">
+    <div class="agent-live">
+      <div style="font-size:28px;margin-bottom:8px">🐙</div>
+      <div style="font-weight:600">pm-Octopus</div>
+      <div style="font-size:12px;color:var(--green);margin-top:4px"><span class="dot-live"></span>Online</div>
+    </div>
+    <div class="agent-live">
+      <div style="font-size:28px;margin-bottom:8px">🦊</div>
+      <div style="font-weight:600">dev-Fox</div>
+      <div style="font-size:12px;color:var(--green);margin-top:4px"><span class="dot-live"></span>Online</div>
+    </div>
+    <div class="agent-live">
+      <div style="font-size:28px;margin-bottom:8px">🦅</div>
+      <div style="font-weight:600">qa-Eagle</div>
+      <div style="font-size:12px;color:var(--green);margin-top:4px"><span class="dot-live"></span>Online</div>
+    </div>
+  </div>
+
+  <button class="btn-discord">Open Discord Channel →</button>
+</div>
+
+<hr class="divider">
+
+<!-- ===== STATE 5: Error ===== -->
+<div class="page-label"><span>State 5 — Error State</span></div>
+<div class="success-page">
+  <div class="success-icon">😵</div>
+  <div class="success-title" style="color:var(--red)">Something went wrong</div>
+  <div class="success-sub">Failed to connect to Discord. Please try again.</div>
+  <button class="btn-launch">Retry 🔄</button>
+</div>
+
+<div style="padding:60px;text-align:center;color:var(--text2);font-size:12px">
+  Agent Builder UI Design v1.0 — pm-Octopus — 2026-04-11
+</div>
+
+</body>
+</html>
