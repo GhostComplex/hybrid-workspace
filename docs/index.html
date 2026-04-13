@@ -208,17 +208,17 @@ footer{text-align:center;padding:60px 20px 40px;color:var(--muted);font-size:.85
 
 <div class="pain-group">
 <h3 style="color:#6c5ce7;margin-bottom:12px;">🔧 Build — 组建团队的痛点</h3>
-<div class="pain-item"><strong>P05</strong> 角色间交接信息丢失</div>
-<div class="pain-item"><strong>P06</strong> 新 Agent 上手成本高</div>
-<div class="pain-item"><strong>P07</strong> 团队状态不透明</div>
-<div class="pain-item"><strong>P09</strong> 环境配置反复踩坑</div>
+<div class="pain-item"><strong>带宽瓶颈</strong> 一个 Agent 跨多项目，context 不够用，项目间互相干扰，性能下降</div>
+<div class="pain-item"><strong>冷启动成本高</strong> 新 Agent 即使有 onboarding skill，实际项目中仍需反复沟通才能进入状态</div>
+<div class="pain-item"><strong>交接信息丢失</strong> PM→QA 交接丢决策上下文，组织记忆随 session 断裂</div>
+<div class="pain-item"><strong>团队状态不透明</strong> 谁在做什么、卡在哪里，管理者无处可看</div>
 </div>
 
 <div class="pain-group">
 <h3 style="color:#6c5ce7;margin-bottom:12px;">📚 Train — 培训员工的痛点</h3>
-<div class="pain-item"><strong>P03</strong> 纠正不持久：同样的错反复犯</div>
-<div class="pain-item"><strong>P08</strong> 存储 ≠ 召回：规则写了但想不起来</div>
-<div class="pain-item"><strong>P10</strong> 产品分析能力不足</div>
+<div class="pain-item"><strong>存储 ≠ 召回</strong> 规则写了但关键时刻想不起来——Agent 不会「触景生情」</div>
+<div class="pain-item"><strong>纠正不持久</strong> 同一个错反复犯，纠正当场改了，跨 session 又忘</div>
+<div class="pain-item"><strong>经验不共享</strong> 一个 Agent 学到的教训，同角色其他 Agent 不知道</div>
 </div>
 
 <div class="pain-group">
@@ -235,9 +235,9 @@ footer{text-align:center;padding:60px 20px 40px;color:var(--muted);font-size:.85
 <table class="roadmap">
 <thead><tr><th>Milestone</th><th>目标</th><th>核心交付</th><th>验收标准</th></tr></thead>
 <tbody>
-<tr><td><strong>M1 Build</strong></td><td>组建 AI 团队基础设施</td><td>角色模板库（3 套）、环境自检、共享知识库</td><td>新 agent 30 分钟内上手</td></tr>
-<tr><td><strong>M2 Train</strong></td><td>AI 员工可被有效培训</td><td>场景触发式召回、纠正→规则沉淀、红线检查器</td><td>同类错误纠正一次不再犯</td></tr>
-<tr><td><strong>M3 Process</strong></td><td>碳硅协作流畅可控</td><td>Kill Switch、心跳进度、决策门控、状态看板</td><td>停止指令 5 秒生效</td></tr>
+<tr><td><strong>M1 Build</strong></td><td>快速组建 AI 团队</td><td>角色模板库、组织记忆继承、环境自检、状态看板</td><td>新 Agent 30 分钟上手，不需反复沟通</td></tr>
+<tr><td><strong>M2 Train</strong></td><td>AI 员工可被有效培训</td><td>场景触发式召回、纠正→规则沉淀、跨 Agent 知识共享</td><td>同类错误纠正一次不再犯</td></tr>
+<tr><td><strong>M3 Process</strong></td><td>流程强制执行</td><td>验收流程强制检查、Bug/需求分流、Human Gate、Kill Switch</td><td>Agent 跳步即拦截，停止指令 5 秒生效</td></tr>
 </tbody>
 </table>
 </section>
