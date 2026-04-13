@@ -48,7 +48,7 @@ Cloud 托管 Demo，面向非技术用户和投资人演示。不是完整产品
 
 | 指标 | 目标值 |
 |------|--------|
-| 从打开页面到 3 个 agent 上线 | 2 分钟内（含对话式创建） |
+| 从打开页面到 3 个 agent 上线 | 1 分钟内（含对话式创建） |
 | 用户通过自然语言完成团队创建 | 100% |
 | Agent 在聊天界面首条消息 | 创建后 10 秒内 |
 | 纠正一次后规则永久生效 | 100%（跨 session 验证） |
@@ -144,7 +144,7 @@ OpenClaw (Agent Runtime)
 
 ### 4.1.1 目标
 
-- 核心目标：用户通过自然语言对话，在 2 分钟内创建一支 AI 团队
+- 核心目标：用户通过自然语言对话，在 1 分钟内创建一支 AI 团队
 - 体验原则：像跟人事说"帮我组个产品团队"一样自然，不需要理解技术概念
 
 ### 4.1.2 用户流程
@@ -155,7 +155,10 @@ OpenClaw (Agent Runtime)
 2. 系统发送欢迎消息，引导用户描述需求
 3. 用户输入类似"I need a team to build a landing page"
 4. 系统分析需求，推荐角色组合（如 PM + Dev + QA）
-5. 展示角色卡片预览（内嵌在聊天消息中），包含每个角色的职责和预设技能
+5. 展示角色卡片预览（内嵌在聊天消息中），包含角色名、职责描述和装载的 Skills 列表：
+   - PM-Octopus — Skills: `prd-writing`, `product-design`, `ui-review`
+   - Dev-Fox — Skills: `code-impl`, `pr-submit`, `code-review`
+   - QA-Eagle — Skills: `e2e-testing`, `acceptance`, `bug-report`
 6. 用户确认"looks good"或调整"不需要 QA"
 7. 系统创建 agent，每个 agent 在聊天频道自我介绍
 8. 团队就位，用户可以开始下指令
@@ -227,12 +230,13 @@ OpenClaw (Agent Runtime)
 
 **正常路径：**
 
-1. 团队创建完成后，自动进入项目聊天频道
-2. 左侧导航显示：项目频道列表 + agent 列表
+1. 团队创建完成后，自动进入项目聊天频道（# general）
+2. 左侧导航显示：项目频道列表 + Chat 下的子频道（# general / # design-review / # dev-standup / # bug-triage）+ agent 列表
 3. 用户在频道输入指令，如"PM, write a PRD for the landing page"
 4. 被 @ 的 agent 响应，其他 agent 可见但不主动介入
 5. Agent 执行结果以消息形式展示（支持 markdown、代码块、文件链接）
 6. 用户可以 @ 多个 agent 协作，如"Dev, implement what PM just wrote"
+7. 用户可以创建新频道或 thread 讨论特定话题
 
 **Agent 间协作：**
 
@@ -686,8 +690,8 @@ OpenClaw (Agent Runtime)
 |-----|------|------|------|
 | 1 | Build | 用户通过对话创建 PM + Dev + QA 团队 | 1 min |
 | 2 | Work | 用户下指令做落地页，agent 在聊天中协作 | 2 min |
-| 3 | Train | 用户纠正一次，系统检测规则，用户确认，永久生效 | 1 min |
-| 4 | Process | Dev 跳步被拦截 + Kill Switch 演示 | 1 min |
+| 3 | Train | Juanjuan 说「给 Dev 提需求前要分 bug/需求变更，需求变更要有 PRD，我 approve 后才能开发」→ 系统自动提取多步骤流程规则 → 用户确认 | 1 min |
+| 4 | Process | Juanjuan 下指令「根据用户 feedback 加 dark mode」→ Dev @PM 说需要先出 PRD → PM 写 PRD + Design → PM @Juanjuan 请求 approve → Juanjuan approve → Dev 开始 → Juanjuan 发现没考虑 mobile → @PM 更新设计 → Kill Switch 暂停全部 | 1 min |
 
 ---
 
@@ -710,7 +714,7 @@ OpenClaw (Agent Runtime)
 
 | 维度 | 指标 | 目标值 | 度量方式 |
 |------|------|--------|----------|
-| Build 效率 | 从对话到团队上线 | 2 分钟内 | Demo 计时 |
+| Build 效率 | 从对话到团队上线 | 1 分钟内 | Demo 计时 |
 | Train 效果 | 纠正后规则跨 session 生效 | 100% | 功能测试 |
 | Process 执行 | 跳步拦截成功率 | 100% | 功能测试 |
 | Kill Switch | 停止指令响应时间 | 5 秒内 | 功能测试 |
