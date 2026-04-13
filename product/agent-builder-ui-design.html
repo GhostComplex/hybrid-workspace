@@ -73,12 +73,53 @@ h1 span{background:linear-gradient(135deg,var(--purple),var(--blue));-webkit-bac
 .success-icon{font-size:80px;margin-bottom:20px}
 .success-title{font-size:32px;font-weight:700;margin-bottom:8px}
 .success-sub{color:var(--text2);font-size:16px;margin-bottom:32px}
-.btn-discord{background:var(--surface);border:2px solid var(--purple);color:var(--text);padding:14px 36px;font-size:16px;font-weight:600;border-radius:60px;cursor:pointer;transition:.2s}
-.btn-discord:hover{background:var(--purple);color:#fff}
+.btn-chat{background:var(--surface);border:2px solid var(--purple);color:var(--text);padding:14px 36px;font-size:16px;font-weight:600;border-radius:60px;cursor:pointer;transition:.2s}
+.btn-chat:hover{background:var(--purple);color:#fff}
 .agent-cards{display:flex;justify-content:center;gap:16px;margin:32px 0;flex-wrap:wrap}
 .agent-live{background:var(--surface);border:1px solid var(--green);border-radius:var(--radius);padding:16px 24px;text-align:center;min-width:150px}
 .agent-live .dot-live{width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block;margin-right:6px;animation:pulse 1.5s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* Chat Interface */
+.chat-container{max-width:1100px;margin:0 auto;display:flex;height:600px;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;background:var(--surface)}
+.chat-sidebar{width:240px;background:var(--bg);border-right:1px solid var(--border);display:flex;flex-direction:column}
+.chat-sidebar-header{padding:16px 20px;border-bottom:1px solid var(--border);font-size:14px;font-weight:700;color:var(--text)}
+.chat-sidebar-header small{display:block;font-weight:400;color:var(--text2);font-size:11px;margin-top:2px}
+.member-list{flex:1;padding:8px 12px;overflow-y:auto}
+.member-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;margin-bottom:4px;cursor:pointer;transition:.15s}
+.member-item:hover{background:var(--surface2)}
+.member-avatar{font-size:24px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:var(--surface2);border-radius:50%;flex-shrink:0}
+.member-info{flex:1;min-width:0}
+.member-name{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.member-role{font-size:11px;color:var(--text2)}
+.member-status{width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;animation:pulse 1.5s infinite}
+.member-you{font-size:10px;color:var(--purple);font-weight:600;margin-left:4px}
+
+.chat-main{flex:1;display:flex;flex-direction:column}
+.chat-header{padding:14px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
+.chat-header-title{font-size:15px;font-weight:700}
+.chat-header-sub{font-size:12px;color:var(--text2)}
+.chat-header-badge{background:var(--green);color:#000;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px}
+
+.chat-messages{flex:1;padding:20px 24px;overflow-y:auto;display:flex;flex-direction:column;gap:16px}
+.msg{display:flex;gap:10px;max-width:85%}
+.msg-avatar{font-size:20px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:var(--surface2);border-radius:50%;flex-shrink:0;margin-top:2px}
+.msg-body{flex:1}
+.msg-name{font-size:12px;font-weight:700;margin-bottom:2px;display:flex;align-items:center;gap:6px}
+.msg-name .msg-time{font-weight:400;color:var(--text2);font-size:10px}
+.msg-text{font-size:14px;line-height:1.5;color:var(--text);background:var(--surface2);padding:10px 14px;border-radius:0 12px 12px 12px}
+.msg.user{align-self:flex-end;flex-direction:row-reverse}
+.msg.user .msg-text{background:var(--purple);border-radius:12px 0 12px 12px}
+.msg.user .msg-name{justify-content:flex-end}
+.msg-name .tag-pm{color:#a29bfe;font-size:10px;font-weight:600}
+.msg-name .tag-dev{color:#55efc4;font-size:10px;font-weight:600}
+.msg-name .tag-qa{color:#fdcb6e;font-size:10px;font-weight:600}
+
+.chat-input-area{padding:16px 24px;border-top:1px solid var(--border);display:flex;gap:12px;align-items:center}
+.chat-input{flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:24px;padding:12px 20px;color:var(--text);font-size:14px;outline:none;transition:.2s}
+.chat-input:focus{border-color:var(--purple)}
+.chat-send{background:linear-gradient(135deg,var(--purple),var(--blue));border:none;color:#fff;width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:.2s}
+.chat-send:hover{transform:scale(1.1)}
 
 /* Divider */
 .divider{border:none;border-top:2px dashed var(--border);margin:60px 0}
@@ -97,7 +138,7 @@ h1 span{background:linear-gradient(135deg,var(--purple),var(--blue));-webkit-bac
 
 <div class="container">
   <h1>Build Your <span>AI Team</span></h1>
-  <p class="subtitle">Select roles, configure skills, and launch your team to Discord in one click.</p>
+  <p class="subtitle">Select roles, configure skills, and launch your AI team — all in one page.</p>
 
   <!-- Steps -->
   <div class="steps">
@@ -215,7 +256,7 @@ h1 span{background:linear-gradient(135deg,var(--purple),var(--blue));-webkit-bac
     <div class="load-item"><span class="status">✅</span> Initializing PM (pm-Octopus)...</div>
     <div class="load-item"><span class="status">✅</span> Initializing Dev (dev-Fox)...</div>
     <div class="load-item"><div class="spinner"></div> Initializing QA (qa-Eagle)...</div>
-    <div class="load-item"><span class="status" style="color:var(--text2)">⏳</span> <span style="color:var(--text2)">Connecting to Discord...</span></div>
+    <div class="load-item"><span class="status" style="color:var(--text2)">⏳</span> <span style="color:var(--text2)">Connecting to chat...</span></div>
   </div>
 
   <div class="launch-area">
@@ -225,12 +266,12 @@ h1 span{background:linear-gradient(135deg,var(--purple),var(--blue));-webkit-bac
 
 <hr class="divider">
 
-<!-- ===== STATE 4: Success ===== -->
-<div class="page-label"><span>State 4 — Team is Live (Success)</span></div>
+<!-- ===== STATE 4: Success — Transition ===== -->
+<div class="page-label"><span>State 4 — Team is Live (Success Transition)</span></div>
 <div class="success-page">
   <div class="success-icon">🎉</div>
   <div class="success-title">Your AI Team is Live!</div>
-  <div class="success-sub">Head over to Discord to see them in action.</div>
+  <div class="success-sub">Your agents are online and ready to work. Start chatting below.</div>
 
   <div class="agent-cards">
     <div class="agent-live">
@@ -250,7 +291,7 @@ h1 span{background:linear-gradient(135deg,var(--purple),var(--blue));-webkit-bac
     </div>
   </div>
 
-  <button class="btn-discord">Open Discord Channel →</button>
+  <button class="btn-chat">Start Chatting ↓</button>
 </div>
 
 <hr class="divider">
@@ -260,12 +301,136 @@ h1 span{background:linear-gradient(135deg,var(--purple),var(--blue));-webkit-bac
 <div class="success-page">
   <div class="success-icon">😵</div>
   <div class="success-title" style="color:var(--red)">Something went wrong</div>
-  <div class="success-sub">Failed to connect to Discord. Please try again.</div>
+  <div class="success-sub">Failed to initialize agents. Please try again.</div>
   <button class="btn-launch">Retry 🔄</button>
 </div>
 
+<hr class="divider">
+
+<!-- ===== STATE 6: Chat Interface ===== -->
+<div class="page-label"><span>State 6 — Web Chat Interface (Post-Creation)</span></div>
+
+<nav class="nav">
+  <div class="logo">⚡ Hybrid Workforce</div>
+  <div class="nav-links"><span style="color:var(--green);font-size:12px">● 3 agents online</span><span>Docs</span><span>GitHub</span></div>
+</nav>
+
+<div style="max-width:1100px;margin:0 auto;padding:20px">
+  <div class="chat-container">
+    <!-- Sidebar: Team Members -->
+    <div class="chat-sidebar">
+      <div class="chat-sidebar-header">
+        🏢 My AI Team
+        <small>3 members online</small>
+      </div>
+      <div class="member-list">
+        <div class="member-item" style="background:var(--surface2)">
+          <div class="member-avatar">👤</div>
+          <div class="member-info">
+            <div class="member-name">You <span class="member-you">OWNER</span></div>
+            <div class="member-role">Team Lead</div>
+          </div>
+          <div class="member-status"></div>
+        </div>
+        <div class="member-item">
+          <div class="member-avatar">🐙</div>
+          <div class="member-info">
+            <div class="member-name">pm-Octopus</div>
+            <div class="member-role">Product Manager</div>
+          </div>
+          <div class="member-status"></div>
+        </div>
+        <div class="member-item">
+          <div class="member-avatar">🦊</div>
+          <div class="member-info">
+            <div class="member-name">dev-Fox</div>
+            <div class="member-role">Developer</div>
+          </div>
+          <div class="member-status"></div>
+        </div>
+        <div class="member-item">
+          <div class="member-avatar">🦅</div>
+          <div class="member-info">
+            <div class="member-name">qa-Eagle</div>
+            <div class="member-role">QA Engineer</div>
+          </div>
+          <div class="member-status"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Chat Area -->
+    <div class="chat-main">
+      <div class="chat-header">
+        <div class="chat-header-title">🏢 My AI Team</div>
+        <div class="chat-header-badge">LIVE</div>
+        <div class="chat-header-sub">Team created just now · 3 agents active</div>
+      </div>
+
+      <div class="chat-messages">
+        <!-- System message -->
+        <div style="text-align:center;font-size:12px;color:var(--text2);padding:8px 0">
+          ✨ Your AI team has been created. Agents are introducing themselves...
+        </div>
+
+        <!-- PM intro -->
+        <div class="msg">
+          <div class="msg-avatar">🐙</div>
+          <div class="msg-body">
+            <div class="msg-name"><span class="tag-pm">PM</span> pm-Octopus <span class="msg-time">just now</span></div>
+            <div class="msg-text">大家好，我是 PM-Octopus，负责需求分析和产品验收。随时下指令，我来拆解任务。</div>
+          </div>
+        </div>
+
+        <!-- Dev intro -->
+        <div class="msg">
+          <div class="msg-avatar">🦊</div>
+          <div class="msg-body">
+            <div class="msg-name"><span class="tag-dev">DEV</span> dev-Fox <span class="msg-time">just now</span></div>
+            <div class="msg-text">嗨，我是 Dev-Fox，负责写代码和提 PR。有需求文档了随时 @我。</div>
+          </div>
+        </div>
+
+        <!-- QA intro -->
+        <div class="msg">
+          <div class="msg-avatar">🦅</div>
+          <div class="msg-body">
+            <div class="msg-name"><span class="tag-qa">QA</span> qa-Eagle <span class="msg-time">just now</span></div>
+            <div class="msg-text">你好，我是 QA-Eagle，负责功能验收和 Bug 追踪。开发完成后我会跟进验收。</div>
+          </div>
+        </div>
+
+        <!-- User message -->
+        <div class="msg user">
+          <div class="msg-avatar">👤</div>
+          <div class="msg-body">
+            <div class="msg-name"><span class="msg-time">just now</span> You</div>
+            <div class="msg-text">帮我做一个 AI 产品的落地页</div>
+          </div>
+        </div>
+
+        <!-- PM reply -->
+        <div class="msg">
+          <div class="msg-avatar">🐙</div>
+          <div class="msg-body">
+            <div class="msg-name"><span class="tag-pm">PM</span> pm-Octopus <span class="msg-time">just now</span></div>
+            <div class="msg-text">收到！我先拆解一下需求：1) Hero Section 2) Feature 列表 3) CTA 按钮。我来写个简单 PRD，@Dev-Fox 准备接活。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Input Area -->
+      <div class="chat-input-area">
+        <input class="chat-input" type="text" placeholder="Type a message to your AI team..." />
+        <button class="chat-send">➤</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div style="padding:60px;text-align:center;color:var(--text2);font-size:12px">
-  Agent Builder UI Design v1.0 — pm-Octopus — 2026-04-11
+  Agent Builder UI Design v1.1 — pm-Octopus — 2026-04-13<br>
+  <span style="font-size:11px;color:var(--text2)">Updated: Web embedded chat interface (replaces Discord redirect)</span>
 </div>
 
 </body>
