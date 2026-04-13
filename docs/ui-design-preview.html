@@ -248,7 +248,7 @@ svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-lin
     </a>
     <a href="#workflow">
       <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-      Workflows
+      Process
     </a>
     <a href="#monitor">
       <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
@@ -349,6 +349,31 @@ svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-lin
       </div>
     </div>
 
+    <!-- Four Layers -->
+    <div style="margin-bottom:8px;font-size:14px;font-weight:600">Platform Architecture</div>
+    <div class="stats-grid" style="margin-bottom:28px">
+      <div class="card" style="text-align:left;padding:18px">
+        <div style="font-size:11px;color:var(--primary);font-weight:600;margin-bottom:6px">HARNESS LAYER</div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:4px">管理制度</div>
+        <div style="font-size:11px;color:var(--text-dim);line-height:1.6">角色模板自带技能、规则与行为边界，上岗即守规矩</div>
+      </div>
+      <div class="card" style="text-align:left;padding:18px">
+        <div style="font-size:11px;color:var(--blue);font-weight:600;margin-bottom:6px">MEMORY LAYER</div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:4px">组织记忆</div>
+        <div style="font-size:11px;color:var(--text-dim);line-height:1.6">决策、经验、上下文跨 Agent 持久传承，关键时刻主动推送</div>
+      </div>
+      <div class="card" style="text-align:left;padding:18px">
+        <div style="font-size:11px;color:var(--green);font-weight:600;margin-bottom:6px">LEARNING LAYER</div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:4px">员工成长</div>
+        <div style="font-size:11px;color:var(--text-dim);line-height:1.6">从项目经历与人类反馈中自主学习，纠正自动沉淀为规则</div>
+      </div>
+      <div class="card" style="text-align:left;padding:18px">
+        <div style="font-size:11px;color:var(--gold);font-weight:600;margin-bottom:6px">ORCHESTRATION LAYER</div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:4px">流程管控</div>
+        <div style="font-size:11px;color:var(--text-dim);line-height:1.6">人类定义流程，系统强制执行，跳步即拦截</div>
+      </div>
+    </div>
+
     <!-- Activity Feed -->
     <div style="margin-bottom:8px;font-size:14px;font-weight:600">Recent Activity</div>
     <div class="card" style="padding:4px 20px">
@@ -395,8 +420,19 @@ svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-lin
   </div>
 
   <div style="padding:28px">
-    <div class="section-label">Templates</div>
+    <div class="section-label">Build</div>
     <div class="section-title">Build Your AI Team</div>
+
+    <!-- Build Pain Points -->
+    <div class="card" style="margin-bottom:20px;border-color:rgba(231,76,60,.15);background:rgba(231,76,60,.03)">
+      <div style="font-size:11px;color:var(--red);font-weight:600;margin-bottom:8px">TODAY'S PAIN</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12px;color:var(--text-dim)">
+        <div>🔴 人类带宽瓶颈 — 一人带多 Agent，顾不过来</div>
+        <div>🔴 冷启动成本高 — 新 Agent 上岗什么都不知道</div>
+        <div>🔴 没有共享知识空间 — Agent 之间信息孤岛</div>
+        <div>🔴 状态不透明 — 不知道谁在干什么、卡在哪</div>
+      </div>
+    </div>
 
     <div class="template-row">
       <div class="template-btn">Startup Team</div>
@@ -465,6 +501,7 @@ svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-lin
     <!-- Knowledge Base -->
     <div class="card-glass kb-section">
       <h3>Shared Knowledge Base</h3>
+      <div style="font-size:12px;color:var(--text-dim);margin-bottom:14px">Agent 版的飞书文档 / Wiki — 团队共享知识空间</div>
       <div class="kb-row">
         <div class="kb-item">
           <svg viewBox="0 0 24 24" width="24" height="24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
@@ -477,6 +514,26 @@ svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-lin
         <div class="kb-item">
           <svg viewBox="0 0 24 24" width="24" height="24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
           <div>Add API Integration</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Org Memory -->
+    <div class="card-glass kb-section">
+      <h3>Organization Memory Inheritance</h3>
+      <div style="font-size:12px;color:var(--text-dim);margin-bottom:14px">新 Agent 自动继承项目上下文 — 告别冷启动</div>
+      <div class="kb-row">
+        <div class="kb-item" style="border-color:rgba(0,184,148,.2)">
+          <svg viewBox="0 0 24 24" width="24" height="24" style="color:var(--green)"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          <div>Decision History</div>
+        </div>
+        <div class="kb-item" style="border-color:rgba(0,184,148,.2)">
+          <svg viewBox="0 0 24 24" width="24" height="24" style="color:var(--green)"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+          <div>Project Context</div>
+        </div>
+        <div class="kb-item" style="border-color:rgba(0,184,148,.2)">
+          <svg viewBox="0 0 24 24" width="24" height="24" style="color:var(--green)"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          <div>Lessons Learned</div>
         </div>
       </div>
     </div>
@@ -499,6 +556,24 @@ svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-lin
   </div>
 
   <div style="padding:28px">
+    <div class="section-label">Train</div>
+    <div class="section-title" style="margin-bottom:4px">Agent Profile</div>
+    <div style="font-size:13px;color:var(--text-dim);margin-bottom:8px">
+      Today: <span style="color:var(--text-muted)">Teach Once, Store Forever, Recall Never.</span><br>
+      Tomorrow: <span style="color:var(--primary);font-weight:600">Teach Once, Recall Instantly, Remember Forever.</span>
+    </div>
+
+    <!-- Train Pain Points -->
+    <div class="card" style="margin-bottom:20px;border-color:rgba(231,76,60,.15);background:rgba(231,76,60,.03)">
+      <div style="font-size:11px;color:var(--red);font-weight:600;margin-bottom:8px">TODAY'S PAIN</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12px;color:var(--text-dim)">
+        <div>🔴 存储 ≠ 召回 — 记了一堆，关键时刻想不起来</div>
+        <div>🔴 纠正不持久 — 改了又犯，同样的错误反复出现</div>
+        <div>🔴 经验不共享 — 一个 Agent 学到的，其他 Agent 不知道</div>
+        <div>🔴 无法自主学习 — 只能被动接受指令，不会从经验中成长</div>
+      </div>
+    </div>
+
     <div class="profile-layout">
       <!-- Left: Info Card -->
       <div class="card profile-card">
@@ -591,7 +666,7 @@ svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-lin
             </div>
           </div>
 
-          <div style="font-size:14px;font-weight:600;margin-bottom:14px;color:var(--text-dim)">Memory Timeline</div>
+          <div style="font-size:14px;font-weight:600;margin-bottom:14px;color:var(--text-dim)">Memory Timeline <span style="font-size:11px;font-weight:400;color:var(--primary)">— 场景触发式召回（触景生情）</span></div>
           <div class="card" style="padding:8px 20px;margin-bottom:20px">
             <div class="memory-item">
               <div class="memory-date">Apr 11</div>
@@ -668,13 +743,13 @@ svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-lin
 </section>
 
 <!-- ══════════════════════════════════════════════ -->
-<!-- PAGE 4: Team Process — Natural Language to Agent Rules -->
+<!-- PAGE 4: Process — Human-Defined Workflows, System-Enforced -->
 <!-- ══════════════════════════════════════════════ -->
 <section class="page-section" id="workflow" style="padding:0">
   <div class="topbar">
-    <h1>Team Process</h1>
+    <h1>Process</h1>
     <div class="topbar-actions">
-      <span style="font-size:11px;color:var(--text-muted)">Your words become their rules</span>
+      <span style="font-size:11px;color:var(--text-muted)">人类定义流程，系统强制执行，跳步即拦截</span>
     </div>
   </div>
 
@@ -682,6 +757,19 @@ svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-lin
 
     <!-- Left: Conversation -->
     <div style="display:flex;flex-direction:column;gap:16px">
+
+      <!-- Process Pain Points -->
+      <div class="card" style="border-color:rgba(231,76,60,.15);background:rgba(231,76,60,.03)">
+        <div style="font-size:11px;color:var(--red);font-weight:600;margin-bottom:8px">TODAY'S PAIN</div>
+        <div style="display:flex;flex-direction:column;gap:6px;font-size:12px;color:var(--text-dim)">
+          <div>🔴 验收没流程 — 不写 test case、没截图就报通过</div>
+          <div>🔴 需求变更不走流程 — Dev 没等 PRD 评审就开发</div>
+          <div>🔴 不区分 bug 和需求变更 — 混为一谈导致流程混乱</div>
+          <div>🔴 角色间交接丢失上下文 — PM→Dev→QA 信息层层衰减</div>
+          <div>🔴 关键节点不等人类审批 — Agent 自作主张跳过 Human Gate</div>
+          <div>🔴 叫停无响应 — 说了"停"还在继续推代码</div>
+        </div>
+      </div>
 
       <!-- Human message -->
       <div class="card" style="border-color:rgba(0,210,255,.2);background:rgba(0,210,255,.03)">
@@ -945,7 +1033,7 @@ svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-lin
   <a href="#dashboard" title="Dashboard"></a>
   <a href="#team-builder" title="Team Builder"></a>
   <a href="#agent-profile" title="Agent Profile"></a>
-  <a href="#workflow" title="Team Process"></a>
+  <a href="#workflow" title="Process"></a>
   <a href="#monitor" title="Live Monitor"></a>
 </div>
 
