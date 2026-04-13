@@ -248,8 +248,8 @@ add_text(s, "30 分钟从零到开始干活", Inches(1.2), Inches(5.2), Inches(1
 s = add_slide()
 add_text(s, "PHASE 2", Inches(1), Inches(0.5), Inches(2), Inches(0.4),
          font_size=14, color=PURPLE, bold=True)
-add_title(s, "Teach Once, Remember Forever", top=Inches(0.9))
-add_text(s, "Today: Teach Once, Store Forever, Recall Never.\nTomorrow: Teach Once, Remember Forever.",
+add_title(s, "Teach Once, Recall Instantly, Remember Forever", top=Inches(0.9))
+add_text(s, "Today: Teach Once, Store Forever, Recall Never.\nTomorrow: Teach Once, Recall Instantly, Remember Forever.",
          Inches(1), Inches(1.6), Inches(10), Inches(0.7),
          font_size=18, color=BLUE, bold=False)
 add_bullets(s, [

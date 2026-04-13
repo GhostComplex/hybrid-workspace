@@ -9,8 +9,10 @@
 
 **Hybrid Workforce** — 碳硅混合团队的操作系统。让每个知识工作者都能组建、培训、管理自己的 AI 团队。
 
-> **核心承诺：Teach Once, Remember Forever.**
-> 你用自然语言说一遍流程，每个 AI 员工自己领会、写入行为准则、下次自动执行。纠正一次，永远不再犯。
+> **核心承诺：Teach Once, Recall Instantly, Remember Forever.**
+>
+> **Problem：** Teach Once, Store Forever, Recall Never — 规则写了但想不起来，纠正了但跨 session 就忘。
+> **Solution：** Teach Once, Recall Instantly, Remember Forever — 你用自然语言说一遍流程，每个 AI 员工自己领会、写入行为准则、下次自动执行。纠正一次，永远不再犯。
 
 > "Every company will have more AI employees than human employees. Hybrid Workforce is how you run that company."
 
@@ -75,7 +77,7 @@ Hybrid Workforce 要解决的是：**从单人用 AI 聊天，到一个人指挥
 
 ---
 
-## 阶段二：Train — 培训 AI 员工（Teach Once, Remember Forever）
+## 阶段二：Train — 培训 AI 员工（Teach Once, Recall Instantly, Remember Forever）
 
 ### 核心问题
 > "AI 员工反复犯同样的错，每次纠正完下次又忘了。"
