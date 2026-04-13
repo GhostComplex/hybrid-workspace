@@ -107,23 +107,18 @@ footer{text-align:center;padding:60px 20px 40px;color:var(--muted);font-size:.85
 <div class="problem-grid">
 
 <div class="problem-row">
-<div><h3>没有组织架构</h3><p class="sub">谁做什么、向谁汇报？</p></div>
-<div class="cases">· PM 和 QA 都有验收职责，边界模糊，PM 看 QA 卡住就帮忙绕过<br>· Dev 没等需求评审就开工，PR 做完才发现方向错了</div>
+<div><h3>Build 的痛：组建团队难</h3><p class="sub">一个 agent 不够用，新 agent 又上手慢</p></div>
+<div class="cases">· 一个 Agent 跨多项目，context 不够用，性能下降<br>· 新 Agent 即使有 onboarding skill，实际项目中仍需反复沟通<br>· PM→QA 交接丢失决策上下文，组织记忆随 session 断裂<br>· 谁在做什么、卡在哪里，管理者无处可看</div>
 </div>
 
 <div class="problem-row">
-<div><h3>没有组织记忆</h3><p class="sub">昨天的决策今天忘了</p></div>
-<div class="cases">· 连续 5 天无 daily notes，项目状态完全失明<br>· PR #101 验收停在 22%，无人知道是卡住还是被遗忘<br>· PM→QA 交接丢失决策上下文，实现违反 PRD 决策</div>
+<div><h3>Train 的痛：教了记不住</h3><p class="sub" style="color:var(--blue)">Teach Once, Store Forever, Recall Never</p></div>
+<div class="cases">· Skill 里写了「GitHub issue 图片用 markdown 格式」，但每次都忘<br>· 规则不是没有，是在 20+ 条中被上下文稀释——Agent 不会「触景生情」<br>· 同一条规则纠正多次，跨 session 后又忘<br>· 一个 Agent 学到的教训，同角色其他 Agent 不知道</div>
 </div>
 
 <div class="problem-row">
-<div><h3>存储 ≠ 召回</h3><p class="sub" style="color:var(--blue)">Teach Once, Store Forever, Recall Never</p></div>
-<div class="cases">· Skill 里写了「GitHub issue 图片用 markdown 格式」，但每次都忘<br>· 规则不是没有，是在 20+ 条中被上下文稀释——Agent 不会「触景生情」<br>· 同一条规则纠正多次，跨 session 后又忘了</div>
-</div>
-
-<div class="problem-row">
-<div><h3>没有流程规范</h3><p class="sub">AI 自作主张，人类失控</p></div>
-<div class="cases">· QA 没有截图就报验收 Pass，团队基于假结果做决策<br>· Agent 跑长任务时变成聋子，叫停指令等 2 小时才读到<br>· 后端路径用错导致 LLM 走 fallback，整个上午验收结果不可靠</div>
+<div><h3>Process 的痛：流程形同虚设</h3><p class="sub">有规定没执行，人类失控</p></div>
+<div class="cases">· QA 没写 test case 就验收，没截图就报 Pass<br>· Bug 和需求变更混着处理，该写 PRD 的直接开干<br>· 关键节点不等人类审批，Agent 自作主张往下走<br>· 人类说「停」，Agent 跑长任务时完全听不到</div>
 </div>
 
 </div>
