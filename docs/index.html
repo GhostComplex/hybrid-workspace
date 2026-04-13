@@ -57,9 +57,11 @@ table.roadmap tr:nth-child(even){background:var(--card)}
 .pain-item{background:var(--card);border-radius:8px;padding:14px 18px;font-size:.9rem;border-left:3px solid var(--purple);margin-bottom:8px}
 .pain-item strong{color:var(--purple)}
 /* Preview section */
-.preview-links{display:flex;gap:16px;flex-wrap:wrap;margin-top:24px}
-.preview-links a{display:inline-block;padding:12px 28px;border:1px solid var(--purple);border-radius:8px;color:var(--white);font-weight:600;transition:all .2s}
-.preview-links a:hover{background:var(--purple);text-decoration:none}
+.preview-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:24px;margin-top:24px}
+.preview-links a{display:block;padding:32px;border:1px solid var(--purple);border-radius:12px;color:var(--white);font-weight:600;transition:all .2s;text-decoration:none}
+.preview-links a:hover{background:rgba(108,92,231,0.1);border-color:rgba(108,92,231,0.6)}
+.preview-links a .card-title{font-size:18px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.preview-links a .card-desc{font-size:14px;color:rgba(245,240,232,0.5);font-weight:400;line-height:1.5}
 /* Footer */
 footer{text-align:center;padding:60px 20px 40px;color:var(--muted);font-size:.85rem;border-top:1px solid #1a1a2e}
 </style>
@@ -212,9 +214,16 @@ footer{text-align:center;padding:60px 20px 40px;color:var(--muted);font-size:.85
 <!-- Preview -->
 <section id="preview">
 <p class="section-label">Interactive Demo</p>
-<h2>UI Design Preview</h2>
+<h2>Product Prototype</h2>
 <div class="preview-links">
-<a href="ui-design-preview.html">🎨 UI Design Preview</a>
+<a href="ui-prototype-chat.html">
+<div class="card-title">Build, Work & Manage As You Chat →</div>
+<div class="card-desc">See how your AI team collaborates in real-time: create agents through conversation, watch them work together, train them with natural language, and enforce processes — all in one chat interface.</div>
+</a>
+<a href="ui-prototype-manage.html">
+<div class="card-title">View & Manage Your Project →</div>
+<div class="card-desc">Browse your team's knowledge base, review learned rules, monitor agent status, and manage workflows — the structured management view behind the chat.</div>
+</a>
 </div>
 </section>
 

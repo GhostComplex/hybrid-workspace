@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1440, initial-scale=1">
+<title>Hybrid Workforce — Build, Work & Manage Your Team As You Chat</title>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+  :root {
+    --bg: #0A0A14;
+    --bg-secondary: #12121E;
+    --bg-tertiary: #1A1A2E;
+    --border: #2A2A3E;
+    --text: #F5F0E8;
+    --text-dim: rgba(245,240,232,0.6);
+    --text-muted: rgba(245,240,232,0.35);
+    --purple: #6C5CE7;
+    --purple-dim: rgba(108,92,231,0.15);
+    --blue: #00D2FF;
+    --blue-dim: rgba(0,210,255,0.12);
+    --green: #00B894;
+    --green-dim: rgba(0,184,148,0.12);
+    --gold: #FDCB6E;
+    --gold-dim: rgba(253,203,110,0.12);
+    --red: #E74C3C;
+    --red-dim: rgba(231,76,60,0.12);
+    --card-bg: #12121E;
+    --card-border: #2A2A3E;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --nav-width: 200px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); }
+
+  /* === LAYOUT === */
+  .app { display: flex; height: 100vh; background: var(--bg); }
+
+  /* === LEFT NAV === */
+  .left-nav {
+    width: var(--nav-width); background: #0D0D18; border-right: 1px solid var(--border);
+    display: flex; flex-direction: column; flex-shrink: 0;
+  }
+  .nav-logo {
+    padding: 20px 16px 16px; font-size: 12px; font-weight: 800; letter-spacing: 1.5px;
+    color: var(--text); display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border);
+  }
+  .nav-logo-icon {
+    width: 24px; height: 24px; border-radius: 6px;
+    background: linear-gradient(135deg, var(--purple), var(--blue));
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nav-logo-icon svg { width: 14px; height: 14px; color: #fff; }
+  .nav-section-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+    color: var(--text-muted); padding: 16px 16px 6px;
+  }
+  .nav-item {
+    display: flex; align-items: center; gap: 10px; padding: 8px 16px; font-size: 13px;
+    color: var(--text-dim); cursor: pointer; transition: all 0.15s; position: relative;
+  }
+  .nav-item:hover { background: var(--bg-tertiary); color: var(--text); }
+  .nav-item.active { background: var(--purple-dim); color: var(--text); font-weight: 600; }
+  .nav-item.active::before {
+    content: ''; position: absolute; left: 0; top: 4px; bottom: 4px; width: 3px;
+    background: var(--purple); border-radius: 0 2px 2px 0;
+  }
+  .nav-item svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .nav-sub-items { padding: 2px 0 4px 0; }
+  .nav-sub-item {
+    padding: 5px 16px 5px 40px; font-size: 12px; color: var(--text-muted);
+    cursor: pointer; transition: all 0.15s; display: flex; align-items: center; gap: 6px;
+  }
+  .nav-sub-item:hover { color: var(--text-dim); }
+  .nav-sub-item.active { color: var(--text); font-weight: 500; }
+  .nav-channel-hash { color: var(--text-muted); font-size: 11px; font-weight: 600; }
+  .nav-project {
+    padding: 6px 16px 6px 36px; font-size: 12px; color: var(--text-muted);
+    cursor: pointer; transition: all 0.15s; display: flex; align-items: center; gap: 8px;
+  }
+  .nav-project:hover { color: var(--text-dim); }
+  .nav-project.active { color: var(--text); font-weight: 600; }
+  .nav-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .nav-divider { height: 1px; background: var(--border); margin: 8px 16px; }
+  .nav-user {
+    margin-top: auto; padding: 16px; border-top: 1px solid var(--border);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .nav-user-avatar {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: linear-gradient(135deg, var(--purple), #9B59B6);
+    display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700;
+  }
+  .nav-user-name { font-size: 13px; font-weight: 600; }
+  .nav-user-role { font-size: 10px; color: var(--text-muted); }
+
+  /* === MAIN === */
+  .main-content { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+  .main-header {
+    height: 52px; background: var(--bg-secondary); border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; padding: 0 24px; flex-shrink: 0;
+  }
+  .main-header-title { font-size: 15px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+  .main-header-title svg { width: 16px; height: 16px; color: var(--purple); }
+  .main-header-actions { margin-left: auto; display: flex; gap: 10px; align-items: center; }
+  .header-btn {
+    background: none; border: 1px solid var(--border); color: var(--text-dim);
+    padding: 5px 12px; border-radius: var(--radius-sm); font-size: 12px; cursor: pointer;
+    display: flex; align-items: center; gap: 5px;
+  }
+  .header-btn svg { width: 14px; height: 14px; }
+  .header-btn.kill { background: var(--red-dim); border-color: var(--red); color: var(--red); font-weight: 600; }
+
+  .main-body { flex: 1; display: flex; overflow: hidden; }
+
+  /* === CHAT === */
+  .chat-area { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+  .chat-messages { flex: 1; overflow-y: auto; padding: 24px 28px; display: flex; flex-direction: column; gap: 16px; }
+  .chat-input-bar { padding: 14px 28px 18px; border-top: 1px solid var(--border); background: var(--bg-secondary); }
+  .chat-input {
+    width: 100%; background: var(--bg-tertiary); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 12px 18px; color: var(--text); font-size: 14px; outline: none;
+  }
+  .chat-input::placeholder { color: var(--text-muted); }
+  .chat-input:focus { border-color: var(--purple); }
+
+  /* Messages */
+  .msg { display: flex; gap: 12px; max-width: 680px; }
+  .msg.user-msg { flex-direction: row-reverse; margin-left: auto; }
+  .msg-content { flex: 1; }
+  .msg.user-msg .msg-content { text-align: right; }
+  .msg.user-msg .msg-header { justify-content: flex-end; }
+  .msg-header { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+  .msg-name { font-size: 13px; font-weight: 600; }
+  .msg-name.c-blue { color: var(--blue); }
+  .msg-name.c-gold { color: var(--gold); }
+  .msg-name.c-green { color: var(--green); }
+  .msg-name.c-purple { color: var(--purple); }
+  .msg-time { font-size: 11px; color: var(--text-muted); }
+  .msg-bubble {
+    background: var(--bg-tertiary); border: 1px solid var(--border);
+    border-radius: 4px var(--radius) var(--radius) var(--radius);
+    padding: 10px 14px; font-size: 14px; line-height: 1.6; display: inline-block; text-align: left;
+  }
+  .msg.user-msg .msg-bubble {
+    border-radius: var(--radius) 4px var(--radius) var(--radius);
+    background: var(--purple-dim); border-color: rgba(108,92,231,0.3);
+  }
+  .msg-bubble.system-bubble { background: var(--purple-dim); border-color: rgba(108,92,231,0.3); }
+
+  /* Avatars */
+  .avatar {
+    width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center;
+    justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; position: relative;
+  }
+  .avatar.user { background: linear-gradient(135deg, var(--purple), #9B59B6); }
+  .avatar.pm { background: linear-gradient(135deg, var(--purple), #8B7CF7); }
+  .avatar.dev { background: linear-gradient(135deg, var(--blue), #0099CC); }
+  .avatar.qa { background: linear-gradient(135deg, var(--green), #00C853); }
+  .avatar.system { background: linear-gradient(135deg, var(--purple), var(--blue)); }
+  .status-dot {
+    position: absolute; bottom: -1px; right: -1px; width: 10px; height: 10px;
+    border-radius: 50%; border: 2px solid var(--bg-secondary);
+  }
+  .status-dot.online { background: var(--green); }
+  .status-dot.busy { background: var(--red); }
+  .status-dot.idle { background: var(--text-muted); }
+
+  /* Smart cards */
+  .smart-card {
+    background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius);
+    padding: 16px 20px; max-width: 480px; margin-top: 8px;
+  }
+  .smart-card-header {
+    display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; margin-bottom: 12px;
+  }
+  .smart-card-header svg { width: 16px; height: 16px; }
+  .smart-card-body { font-size: 13px; color: var(--text-dim); line-height: 1.6; }
+  .rule-text {
+    font-size: 15px; color: var(--text); font-weight: 500; margin: 8px 0; padding: 8px 12px;
+    background: rgba(108,92,231,0.08); border-radius: var(--radius-sm); border-left: 3px solid var(--purple);
+  }
+  .smart-card-meta { display: flex; flex-direction: column; gap: 4px; margin-top: 8px; font-size: 12px; color: var(--text-muted); }
+  .smart-card-meta span { display: flex; align-items: center; gap: 6px; }
+  .card-actions { display: flex; gap: 8px; margin-top: 14px; }
+  .card-btn {
+    padding: 6px 16px; border-radius: var(--radius-sm); font-size: 12px; font-weight: 600;
+    cursor: pointer; border: none; display: flex; align-items: center; gap: 4px;
+  }
+  .card-btn svg { width: 12px; height: 12px; }
+  .btn-approve { background: var(--green); color: #0A0A14; }
+  .btn-edit { background: var(--bg-tertiary); color: var(--text); border: 1px solid var(--border) !important; }
+  .btn-dismiss { background: var(--red-dim); color: var(--red); }
+  .btn-review { background: var(--blue-dim); color: var(--blue); }
+
+  .progress-bar-track { width: 100%; height: 6px; background: var(--bg-tertiary); border-radius: 3px; margin: 8px 0; overflow: hidden; }
+  .progress-bar-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--purple), var(--blue)); }
+  .progress-label { font-size: 12px; color: var(--text-muted); display: flex; justify-content: space-between; }
+
+  .level-badge {
+    display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 700;
+    padding: 2px 8px; border-radius: 4px;
+  }
+  .level-red { background: var(--red-dim); color: var(--red); }
+
+  /* Role cards */
+  .role-card {
+    background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius);
+    padding: 14px; display: flex; align-items: center; gap: 14px; max-width: 400px; margin: 4px 0;
+    transition: border-color 0.2s;
+  }
+  .role-card:hover { border-color: var(--purple); }
+  .role-card .avatar { width: 44px; height: 44px; font-size: 16px; }
+  .role-card-name { font-weight: 700; font-size: 14px; }
+  .role-card-desc { font-size: 12px; color: var(--text-dim); margin-top: 2px; }
+  .role-card-skills { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
+  .skill-tag {
+    font-size: 10px; padding: 2px 8px; border-radius: 10px;
+    background: var(--purple-dim); color: var(--purple); font-weight: 600;
+  }
+
+  /* Dividers */
+  .time-divider {
+    text-align: center; font-size: 11px; color: var(--text-muted); padding: 8px 0; position: relative;
+  }
+  .time-divider::before, .time-divider::after {
+    content: ''; position: absolute; top: 50%; width: calc(50% - 80px); height: 1px; background: var(--border);
+  }
+  .time-divider::before { left: 0; }
+  .time-divider::after { right: 0; }
+  .phase-divider {
+    text-align: center; padding: 16px 0 8px;
+  }
+  .phase-badge {
+    display: inline-flex; align-items: center; gap: 6px; background: var(--purple);
+    color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    padding: 4px 16px; border-radius: 20px;
+  }
+  .phase-badge svg { width: 12px; height: 12px; }
+
+  /* === CONTEXT PANEL === */
+  .context-panel {
+    width: 300px; background: var(--bg-secondary); border-left: 1px solid var(--border);
+    flex-shrink: 0; overflow-y: auto;
+  }
+  .panel-section { padding: 20px; border-bottom: 1px solid var(--border); }
+  .panel-title {
+    font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+    color: var(--text-muted); margin-bottom: 14px;
+  }
+  .agent-status-row { display: flex; align-items: center; gap: 10px; padding: 6px 0; }
+  .agent-status-row .avatar { width: 28px; height: 28px; font-size: 11px; border-radius: 7px; }
+  .agent-status-name { font-size: 13px; font-weight: 600; }
+  .agent-status-task { font-size: 11px; color: var(--text-muted); }
+  .status-text { display: flex; align-items: center; gap: 4px; }
+  .status-circle { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .status-circle.green { background: var(--green); }
+  .status-circle.red { background: var(--red); }
+  .status-circle.gold { background: var(--gold); }
+
+  .rule-list { display: flex; flex-direction: column; gap: 8px; }
+  .rule-item {
+    background: var(--bg-tertiary); border: 1px solid var(--border); border-radius: var(--radius-sm);
+    padding: 10px 12px; font-size: 12px; display: flex; align-items: flex-start; gap: 8px;
+  }
+  .rule-level-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+  .rule-item-text { color: var(--text); line-height: 1.4; }
+  .rule-item-source { color: var(--text-muted); font-size: 10px; margin-top: 2px; }
+
+  /* Profile */
+  .profile-header { text-align: center; padding: 20px; }
+  .profile-header .avatar { width: 56px; height: 56px; font-size: 22px; margin: 0 auto 12px; border-radius: 14px; }
+  .profile-name { font-size: 18px; font-weight: 700; }
+  .profile-role { font-size: 13px; color: var(--text-dim); margin-top: 4px; }
+  .profile-stats { display: flex; justify-content: center; gap: 24px; margin-top: 16px; }
+  .profile-stat { text-align: center; }
+  .profile-stat-val { font-size: 20px; font-weight: 700; color: var(--purple); }
+  .profile-stat-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* Kill switch card */
+  .kill-card {
+    background: var(--red-dim); border: 1px solid var(--red); border-radius: var(--radius);
+    padding: 16px 20px; max-width: 480px; margin-top: 8px;
+  }
+  .kill-card-header { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; color: var(--red); margin-bottom: 8px; }
+  .kill-card-header svg { width: 16px; height: 16px; }
+  .kill-card-body { font-size: 13px; color: var(--text-dim); }
+  .kill-card-agents { margin-top: 8px; font-size: 12px; }
+  .kill-card-agents div { padding: 4px 0; display: flex; align-items: center; gap: 8px; }
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- Left Nav -->
+  <div class="left-nav">
+    <div class="nav-logo">
+      <div class="nav-logo-icon"><i data-lucide="zap"></i></div>
+      HYBRID WORKFORCE
+    </div>
+    <div class="nav-section-label">Projects</div>
+    <div class="nav-project active"><span class="nav-dot" style="background:var(--purple);"></span>FoodTech App</div>
+    <div class="nav-project"><span class="nav-dot" style="background:var(--blue);"></span>Project Beta</div>
+    <div class="nav-project" style="color:var(--text-muted); font-size:11px; gap:6px;">
+      <svg width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="2" x2="8" y2="14"/><line x1="2" y1="8" x2="14" y2="8"/></svg>
+      New Project
+    </div>
+    <div class="nav-divider"></div>
+    <div class="nav-item active"><i data-lucide="message-circle"></i> Chat</div>
+    <div class="nav-sub-items">
+      <div class="nav-sub-item active"><span class="nav-channel-hash">#</span> general</div>
+      <div class="nav-sub-item"><span class="nav-channel-hash">#</span> design-review</div>
+      <div class="nav-sub-item"><span class="nav-channel-hash">#</span> dev-standup</div>
+      <div class="nav-sub-item"><span class="nav-channel-hash">#</span> bug-triage</div>
+    </div>
+    <div class="nav-item"><i data-lucide="book-open"></i> Knowledge</div>
+    <div class="nav-item"><i data-lucide="shield"></i> Rules</div>
+    <div class="nav-item"><i data-lucide="users"></i> Team</div>
+    <div class="nav-item"><i data-lucide="settings"></i> Process</div>
+    <div class="nav-user">
+      <div class="nav-user-avatar">J</div>
+      <div><div class="nav-user-name">Juanjuan</div><div class="nav-user-role">Owner</div></div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="main-header">
+      <div class="main-header-title">
+        <i data-lucide="message-circle"></i> Chat -- FoodTech App
+      </div>
+      <div class="main-header-actions">
+        <button class="header-btn"><i data-lucide="search"></i> Search</button>
+        <button class="header-btn"><i data-lucide="settings"></i></button>
+        <button class="header-btn kill"><i data-lucide="octagon"></i> Kill All</button>
+      </div>
+    </div>
+    <div class="main-body">
+      <!-- Chat Area -->
+      <div class="chat-area">
+        <div class="chat-messages">
+
+          <!-- ===== PHASE 1: WELCOME & BUILD ===== -->
+          <div class="phase-divider"><span class="phase-badge"><i data-lucide="hammer"></i> Phase 1 -- Welcome & Build</span></div>
+
+          <div class="msg">
+            <div class="avatar system">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <div class="msg-content">
+              <div class="msg-header">
+                <span class="msg-name c-purple">Hybrid Workforce</span>
+                <span class="msg-time">14:00</span>
+              </div>
+              <div class="msg-bubble system-bubble">
+                Hey! I'm your workforce builder. Tell me what kind of team you need -- roles, skills, anything. I'll make it happen.
+              </div>
+            </div>
+          </div>
+
+          <div class="msg user-msg">
+            <div class="avatar user">J</div>
+            <div class="msg-content">
+              <div class="msg-header">
+                <span class="msg-time">14:01</span>
+                <span class="msg-name">Juanjuan</span>
+              </div>
+              <div class="msg-bubble">
+                I need a product team for a food tech app -- a PM, a developer, and a QA engineer.
+              </div>
+            </div>
+          </div>
+
+          <div class="msg">
+            <div class="avatar system">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <div class="msg-content">
+              <div class="msg-header">
+                <span class="msg-name c-purple">Hybrid Workforce</span>
+                <span class="msg-time">14:01</span>
+              </div>
+              <div class="msg-bubble system-bubble">
+                Got it. Here's the team I'd suggest. Tap to customize, or approve to bring them online:
+              </div>
+              <div style="display:flex; flex-direction:column; gap:8px; margin-top:8px;">
+                <div class="role-card">
+                  <div class="avatar pm" style="width:44px;height:44px;font-size:16px;">PM</div>
+                  <div>
+                    <div class="role-card-name">PM-Octopus</div>
+                    <div class="role-card-desc">Product Manager -- PRD, roadmaps, user research</div>
+                    <div class="role-card-skills">
+                      <span class="skill-tag">PRD</span><span class="skill-tag">User Research</span><span class="skill-tag">Roadmap</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="role-card">
+                  <div class="avatar dev" style="width:44px;height:44px;font-size:16px;">DV</div>
+                  <div>
+                    <div class="role-card-name">Dev-Fox</div>
+                    <div class="role-card-desc">Full-stack Developer -- Code, PRs, architecture</div>
+                    <div class="role-card-skills">
+                      <span class="skill-tag">Python</span><span class="skill-tag">React</span><span class="skill-tag">API Design</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="role-card">
+                  <div class="avatar qa" style="width:44px;height:44px;font-size:16px;">QA</div>
+                  <div>
+                    <div class="role-card-name">QA-Eagle</div>
+                    <div class="role-card-desc">Quality Assurance -- Testing, acceptance, bug tracking</div>
+                    <div class="role-card-skills">
+                      <span class="skill-tag">E2E Testing</span><span class="skill-tag">Acceptance</span><span class="skill-tag">Bug Reports</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-actions" style="margin-top:12px;">
+                <button class="card-btn btn-approve"><i data-lucide="check"></i> Launch Team</button>
+                <button class="card-btn btn-edit"><i data-lucide="pencil"></i> Customize</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team Created -->
+          <div class="time-divider">Team Created -- Apr 13, 14:02</div>
+
+          <div class="msg">
+            <div class="avatar pm">PM</div>
+            <div class="msg-content">
+              <div class="msg-header"><span class="msg-name c-blue">PM-Octopus</span><span class="msg-time">14:02</span></div>
+              <div class="msg-bubble">Hey team! I'm PM-Octopus, your product manager. I'll handle PRDs, user research, and keep us on track. Ready to get started -- what's the brief?</div>
+            </div>
+          </div>
+          <div class="msg">
+            <div class="avatar dev">DV</div>
+            <div class="msg-content">
+              <div class="msg-header"><span class="msg-name c-gold">Dev-Fox</span><span class="msg-time">14:02</span></div>
+              <div class="msg-bubble">Dev-Fox reporting in. Full-stack, comfortable with Python + React. Point me at a spec and I'll ship it.</div>
+            </div>
+          </div>
+          <div class="msg">
+            <div class="avatar qa">QA</div>
+            <div class="msg-content">
+              <div class="msg-header"><span class="msg-name c-green">QA-Eagle</span><span class="msg-time">14:02</span></div>
+              <div class="msg-bubble">QA-Eagle here. I'll make sure nothing ships broken. E2E tests, acceptance reports with screenshots -- the works.</div>
+            </div>
+          </div>
+
+          <!-- ===== PHASE 2: WORK ===== -->
+          <div class="phase-divider"><span class="phase-badge"><i data-lucide="play"></i> Phase 2 -- Work</span></div>
+
+          <div class="msg user-msg">
+            <div class="avatar user">J</div>
+            <div class="msg-content">
+              <div class="msg-header">
+                <span class="msg-time">14:05</span>
+                <span class="msg-name">Juanjuan</span>
+              </div>
+              <div class="msg-bubble">
+                Let's build a restaurant recommendation feature. Users search nearby restaurants, we generate personalized intro copy with AI. Start with the PRD, then Dev pick it up. QA prep the test plan.
+              </div>
+            </div>
+          </div>
+
+          <div class="msg">
+            <div class="avatar pm">PM</div>
+            <div class="msg-content">
+              <div class="msg-header"><span class="msg-name c-blue">PM-Octopus</span><span class="msg-time">14:05</span></div>
+              <div class="msg-bubble">On it. Writing PRD for restaurant recommendation -- I'll cover user flow, API specs, and edge cases.</div>
+              <div class="smart-card" style="margin-top:12px;">
+                <div class="smart-card-header"><i data-lucide="bar-chart-2"></i> Task Progress</div>
+                <div class="smart-card-body">
+                  <div style="font-size:14px; font-weight:600; margin-bottom:4px;">Writing PRD: Restaurant Recommendation</div>
+                  <div class="progress-bar-track"><div class="progress-bar-fill" style="width:80%;"></div></div>
+                  <div class="progress-label"><span>80% complete</span><span>ETA: 2 min</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="msg">
+            <div class="avatar dev">DV</div>
+            <div class="msg-content">
+              <div class="msg-header"><span class="msg-name c-gold">Dev-Fox</span><span class="msg-time">14:06</span></div>
+              <div class="msg-bubble">Roger. I'll scaffold the project while waiting for the PRD -- setting up FastAPI backend + Next.js frontend.</div>
+              <div class="smart-card" style="margin-top:12px;">
+                <div class="smart-card-header"><i data-lucide="bar-chart-2"></i> Task Progress</div>
+                <div class="smart-card-body">
+                  <div style="font-size:14px; font-weight:600; margin-bottom:4px;">Project Scaffolding</div>
+                  <div class="progress-bar-track"><div class="progress-bar-fill" style="width:45%;"></div></div>
+                  <div class="progress-label"><span>45% complete</span><span>ETA: 5 min</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="msg">
+            <div class="avatar qa">QA</div>
+            <div class="msg-content">
+              <div class="msg-header"><span class="msg-name c-green">QA-Eagle</span><span class="msg-time">14:06</span></div>
+              <div class="msg-bubble">I'll draft the acceptance test plan once the PRD lands. Prepping E2E test framework in the meantime.</div>
+            </div>
+          </div>
+
+          <!-- ===== PHASE 3: TRAIN ===== -->
+          <div class="phase-divider"><span class="phase-badge"><i data-lucide="brain"></i> Phase 3 -- Train</span></div>
+
+          <div class="msg user-msg">
+            <div class="avatar user">J</div>
+            <div class="msg-content">
+              <div class="msg-header">
+                <span class="msg-time">14:32</span>
+                <span class="msg-name">Juanjuan</span>
+              </div>
+              <div class="msg-bubble">
+                Listen up everyone -- before giving Dev any work, you must first determine whether it's a bug fix or a feature change. If it's a feature change, there must be a PRD first, and I need to approve it before Dev starts coding. No more Dev just guessing what to build.
+              </div>
+            </div>
+          </div>
+
+          <!-- Rule Detection Card — Complex multi-part rule -->
+          <div class="msg">
+            <div class="avatar system">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <div class="msg-content">
+              <div class="msg-header"><span class="msg-name c-purple">Hybrid Workforce</span><span class="msg-time">14:32</span></div>
+              <div class="smart-card" style="border-color:rgba(108,92,231,0.4);">
+                <div class="smart-card-header"><i data-lucide="sparkles"></i> Process Rule Detected</div>
+                <div class="smart-card-body">
+                  <div class="rule-text" style="font-size:14px; line-height:1.6;">
+                    Before assigning work to Dev:<br>
+                    <span style="color:var(--text-dim); padding-left:12px; display:block; margin-top:4px;">1. Classify: bug fix or feature change</span>
+                    <span style="color:var(--text-dim); padding-left:12px; display:block;">2. If feature change → PRD required</span>
+                    <span style="color:var(--text-dim); padding-left:12px; display:block;">3. PRD must be approved by Juanjuan</span>
+                    <span style="color:var(--text-dim); padding-left:12px; display:block;">4. Only after approval → Dev starts coding</span>
+                  </div>
+                  <div class="smart-card-meta">
+                    <span><i data-lucide="map-pin" style="width:12px;height:12px;"></i> Source: Juanjuan's message at 14:32</span>
+                    <span><i data-lucide="target" style="width:12px;height:12px;"></i> Applies to: PM-Octopus, Dev-Fox</span>
+                    <span><i data-lucide="shield" style="width:12px;height:12px;"></i> Level: <span class="level-badge level-red"><span class="status-circle red" style="width:6px;height:6px;"></span> Red Line</span></span>
+                  </div>
+                </div>
+                <div class="card-actions">
+                  <button class="card-btn btn-approve"><i data-lucide="check"></i> Approve</button>
+                  <button class="card-btn btn-edit"><i data-lucide="pencil"></i> Edit</button>
+                  <button class="card-btn btn-dismiss"><i data-lucide="x"></i> Dismiss</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="msg">
+            <div class="avatar pm">PM</div>
+            <div class="msg-content">
+              <div class="msg-header"><span class="msg-name c-purple">PM-Octopus</span><span class="msg-time">14:33</span></div>
+              <div class="msg-bubble">Got it. From now on I'll classify every issue as bug or feature change before passing to Dev. Feature changes get a PRD draft first, then wait for your approval.</div>
+            </div>
+          </div>
+
+          <div class="msg">
+            <div class="avatar dev">DV</div>
+            <div class="msg-content">
+              <div class="msg-header"><span class="msg-name c-gold">Dev-Fox</span><span class="msg-time">14:33</span></div>
+              <div class="msg-bubble">Understood. I won't start on any feature work without an approved PRD. Bug fixes I'll handle directly with the issue.</div>
+            </div>
+          </div>
+
+          <!-- ===== PHASE 4: PROCESS ===== -->
+          <div class="phase-divider"><span class="phase-badge"><i data-lucide="git-pull-request"></i> Phase 4 -- Process & Approval</span></div>
+
+          <div class="msg user-msg">
+            <div class="avatar user">J</div>
+            <div class="msg-content">
+              <div class="msg-header">
+                <span class="msg-time">15:05</span>
+                <span class="msg-name">Juanjuan</span>
+              </div>
+              <div class="msg-bubble">Based on user feedback, we need to add a dark mode toggle to the landing page. Let's get this done.</div>
+            </div>
+          </div>
+
+          <div class="msg">
+            <div class="avatar dev">DV</div>
+            <div class="msg-content">
+              <div class="msg-header"><span class="msg-name c-gold">Dev-Fox</span><span class="msg-time">15:06</span></div>
+              <div class="msg-bubble">Got it. This is a feature change, so per our team rule -- <strong>@PM-Octopus</strong> we need a PRD and design spec first before I can start coding.</div>
+            </div>
+          </div>
+
+          <div class="msg">
+            <div class="avatar pm">PM</div>
+            <div class="msg-content">
+              <div class="msg-header"><span class="msg-name c-purple">PM-Octopus</span><span class="msg-time">15:07</span></div>
+              <div class="msg-bubble">On it. I'll draft the PRD and update the design spec now.</div>
+            </div>
+          </div>
+
+          <div class="msg">
+            <div class="avatar pm">PM</div>
+            <div class="msg-content">
+              <div class="msg-header"><span class="msg-name c-purple">PM-Octopus</span><span class="msg-time">15:15</span></div>
+              <div class="msg-bubble">PRD and design are ready. <strong>@Juanjuan</strong> -- could you review and approve? Dev-Fox is standing by.</div>
+              <div class="smart-card" style="margin-top:12px; border-color:rgba(108,92,231,0.3);">
+                <div class="smart-card-header" style="color:var(--purple);"><i data-lucide="file-text"></i> PRD Review Required</div>
+                <div class="smart-card-body">
+                  <div style="font-size:14px; font-weight:600; margin-bottom:4px;">Feature Change: Dark Mode Toggle</div>
+                  <div style="color:var(--text-dim);">PRD v1.0 + Design spec updated</div>
+                  <div class="smart-card-meta" style="margin-top:12px;">
+                    <span><i data-lucide="tag" style="width:12px;height:12px;"></i> Type: Feature Change</span>
+                    <span><i data-lucide="file-text" style="width:12px;height:12px;"></i> PRD: Dark Mode Toggle v1.0</span>
+                    <span><i data-lucide="palette" style="width:12px;height:12px;"></i> Design: Updated</span>
+                  </div>
+                  <div style="margin-top:12px; padding:10px; background:rgba(108,92,231,0.08); border-radius:8px; font-size:12px; color:var(--text-dim);">
+                    <i data-lucide="shield" style="width:12px;height:12px;vertical-align:middle;"></i> Per team rule: Feature changes require PRD + Juanjuan's approval before Dev starts coding.
+                  </div>
+                </div>
+                <div class="card-actions">
+                  <button class="card-btn btn-approve"><i data-lucide="check"></i> Approve</button>
+                  <button class="card-btn btn-review"><i data-lucide="eye"></i> Review PRD & Design</button>
+                  <button class="card-btn btn-dismiss"><i data-lucide="x"></i> Reject</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="msg user-msg">
+            <div class="avatar user">J</div>
+            <div class="msg-content">
+              <div class="msg-header">
+                <span class="msg-time">15:20</span>
+                <span class="msg-name">Juanjuan</span>
+              </div>
+              <div class="msg-bubble">PRD looks good. Design is clean. Approved -- Dev can start.</div>
+            </div>
+          </div>
+
+          <div class="msg">
+            <div class="avatar system">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <div class="msg-content">
+              <div class="msg-header"><span class="msg-name c-purple">Hybrid Workforce</span><span class="msg-time">15:20</span></div>
+              <div class="smart-card" style="border-color:rgba(0,184,148,0.4);">
+                <div class="smart-card-header" style="color:var(--green);"><i data-lucide="check-circle"></i> Approved</div>
+                <div class="smart-card-body">
+                  <div style="font-size:14px;">"Dark Mode Toggle" PRD & Design approved by Juanjuan. Dev-Fox is now unblocked.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="msg">
+            <div class="avatar dev">DV</div>
+            <div class="msg-content">
+              <div class="msg-header"><span class="msg-name c-gold">Dev-Fox</span><span class="msg-time">15:21</span></div>
+              <div class="msg-bubble">Got it! Starting implementation based on the approved PRD. I'll open a PR when it's ready.</div>
+            </div>
+          </div>
+
+          <div class="msg">
+            <div class="avatar qa">QA</div>
+            <div class="msg-content">
+              <div class="msg-header"><span class="msg-name c-green">QA-Eagle</span><span class="msg-time">15:22</span></div>
+              <div class="msg-bubble">I'll prepare the test cases based on the PRD while Dev works on it. Will be ready to run acceptance when the PR is up.</div>
+            </div>
+          </div>
+
+          <!-- Kill Switch -->
+          <div class="msg user-msg">
+            <div class="avatar user">J</div>
+            <div class="msg-content">
+              <div class="msg-header">
+                <span class="msg-time">15:25</span>
+                <span class="msg-name">Juanjuan</span>
+              </div>
+              <div class="msg-bubble">Wait, stop. The design doesn't account for mobile. <strong>@PM-Octopus</strong> update the design spec to include mobile responsive, then re-submit for my approval. Dev hold until then.</div>
+            </div>
+          </div>
+
+          <div class="msg">
+            <div class="avatar system">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <div class="msg-content">
+              <div class="msg-header"><span class="msg-name c-purple">Hybrid Workforce</span><span class="msg-time">15:25</span></div>
+              <div class="kill-card">
+                <div class="kill-card-header"><i data-lucide="octagon"></i> Kill Switch Activated</div>
+                <div class="kill-card-body">
+                  All pending actions halted by Juanjuan.
+                  <div class="kill-card-agents">
+                    <div><span class="status-circle" style="width:6px;height:6px;border-radius:50;background:var(--red);display:inline-block;"></span> Dev-Fox: Dark mode implementation -- paused</div>
+                    <div><span class="status-circle" style="width:6px;height:6px;border-radius:50;background:var(--red);display:inline-block;"></span> QA-Eagle: Test case preparation -- paused</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="msg">
+            <div class="avatar dev">DV</div>
+            <div class="msg-content">
+              <div class="msg-header"><span class="msg-name c-gold">Dev-Fox</span><span class="msg-time">15:25</span></div>
+              <div class="msg-bubble">Understood. Implementation paused. Waiting for the updated design spec.</div>
+            </div>
+          </div>
+
+        </div>
+        <div class="chat-input-bar">
+          <input class="chat-input" placeholder="Message your team..." readonly>
+        </div>
+      </div>
+
+      <!-- Right Context Panel -->
+      <div class="context-panel">
+        <div class="panel-section">
+          <div class="panel-title">Team Status</div>
+          <div class="agent-status-row">
+            <div class="avatar pm" style="width:28px;height:28px;font-size:11px;border-radius:7px;">PM</div>
+            <div>
+              <div class="agent-status-name">PM-Octopus</div>
+              <div class="agent-status-task"><span class="status-text"><span class="status-circle green"></span> Online -- Idle</span></div>
+            </div>
+          </div>
+          <div class="agent-status-row">
+            <div class="avatar dev" style="width:28px;height:28px;font-size:11px;border-radius:7px;">DV</div>
+            <div>
+              <div class="agent-status-name">Dev-Fox</div>
+              <div class="agent-status-task"><span class="status-text"><span class="status-circle red"></span> Paused -- Awaiting design update</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Agent Profile -->
+        <div class="profile-header" style="border-bottom:1px solid var(--border);">
+          <div class="avatar dev" style="width:56px;height:56px;font-size:22px;border-radius:14px;">DV</div>
+          <div class="profile-name">Dev-Fox</div>
+          <div class="profile-role">Full-stack Developer</div>
+          <div class="profile-stats">
+            <div class="profile-stat"><div class="profile-stat-val">12</div><div class="profile-stat-label">PRs Merged</div></div>
+            <div class="profile-stat"><div class="profile-stat-val">3</div><div class="profile-stat-label">Rules</div></div>
+            <div class="profile-stat"><div class="profile-stat-val">98%</div><div class="profile-stat-label">Compliance</div></div>
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <div class="panel-title">Enforced Rules (2)</div>
+          <div class="rule-list">
+            <div class="rule-item" style="border-left:3px solid var(--green);">
+              <span class="rule-level-dot" style="background:var(--green);"></span>
+              <div>
+                <div class="rule-item-text">Tests passing before merge</div>
+                <div class="rule-item-source">Satisfied -- 23/23 passed</div>
+              </div>
+            </div>
+            <div class="rule-item" style="border-left:3px solid var(--gold);">
+              <span class="rule-level-dot" style="background:var(--gold);"></span>
+              <div>
+                <div class="rule-item-text">Bug vs feature change classification</div>
+                <div class="rule-item-source">In progress -- QA-Eagle running</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <div class="panel-title">Learned Rules (3)</div>
+          <div class="rule-list">
+            <div class="rule-item">
+              <span class="rule-level-dot" style="background:var(--red);"></span>
+              <div>
+                <div class="rule-item-text">PRs must pass tests before merging</div>
+                <div class="rule-item-source">Learned Apr 13 -- 100% compliance</div>
+              </div>
+            </div>
+            <div class="rule-item">
+              <span class="rule-level-dot" style="background:var(--gold);"></span>
+              <div>
+                <div class="rule-item-text">Include API docs in every endpoint PR</div>
+                <div class="rule-item-source">Learned Apr 12 -- 92% compliance</div>
+              </div>
+            </div>
+            <div class="rule-item">
+              <span class="rule-level-dot" style="background:var(--red);"></span>
+              <div>
+                <div class="rule-item-text">Never hardcode API keys -- use env variables</div>
+                <div class="rule-item-source">Learned Apr 11 -- 100% compliance</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>lucide.createIcons();</script>
+</body>
+</html>
