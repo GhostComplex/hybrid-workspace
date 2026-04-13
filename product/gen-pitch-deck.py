@@ -124,28 +124,23 @@ add_text(s, "WHAT ACTUALLY HAPPENED", Inches(6), Inches(2.7), Inches(6.5), Inche
 
 # Row data: (problem, subtitle, [case1, case2, ...])
 rows = [
-    ("没有组织架构", "谁做什么、向谁汇报？", [
-        "PM 和 QA 都有验收职责，边界模糊，PM 看 QA 卡住就帮忙绕过",
-        "PM 被冻结期间仍越界帮 QA 推文件、贴 issue",
-        "Dev 没等需求评审就开工，PR 做完才发现方向错了",
+    ("Build 的痛：组建团队难", "一个 agent 不够用，新 agent 又上手慢", [
+        "一个 Agent 跨多项目，context 和 bandwidth 不够用，性能下降",
+        "新 Agent 即使有 onboarding skill，实际项目中仍需反复沟通",
+        "没有共享知识空间，项目决策和经验散落在各自 session 中",
+        "谁在做什么、卡在哪里，管理者无处可看",
     ]),
-    ("没有组织记忆", "昨天的决策今天忘了", [
-        "连续 5 天无 daily notes，项目状态完全失明",
-        "PR #101 验收停在 22%，无人知道是卡住还是被遗忘",
-        "PM→QA 交接丢失决策上下文，实现违反 PRD 决策",
-        "验收只看最近 PR，漏掉累积改动，通过后 bug 更多",
+    ("Train 的痛：教了记不住", "Teach Once, Store Forever, Recall Never", [
+        "Skill 里写了「GitHub issue 图片用 markdown 格式」，但每次都忘",
+        "规则不是没有，是在 20+ 条中被上下文稀释——Agent 不会「触景生情」",
+        "同一条规则纠正多次，跨 session 后又忘",
+        "一个 Agent 学到的教训，同角色其他 Agent 不知道",
     ]),
-    ("存储 ≠ 召回", "Teach Once, Store Forever, Recall Never", [
-        "Manta 的 Skill 里写了「GitHub issue 图片用 markdown 格式」，但每次都忘，需要反复提醒",
-        "规则不是没有，是在 20+ 条中被上下文稀释——Agent 不会像人一样「触景生情」",
-        "同一条规则纠正多次，跨 session 后又忘了，每个新 session 从零开始",
-        "新 QA 加入当天：端口用错、流程不会、用代码审查代替实际运行",
-    ]),
-    ("没有流程规范", "AI 自作主张，人类失控", [
-        "QA 没有截图就报验收 Pass，团队基于假结果做决策",
-        "Agent 跑长任务时变成聋子，叫停指令等 2 小时才读到",
-        "跑完错误任务后刷屏输出，淹没其他人的消息",
-        "后端路径用错导致 LLM 走 fallback，整个上午验收结果不可靠",
+    ("Process 的痛：流程形同虚设", "有规定没执行，人类失控", [
+        "QA 没写 test case 就验收，没截图就报 Pass",
+        "Bug 和需求变更混着处理，该写 PRD 的直接开干",
+        "关键节点不等人类审批，Agent 自作主张往下走",
+        "人类说「停」，Agent 跑长任务时完全听不到",
     ]),
 ]
 
@@ -201,10 +196,10 @@ s = add_slide()
 add_title(s, "Four Layers of Hybrid Workspace", top=Inches(0.6))
 
 layers = [
-    ("Harness Layer", "管理制度", "行为准则、权限边界"),
-    ("Memory Layer", "组织记忆", "决策记录、经验沉淀"),
-    ("Learning Layer", "员工成长", "纠正→规则→进化"),
-    ("Orchestration Layer", "项目管理", "碳硅分工、流程调度"),
+    ("Harness Layer", "管理制度", "角色模板自带技能、规则与行为边界，上岗即守规矩"),
+    ("Memory Layer", "组织记忆", "决策、经验、上下文跨 Agent 持久传承，关键时刻主动推送"),
+    ("Learning Layer", "员工成长", "从项目经历与人类反馈中自主学习，纠正自动沉淀为规则"),
+    ("Orchestration Layer", "流程管控", "人类定义流程，系统强制执行，跳步即拦截"),
 ]
 box_w = Inches(2.6)
 box_h = Inches(3.2)
@@ -235,11 +230,11 @@ add_text(s, "PHASE 1", Inches(1), Inches(0.5), Inches(2), Inches(0.4),
          font_size=14, color=PURPLE, bold=True)
 add_title(s, "Build Your AI Team", top=Inches(0.9))
 add_bullets(s, [
-    "团队模板——一键拉起 PM + Dev + QA",
-    "角色定义——每个 Agent 有身份、准则、技能",
-    "共享知识库——团队共享上下文，不重复交代",
+    "团队模板——一键拉起 PM + Dev + QA，自带角色技能与行为边界",
+    "共享知识空间——项目 PRD、决策记录、踩坑经验统一沉淀，Agent 版的飞书文档 / Wiki",
+    "组织记忆传承——新 Agent 加入即继承项目上下文，不从零开始反复沟通",
 ], top=Inches(2.5))
-add_text(s, "30 分钟从零到开始干活", Inches(1.2), Inches(5.2), Inches(10), Inches(0.5),
+add_text(s, "有人有家，30 分钟从零到开始干活", Inches(1.2), Inches(5.2), Inches(10), Inches(0.5),
          font_size=24, color=BLUE, bold=True)
 
 # ============================================================
@@ -254,8 +249,8 @@ add_text(s, "Today: Teach Once, Store Forever, Recall Never.\nTomorrow: Teach On
          font_size=18, color=BLUE, bold=False)
 add_bullets(s, [
     "场景触发式召回——Agent 执行工具前，系统自动注入精准规则（pre-tool-call hook）",
-    "你说一句话 → 每个 Agent 自己识别相关规则 → 写入行为准则",
-    "四层记忆保障：场景触发 / 行为前检查 / 失败记忆召回 / 渐进式强化",
+    "Agent 从项目经历与人类反馈中自主学习，纠正自动沉淀为规则",
+    "规则来源：人类纠正 + Agent 自我学习，都过人类审批",
     "不改模型，改 Harness——轻量、即时、可解释",
 ], top=Inches(2.8))
 
@@ -265,12 +260,12 @@ add_bullets(s, [
 s = add_slide()
 add_text(s, "PHASE 3", Inches(1), Inches(0.5), Inches(2), Inches(0.4),
          font_size=14, color=PURPLE, bold=True)
-add_title(s, "Orchestrate Human-AI Workflows", top=Inches(0.9))
+add_title(s, "Process — 人类定义流程，Agent 必须遵守", top=Inches(0.9))
 add_bullets(s, [
-    "自然语言定义流程——说一遍，Agent 各自领会并执行",
-    "Human Gate——关键决策必须人类拍板",
-    "Kill Switch——实时中断，人类永远掌控",
-    "Live Monitor——随时知道 AI 在做什么",
+    "人类定义流程——QA 验收前必须写 test case、验收后必须出报告带截图",
+    "区分 bug 和需求变更——不同问题走不同流程，需求变更需要 PRD 评审",
+    "流程强制执行——Agent 试图跳步，系统自动拦截",
+    "Kill Switch——万一拦截没拦住，人类随时强制打断（兜底）",
 ], top=Inches(2.5))
 
 # ============================================================
@@ -294,11 +289,11 @@ add_text(s, "The Future of Work is Hybrid", Inches(1), Inches(1.5), Inches(11.3)
 add_text(s, "Are you ready to\nbuild your AI team?", Inches(1), Inches(2.8), Inches(11.3), Inches(1.8),
          font_size=48, color=WHITE, bold=True, alignment=PP_ALIGN.CENTER)
 add_purple_bar(s, Inches(5.0), Inches(5.5), Inches(2.3), Inches(0.04))
-add_text(s, "contact@hybridworkforce.ai  ·  hybridworkforce.ai",
+add_text(s, "contact@hybridworkspace.ai  ·  hybridworkspace.ai",
          Inches(1), Inches(5.8), Inches(11.3), Inches(0.5),
          font_size=16, color=BODY, alignment=PP_ALIGN.CENTER)
 
 # === Save ===
-out = os.path.join(os.path.dirname(__file__), "hybrid-workforce-pitch.pptx")
+out = os.path.join(os.path.dirname(__file__), "hybrid-workspace-pitch.pptx")
 prs.save(out)
 print(f"✅ Saved to {out}")
