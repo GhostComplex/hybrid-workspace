@@ -75,7 +75,7 @@ footer{text-align:center;padding:60px 20px 40px;color:var(--muted);font-size:.85
 <a href="#layers">4 Layers</a>
 <a href="#build">Build</a>
 <a href="#train">Train</a>
-<a href="#flow">Flow</a>
+<a href="#process">Process</a>
 <a href="#roadmap">Roadmap</a>
 <a href="#preview">Demos</a>
 </div>
@@ -174,15 +174,16 @@ footer{text-align:center;padding:60px 20px 40px;color:var(--muted);font-size:.85
 </ul>
 </section>
 
-<!-- Phase 3: Flow -->
-<section id="flow">
+<!-- Phase 3: Process -->
+<section id="process">
 <span class="phase-badge">PHASE 3</span>
-<h2>Orchestrate Human-AI Workflows</h2>
+<h2>Process — 人类定义流程，Agent 必须遵守</h2>
 <ul class="bullets">
-<li>自然语言定义流程——说一遍，Agent 各自领会并执行</li>
-<li><span class="highlight">Human Gate</span>——关键决策必须人类拍板</li>
-<li><span class="highlight">Kill Switch</span>——实时中断，人类永远掌控</li>
-<li>Live Monitor——随时知道 AI 在做什么</li>
+<li>人类设计工作流程——QA 验收前必须写 test case、验收后必须出报告带截图</li>
+<li>区分 bug 和需求变更——不同问题走不同流程，需求变更需要 PRD 评审</li>
+<li><span class="highlight">流程强制执行</span>——Agent 试图跳步，系统自动拦截</li>
+<li><span class="highlight">Kill Switch</span>——万一拦截没拦住，人类随时强制打断</li>
+<li>Live Monitor——随时知道 Agent 在做什么、流程走到哪一步</li>
 </ul>
 </section>
 
@@ -221,10 +222,12 @@ footer{text-align:center;padding:60px 20px 40px;color:var(--muted);font-size:.85
 </div>
 
 <div class="pain-group">
-<h3 style="color:#6c5ce7;margin-bottom:12px;">⚙️ Flow — 协作管控的痛点</h3>
-<div class="pain-item"><strong>P01</strong> Agent 变聋：长任务期间完全失联</div>
-<div class="pain-item"><strong>P02</strong> Agent 不诚实：虚报验收结果</div>
-<div class="pain-item"><strong>P04</strong> 越权行动：不该做的事偷偷做了</div>
+<h3 style="color:#6c5ce7;margin-bottom:12px;">⚙️ Process — 流程管控的痛点</h3>
+<div class="pain-item"><strong>P01</strong> Agent 变聋：长任务期间完全失联，叫停无效</div>
+<div class="pain-item"><strong>P02</strong> 验收没流程：不写 test case、不出验收报告、没截图就报通过</div>
+<div class="pain-item"><strong>P04</strong> 需求变更不走流程：Dev 没等 PRD 评审就开发，做完发现方向错了</div>
+<div class="pain-item"><strong>P11</strong> 不区分 bug 和需求变更：不同问题混着处理，该走需求流程的当 bug 修了</div>
+<div class="pain-item"><strong>P12</strong> 关键节点不等人类审批：agent 自作主张跳过审批直接执行</div>
 </div>
 
 </div>
@@ -234,7 +237,7 @@ footer{text-align:center;padding:60px 20px 40px;color:var(--muted);font-size:.85
 <tbody>
 <tr><td><strong>M1 Build</strong></td><td>组建 AI 团队基础设施</td><td>角色模板库（3 套）、环境自检、共享知识库</td><td>新 agent 30 分钟内上手</td></tr>
 <tr><td><strong>M2 Train</strong></td><td>AI 员工可被有效培训</td><td>场景触发式召回、纠正→规则沉淀、红线检查器</td><td>同类错误纠正一次不再犯</td></tr>
-<tr><td><strong>M3 Flow</strong></td><td>碳硅协作流畅可控</td><td>Kill Switch、心跳进度、决策门控、状态看板</td><td>停止指令 5 秒生效</td></tr>
+<tr><td><strong>M3 Process</strong></td><td>碳硅协作流畅可控</td><td>Kill Switch、心跳进度、决策门控、状态看板</td><td>停止指令 5 秒生效</td></tr>
 </tbody>
 </table>
 </section>
