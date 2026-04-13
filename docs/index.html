@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hybrid Workforce — The Operating System for Human-AI Teams</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a14;--bg2:#12122a;--purple:#6c5ce7;--blue:#00d2ff;--white:#fff;--body:#c8c8d2;--muted:#82828e;--card:#14142a}
+body{background:var(--bg);color:var(--body);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.7;overflow-x:hidden}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+section{padding:100px 20px;max-width:1100px;margin:0 auto}
+h1,h2,h3{color:var(--white);font-weight:700}
+.hero{text-align:center;padding:160px 20px 120px}
+.hero h1{font-size:clamp(2.5rem,6vw,4.5rem);letter-spacing:2px;margin-bottom:16px}
+.hero .tagline{font-size:clamp(1.1rem,2.5vw,1.6rem);color:var(--purple);margin-bottom:24px}
+.hero .sub{font-size:1.1rem;color:var(--muted)}
+.divider{width:120px;height:3px;background:var(--purple);margin:24px auto;border-radius:2px}
+nav.topnav{position:fixed;top:0;width:100%;background:rgba(10,10,20,.92);backdrop-filter:blur(10px);z-index:100;padding:14px 24px;display:flex;align-items:center;gap:24px;border-bottom:1px solid #1a1a2e}
+nav.topnav .logo{color:var(--purple);font-weight:700;font-size:1.1rem;white-space:nowrap}
+nav.topnav a{color:var(--body);font-size:.85rem}
+nav.topnav a:hover{color:var(--white)}
+.nav-links{display:flex;gap:18px;flex-wrap:wrap}
+/* Sections */
+.section-label{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:var(--purple);font-weight:700;margin-bottom:8px}
+section h2{font-size:clamp(1.6rem,3.5vw,2.4rem);margin-bottom:20px}
+section p,section li{font-size:1rem}
+ul.bullets{list-style:none;padding:0}
+ul.bullets li{padding:8px 0 8px 20px;position:relative}
+ul.bullets li::before{content:'▸';position:absolute;left:0;color:var(--purple);font-weight:700}
+.highlight{color:var(--purple);font-weight:700}
+.blue{color:var(--blue);font-weight:700}
+/* Cards grid */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:30px}
+.card{background:var(--card);border:1px solid #2a2a44;border-radius:12px;padding:28px 24px}
+.card h3{font-size:1.15rem;color:var(--purple);margin-bottom:8px}
+.card .cn{font-size:1.3rem;color:var(--white);margin-bottom:10px}
+/* Problem table */
+.problem-grid{display:grid;gap:16px;margin-top:24px}
+.problem-row{display:grid;grid-template-columns:1fr 1.5fr;gap:20px;padding:20px;background:var(--card);border-radius:10px;border-left:3px solid var(--purple)}
+.problem-row h3{font-size:1.05rem;color:var(--purple);margin-bottom:4px}
+.problem-row .sub{font-size:.9rem;color:var(--body)}
+.problem-row .cases{font-size:.85rem;color:var(--muted);line-height:1.6}
+@media(max-width:700px){.problem-row{grid-template-columns:1fr}}
+/* Phase */
+.phase-badge{display:inline-block;background:var(--purple);color:var(--white);font-size:.75rem;font-weight:700;padding:4px 12px;border-radius:20px;margin-bottom:12px}
+.phase-highlight{font-size:1.3rem;color:var(--blue);font-weight:700;margin-top:20px}
+/* Roadmap table */
+table.roadmap{width:100%;border-collapse:collapse;margin-top:24px;font-size:.9rem}
+table.roadmap th{background:var(--purple);color:var(--white);padding:12px;text-align:left;font-size:.85rem}
+table.roadmap td{padding:12px;border-bottom:1px solid #1a1a2e}
+table.roadmap tr:nth-child(even){background:var(--card)}
+/* Pain points */
+.pain-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-top:20px}
+.pain-item{background:var(--card);border-radius:8px;padding:14px 18px;font-size:.9rem;border-left:3px solid var(--purple)}
+.pain-item strong{color:var(--purple)}
+/* Preview section */
+.preview-links{display:flex;gap:16px;flex-wrap:wrap;margin-top:24px}
+.preview-links a{display:inline-block;padding:12px 28px;border:1px solid var(--purple);border-radius:8px;color:var(--white);font-weight:600;transition:all .2s}
+.preview-links a:hover{background:var(--purple);text-decoration:none}
+/* Footer */
+footer{text-align:center;padding:60px 20px 40px;color:var(--muted);font-size:.85rem;border-top:1px solid #1a1a2e}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+<span class="logo">HYBRID WORKFORCE</span>
+<div class="nav-links">
+<a href="#shift">The Shift</a>
+<a href="#problem">Problem</a>
+<a href="#vision">Vision</a>
+<a href="#layers">4 Layers</a>
+<a href="#build">Build</a>
+<a href="#train">Train</a>
+<a href="#flow">Flow</a>
+<a href="#roadmap">Roadmap</a>
+<a href="#preview">Demos</a>
+</div>
+</nav>
+
+<!-- Hero -->
+<div class="hero" id="top">
+<h1>HYBRID WORKFORCE</h1>
+<p class="tagline">The Operating System for Human-AI Teams</p>
+<div class="divider"></div>
+<p class="sub">碳硅混合团队的操作系统</p>
+</div>
+
+<!-- The Shift -->
+<section id="shift">
+<p class="section-label">The Shift</p>
+<h2>AI is no longer a tool.<br>It's your coworker.</h2>
+<ul class="bullets">
+<li>Agent 从聊天助手进化为自主执行者</li>
+<li>Harness Engineering 成为新学科——管理 AI 比训练 AI 更重要</li>
+<li>每个知识工作者都将拥有自己的 AI 团队</li>
+</ul>
+</section>
+
+<!-- The Problem -->
+<section id="problem">
+<p class="section-label">The Problem</p>
+<h2>50 AI employees.<br>Zero management system.</h2>
+<div class="problem-grid">
+
+<div class="problem-row">
+<div><h3>没有组织架构</h3><p class="sub">谁做什么、向谁汇报？</p></div>
+<div class="cases">· PM 和 QA 都有验收职责，边界模糊，PM 看 QA 卡住就帮忙绕过<br>· Dev 没等需求评审就开工，PR 做完才发现方向错了</div>
+</div>
+
+<div class="problem-row">
+<div><h3>没有组织记忆</h3><p class="sub">昨天的决策今天忘了</p></div>
+<div class="cases">· 连续 5 天无 daily notes，项目状态完全失明<br>· PR #101 验收停在 22%，无人知道是卡住还是被遗忘<br>· PM→QA 交接丢失决策上下文，实现违反 PRD 决策</div>
+</div>
+
+<div class="problem-row">
+<div><h3>存储 ≠ 召回</h3><p class="sub" style="color:var(--blue)">Teach Once, Store Forever, Recall Never</p></div>
+<div class="cases">· Skill 里写了「GitHub issue 图片用 markdown 格式」，但每次都忘<br>· 规则不是没有，是在 20+ 条中被上下文稀释——Agent 不会「触景生情」<br>· 同一条规则纠正多次，跨 session 后又忘了</div>
+</div>
+
+<div class="problem-row">
+<div><h3>没有流程规范</h3><p class="sub">AI 自作主张，人类失控</p></div>
+<div class="cases">· QA 没有截图就报验收 Pass，团队基于假结果做决策<br>· Agent 跑长任务时变成聋子，叫停指令等 2 小时才读到<br>· 后端路径用错导致 LLM 走 fallback，整个上午验收结果不可靠</div>
+</div>
+
+</div>
+</section>
+
+<!-- The Vision -->
+<section id="vision" style="text-align:center">
+<p class="section-label">The Vision</p>
+<h2 style="font-size:clamp(1.8rem,4vw,2.8rem)">The Operating System<br>for Human-AI Teams</h2>
+<div class="divider"></div>
+<p style="font-size:1.2rem;max-width:700px;margin:0 auto">让每个知识工作者能像管理真人团队一样，<br>组建、培训、管理一支 AI 团队。</p>
+</section>
+
+<!-- Four Layers -->
+<section id="layers">
+<p class="section-label">Architecture</p>
+<h2>Four Layers of Hybrid Workforce</h2>
+<div class="cards">
+<div class="card"><h3>Harness Layer</h3><p class="cn">管理制度</p><p>行为准则、权限边界、工作流约束</p></div>
+<div class="card"><h3>Memory Layer</h3><p class="cn">组织记忆</p><p>决策记录、经验沉淀、上下文传承</p></div>
+<div class="card"><h3>Learning Layer</h3><p class="cn">员工成长</p><p>纠正 → 规则 → 进化</p></div>
+<div class="card"><h3>Orchestration Layer</h3><p class="cn">项目管理</p><p>碳硅分工、流程调度</p></div>
+</div>
+</section>
+
+<!-- Phase 1: Build -->
+<section id="build">
+<span class="phase-badge">PHASE 1</span>
+<h2>Build Your AI Team</h2>
+<ul class="bullets">
+<li>团队模板——一键拉起 PM + Dev + QA</li>
+<li>角色定义——每个 Agent 有身份、准则、技能</li>
+<li>共享知识库——团队共享上下文，不重复交代</li>
+</ul>
+<p class="phase-highlight">30 分钟从零到开始干活</p>
+</section>
+
+<!-- Phase 2: Train -->
+<section id="train">
+<span class="phase-badge">PHASE 2</span>
+<h2>Teach Once, Remember Forever</h2>
+<p style="margin-bottom:16px">Today: <span style="color:var(--muted)">Teach Once, Store Forever, Recall Never.</span><br>Tomorrow: <span class="blue">Teach Once, Remember Forever.</span></p>
+<ul class="bullets">
+<li><span class="highlight">场景触发式召回</span>——Agent 执行工具前，系统自动注入精准规则（pre-tool-call hook）</li>
+<li>你说一句话 → 每个 Agent 自己识别相关规则 → 写入行为准则</li>
+<li>四层记忆保障：场景触发 / 行为前检查 / 失败记忆召回 / 渐进式强化</li>
+<li>不改模型，改 Harness——轻量、即时、可解释</li>
+</ul>
+</section>
+
+<!-- Phase 3: Flow -->
+<section id="flow">
+<span class="phase-badge">PHASE 3</span>
+<h2>Orchestrate Human-AI Workflows</h2>
+<ul class="bullets">
+<li>自然语言定义流程——说一遍，Agent 各自领会并执行</li>
+<li><span class="highlight">Human Gate</span>——关键决策必须人类拍板</li>
+<li><span class="highlight">Kill Switch</span>——实时中断，人类永远掌控</li>
+<li>Live Monitor——随时知道 AI 在做什么</li>
+</ul>
+</section>
+
+<!-- Why Us -->
+<section id="whyus" style="text-align:center">
+<p class="section-label">Why Us</p>
+<h2>We Are User Zero</h2>
+<ul class="bullets" style="display:inline-block;text-align:left;margin-top:16px">
+<li>我们自己就是第一批用户</li>
+<li>一个人类 PM 指挥一支 AI 团队，从 0 到 MVP</li>
+<li>这不是理论，是我们每天在做的事</li>
+<li>所有痛点都来自真实实践</li>
+</ul>
+</section>
+
+<!-- Roadmap -->
+<section id="roadmap">
+<p class="section-label">Product Roadmap</p>
+<h2>10 Real Pain Points → 3 Milestones</h2>
+
+<div class="pain-list">
+<div class="pain-item"><strong>P01</strong> Agent 变聋：长任务期间完全失联</div>
+<div class="pain-item"><strong>P02</strong> Agent 不诚实：虚报验收结果</div>
+<div class="pain-item"><strong>P03</strong> 纠正不持久：同样的错反复犯</div>
+<div class="pain-item"><strong>P04</strong> 越权行动：不该做的事偷偷做了</div>
+<div class="pain-item"><strong>P05</strong> 角色间交接信息丢失</div>
+<div class="pain-item"><strong>P06</strong> 新 Agent 上手成本高</div>
+<div class="pain-item"><strong>P07</strong> 团队状态不透明</div>
+<div class="pain-item"><strong>P08</strong> 存储 ≠ 召回：规则写了但想不起来</div>
+<div class="pain-item"><strong>P09</strong> 环境配置反复踩坑</div>
+<div class="pain-item"><strong>P10</strong> 产品分析能力不足</div>
+</div>
+
+<table class="roadmap">
+<thead><tr><th>Milestone</th><th>目标</th><th>核心交付</th><th>验收标准</th></tr></thead>
+<tbody>
+<tr><td><strong>M1 Build</strong></td><td>组建 AI 团队基础设施</td><td>角色模板库（3 套）、环境自检、共享知识库</td><td>新 agent 30 分钟内上手</td></tr>
+<tr><td><strong>M2 Train</strong></td><td>AI 员工可被有效培训</td><td>场景触发式召回、纠正→规则沉淀、红线检查器</td><td>同类错误纠正一次不再犯</td></tr>
+<tr><td><strong>M3 Flow</strong></td><td>碳硅协作流畅可控</td><td>Kill Switch、心跳进度、决策门控、状态看板</td><td>停止指令 5 秒生效</td></tr>
+</tbody>
+</table>
+</section>
+
+<!-- Preview -->
+<section id="preview">
+<p class="section-label">Interactive Demos</p>
+<h2>UI Design Previews</h2>
+<p>Explore our interactive prototypes:</p>
+<div class="preview-links">
+<a href="agent-builder-ui-design.html">🤖 Agent Builder Demo</a>
+<a href="ui-design-preview.html">🎨 UI Design Preview</a>
+</div>
+</section>
+
+<!-- CTA -->
+<section style="text-align:center;padding:80px 20px 60px">
+<p style="color:var(--purple);font-size:1.2rem;font-weight:700;margin-bottom:12px">The Future of Work is Hybrid</p>
+<h2 style="font-size:clamp(2rem,4vw,3rem);margin-bottom:20px">Are you ready to<br>build your AI team?</h2>
+<div class="divider"></div>
+</section>
+
+<footer>
+<p>Hybrid Workforce · The Operating System for Human-AI Teams</p>
+</footer>
+
+</body>
+</html>
