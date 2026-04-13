@@ -75,6 +75,21 @@ Hybrid Workspace 要解决的是：**从单人用 AI 聊天，到一个人指挥
 - [ ] 角色间的自动协作比人工转发效率高多少？
 - [ ] 共享知识库能减少多少重复交代背景的时间？
 
+### Real-World Evidence: 为什么需要共享知识空间
+
+> 以下案例来自我们自己团队的真实经历，是 Build 阶段痛点的直接佐证。
+
+**案例 1: QA 验收不知道关键决策**
+赴宴项目中，PRD 决策 D-04「默认不预选场景」记录在 PM 的 memory 文件里。QA 验收 PR #101 时完全不知道这条决策，导致可能放过了违反 PRD 的实现。原因：决策散落在 PM 的 session memory 中，QA 的 workspace 里没有这个信息。
+
+**案例 2: 新成员加入项目，上下文全靠补**
+Manta 加入 #pm 群时对项目历史完全不了解——决策记录分散在不同日期的 daily notes、不同 agent 的 memory 文件、repo 的不同目录里。没有一个统一的项目知识空间可以让新人快速 ramp up。
+
+**案例 3: 同一个 agent 跨 session 也会丢上下文**
+PM 验收 PR #101 时发现场景 Chip 可能违反 PRD D-04，但自己也要翻好几个文件才找到这条决策。信息存在但分散，即使是产出这条决策的人也想不起来在哪。
+
+**共同根因：** 每个 agent 的 workspace 是独立的，项目知识散落在各自的 session/memory 文件里。人类公司有飞书文档/Confluence 做统一知识空间，AI 团队没有。这就是 Build 阶段要解决的「共享知识空间」需求。
+
 ---
 
 ## 阶段二：Train — 培训 AI 员工（Teach Once, Recall Instantly, Remember Forever）
