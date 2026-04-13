@@ -1,4 +1,4 @@
-# Hybrid Workforce — 技术架构文档 v0.1
+# Hybrid Workspace — 技术架构文档 v0.1
 
 > **作者：** SuperBoss（基于 pm-Octopus backup 版修订）  
 > **日期：** 2026-04-11  
@@ -9,7 +9,7 @@
 
 ## 1. 产品定位
 
-**Hybrid Workforce — 碳硅混合团队的操作系统**
+**Hybrid Workspace — 碳硅混合团队的操作系统**
 
 - **核心承诺：** Teach Once, Remember Forever
 - **MVP 目标：** Cloud 托管 Demo，面向非技术用户/投资人演示，不是完整产品
@@ -94,7 +94,7 @@ Kill Switch 是兜底机制，不是 Flow 的主角。
 
 **一句话概括区别：Hermes 解决「成功经验怎么沉淀」，我们要解决「错误怎么变成永久记忆」。**
 
-| 维度 | Hermes 原生 | Hybrid Workforce 改造 |
+| 维度 | Hermes 原生 | Hybrid Workspace 改造 |
 |------|------------|----------------------|
 | 触发方式 | Agent 自主学习（成功后提炼） | 人类纠正触发（错误后学习） |
 | 沉淀物 | Skill 文件 | 行为规则（if-then，含红线/建议分级） |

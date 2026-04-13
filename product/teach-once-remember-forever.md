@@ -10,7 +10,7 @@
 
 > 人类纠正了 agent 一次，怎么保证它在所有未来的 session、所有类似场景中都不再犯？
 
-这是 Hybrid Workforce 的核心挑战，也是最大的卖点。当前所有 AI agent 系统都没有真正解决这个问题。
+这是 Hybrid Workspace 的核心挑战，也是最大的卖点。当前所有 AI agent 系统都没有真正解决这个问题。
 
 ---
 
@@ -158,10 +158,10 @@ Layer 4：如果被拦截 3 次
 
 ## 与产品概念的关系
 
-这个机制是 **Train 阶段（培训 AI 员工）** 的核心引擎，也是 Hybrid Workforce 最大的差异化：
+这个机制是 **Train 阶段（培训 AI 员工）** 的核心引擎，也是 Hybrid Workspace 最大的差异化：
 
 - 现有工具：AI 每次都从零开始，不记得上次犯的错
-- Hybrid Workforce：**Teach once, remember forever**
+- Hybrid Workspace：**Teach once, remember forever**
 
 ### 在 Pitch Deck 中的位置
 

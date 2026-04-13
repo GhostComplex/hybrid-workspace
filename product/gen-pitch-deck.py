@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate Hybrid Workforce Pitch Deck (.pptx)"""
+"""Generate Hybrid Workspace Pitch Deck (.pptx)"""
 
 from pptx import Presentation
 from pptx.util import Inches, Pt, Emu
@@ -90,7 +90,7 @@ def add_purple_bar(slide, top, left, width, height):
 # Slide 1: Cover
 # ============================================================
 s = add_slide()
-add_text(s, "HYBRID WORKFORCE", Inches(1), Inches(2.2), Inches(11.3), Inches(1.2),
+add_text(s, "HYBRID WORKSPACE", Inches(1), Inches(2.2), Inches(11.3), Inches(1.2),
          font_size=60, color=WHITE, bold=True, alignment=PP_ALIGN.CENTER)
 add_text(s, "The Operating System for Human-AI Teams", Inches(1), Inches(3.5), Inches(11.3), Inches(0.8),
          font_size=28, color=PURPLE, bold=False, alignment=PP_ALIGN.CENTER)
@@ -185,7 +185,7 @@ for i, (prob, sub, cases) in enumerate(rows):
 # Slide 4: The Vision
 # ============================================================
 s = add_slide()
-add_text(s, "HYBRID WORKFORCE", Inches(1), Inches(1.5), Inches(11.3), Inches(1),
+add_text(s, "HYBRID WORKSPACE", Inches(1), Inches(1.5), Inches(11.3), Inches(1),
          font_size=24, color=PURPLE, bold=True, alignment=PP_ALIGN.CENTER)
 add_text(s, "The Operating System\nfor Human-AI Teams", Inches(1), Inches(2.5), Inches(11.3), Inches(1.5),
          font_size=48, color=WHITE, bold=True, alignment=PP_ALIGN.CENTER)
@@ -198,7 +198,7 @@ add_text(s, "让每个知识工作者能像管理真人团队一样，\n组建�
 # Slide 5: Four Layers
 # ============================================================
 s = add_slide()
-add_title(s, "Four Layers of Hybrid Workforce", top=Inches(0.6))
+add_title(s, "Four Layers of Hybrid Workspace", top=Inches(0.6))
 
 layers = [
     ("Harness Layer", "管理制度", "行为准则、权限边界"),

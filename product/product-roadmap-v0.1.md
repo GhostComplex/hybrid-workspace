@@ -1,4 +1,4 @@
-# Hybrid Workforce — 产品规划 v0.1
+# Hybrid Workspace — 产品规划 v0.1
 
 **日期：** 2026-04-11
 **作者：** pm-Octopus
@@ -7,9 +7,9 @@
 
 ## 一、产品愿景
 
-Hybrid Workforce 是碳硅混合团队的操作系统。它让每个知识工作者能像管理真人团队一样，组建、培训、管理一支 AI 团队——从招聘（Build）到入职培训（Train）到协作流程优化（Flow）。不是又一个 AI 聊天工具，而是解决「一个人怎么指挥一支 AI 团队高效干活」的系统性问题。
+Hybrid Workspace 是碳硅混合团队的操作系统。它让每个知识工作者能像管理真人团队一样，组建、培训、管理一支 AI 团队——从招聘（Build）到入职培训（Train）到协作流程优化（Flow）。不是又一个 AI 聊天工具，而是解决「一个人怎么指挥一支 AI 团队高效干活」的系统性问题。
 
-> "Every company will have more AI employees than human employees. Hybrid Workforce is how you run that company."
+> "Every company will have more AI employees than human employees. Hybrid Workspace is how you run that company."
 
 ### 核心架构：四层模型
 
@@ -372,6 +372,6 @@ MVP 范围：
 | 1 | **目标用户先聚焦谁？** | 独立创业者 / 小团队 / 企业。不同用户对 Build/Train/Flow 的需求优先级不同 | 先聚焦「自己」——吃自己的狗粮，等内部验证后再扩展 |
 | 2 | **产品形态？** | SaaS Web App / OpenClaw 插件 / 独立平台 | 建议先作为 OpenClaw 生态的上层产品，复用现有基础设施 |
 | 3 | **M1 和 F1 是否并行启动？** | M1 是基础设施，F1 是最痛的安全问题 | 建议并行，F1 可以独立于 M1 开发 |
-| 4 | **赴宴项目的定位？** | 赴宴 MVP 是 Hybrid Workforce 的试验田，还是独立产品？ | 建议作为 Hybrid Workforce 的第一个 dogfood 项目，所有痛点解决方案先在赴宴团队验证 |
+| 4 | **赴宴项目的定位？** | 赴宴 MVP 是 Hybrid Workspace 的试验田，还是独立产品？ | 建议作为 Hybrid Workspace 的第一个 dogfood 项目，所有痛点解决方案先在赴宴团队验证 |
 | 5 | **Agent 不诚实的根本解法？** | 当前靠规范约束，但 LLM 本身有 hallucination 倾向。红线检查器能拦截多少？ | 先做 T3 红线检查器 MVP，测量拦截率后再决定是否需要更重的方案 |
-| 6 | **品牌名确认** | Hybrid Workforce 是内部代号还是正式名？ | 待定 |
+| 6 | **品牌名确认** | Hybrid Workspace 是内部代号还是正式名？ | 待定 |

@@ -1,8 +1,8 @@
-# PRD: Hybrid Workforce — Agent Builder (Demo Phase 1: Build)
+# PRD: Hybrid Workspace — Agent Builder (Demo Phase 1: Build)
 
 | 字段 | 内容 |
 |------|------|
-| **产品名称** | Hybrid Workforce — Agent Builder |
+| **产品名称** | Hybrid Workspace — Agent Builder |
 | **版本** | v1.1 |
 | **日期** | 2026-04-11 |
 | **作者** | pm-Octopus |
@@ -13,7 +13,7 @@
 ## 1. 概述
 
 ### 1.1 背景
-Hybrid Workforce 是碳硅混合团队的操作系统。Demo 面向非技术用户和投资人，目标：**打开网页 → 创建 AI 团队 → 在内嵌聊天界面里看它们干活，全程零安装、零切换。**
+Hybrid Workspace 是碳硅混合团队的操作系统。Demo 面向非技术用户和投资人，目标：**打开网页 → 创建 AI 团队 → 在内嵌聊天界面里看它们干活，全程零安装、零切换。**
 
 Agent Builder 是 Demo 四幕剧本中 **Act 1 Build** 的核心界面，用户在 1 分钟内完成团队搭建。
 
