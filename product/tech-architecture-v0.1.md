@@ -146,7 +146,7 @@ PM 开 issue → 更新 PRD + 设计稿 → 人类审批 → 审批通过 → De
 - **形态：** Cloud 托管 Demo（给非技术用户/投资人演示）
 - **核心入口：** Agent Builder Web UI
   - 选角色 → 勾技能（基础 + 角色专属）→ 配规则（红线 vs 建议）→ 一键生成
-- **Demo 标准：** 打开网页 → 创建 PM agent → 看它在 Discord 里干活，全程零安装
+- **Demo 标准：** 打开网页 → 创建 PM agent → 同页面聊天交互，全程零安装
 - **不需要：** 多租户、计费、数据隔离、高可用
 
 ---
@@ -156,7 +156,7 @@ PM 开 issue → 更新 PRD + 设计稿 → 人类审批 → 审批通过 → De
 | Act | 名称 | 内容 | 时长 |
 |-----|------|------|------|
 | 1 | **Build** | 用户创建 3 人 AI 团队（PM + Dev + QA） | 1 min |
-| 2 | **Work** | 用户下指令做落地页，agent 协作干活 | 2 min |
+| 2 | **Work** | 用户在 Web 聊天界面下指令做落地页，agent 协作干活 | 2 min |
 | 3 | **Train** | 用户纠正一次→系统检测规则→人类确认→永久生效（Teach Once Remember Forever） | 1 min |
 | 4 | **Flow** | 演示流程强制执行（Dev 试图跳步被拦截）+ Kill Switch 兜底 | 1 min |
 
