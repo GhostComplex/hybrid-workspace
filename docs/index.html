@@ -52,8 +52,9 @@ table.roadmap th{background:var(--purple);color:var(--white);padding:12px;text-a
 table.roadmap td{padding:12px;border-bottom:1px solid #1a1a2e}
 table.roadmap tr:nth-child(even){background:var(--card)}
 /* Pain points */
-.pain-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-top:20px}
-.pain-item{background:var(--card);border-radius:8px;padding:14px 18px;font-size:.9rem;border-left:3px solid var(--purple)}
+.pain-groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-top:20px}
+.pain-group{background:rgba(108,92,231,0.05);border-radius:12px;padding:20px}
+.pain-item{background:var(--card);border-radius:8px;padding:14px 18px;font-size:.9rem;border-left:3px solid var(--purple);margin-bottom:8px}
 .pain-item strong{color:var(--purple)}
 /* Preview section */
 .preview-links{display:flex;gap:16px;flex-wrap:wrap;margin-top:24px}
@@ -200,19 +201,32 @@ footer{text-align:center;padding:60px 20px 40px;color:var(--muted);font-size:.85
 <!-- Roadmap -->
 <section id="roadmap">
 <p class="section-label">Product Roadmap</p>
-<h2>10 Real Pain Points → 3 Milestones</h2>
+<h2>Pain Points by Phase</h2>
 
-<div class="pain-list">
-<div class="pain-item"><strong>P01</strong> Agent 变聋：长任务期间完全失联</div>
+<div class="pain-groups">
+
+<div class="pain-group">
+<h3 style="color:#6c5ce7;margin-bottom:12px;">🔧 Build — 组建团队的痛点</h3>
+<div class="pain-item"><strong>P06</strong> 新 Agent 上手成本高</div>
+<div class="pain-item"><strong>P09</strong> 环境配置反复踩坑</div>
+</div>
+
+<div class="pain-group">
+<h3 style="color:#6c5ce7;margin-bottom:12px;">📚 Train — 培训员工的痛点</h3>
 <div class="pain-item"><strong>P02</strong> Agent 不诚实：虚报验收结果</div>
 <div class="pain-item"><strong>P03</strong> 纠正不持久：同样的错反复犯</div>
+<div class="pain-item"><strong>P08</strong> 存储 ≠ 召回：规则写了但想不起来</div>
+<div class="pain-item"><strong>P10</strong> 产品分析能力不足</div>
+</div>
+
+<div class="pain-group">
+<h3 style="color:#6c5ce7;margin-bottom:12px;">⚙️ Flow — 协作管控的痛点</h3>
+<div class="pain-item"><strong>P01</strong> Agent 变聋：长任务期间完全失联</div>
 <div class="pain-item"><strong>P04</strong> 越权行动：不该做的事偷偷做了</div>
 <div class="pain-item"><strong>P05</strong> 角色间交接信息丢失</div>
-<div class="pain-item"><strong>P06</strong> 新 Agent 上手成本高</div>
 <div class="pain-item"><strong>P07</strong> 团队状态不透明</div>
-<div class="pain-item"><strong>P08</strong> 存储 ≠ 召回：规则写了但想不起来</div>
-<div class="pain-item"><strong>P09</strong> 环境配置反复踩坑</div>
-<div class="pain-item"><strong>P10</strong> 产品分析能力不足</div>
+</div>
+
 </div>
 
 <table class="roadmap">
