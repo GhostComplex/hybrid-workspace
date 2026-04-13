@@ -135,11 +135,11 @@ rows = [
         "PM→QA 交接丢失决策上下文，实现违反 PRD 决策",
         "验收只看最近 PR，漏掉累积改动，通过后 bug 更多",
     ]),
-    ("没有培训体系", "同样的错反复犯，新人从零教起", [
-        "新 QA 加入当天：端口用错、流程不会、用代码审查代替实际运行",
-        "新 PM 接手新项目，所有规则、流程都要再重复一遍",
-        "AGENTS.md 膨胀到 20+ 条规则，关键规则被淹没，读了也记不住",
+    ("存储 ≠ 召回", "Teach Once, Store Forever, Recall Never", [
+        "Manta 的 Skill 里写了「GitHub issue 图片用 markdown 格式」，但每次都忘，需要反复提醒",
+        "规则不是没有，是在 20+ 条中被上下文稀释——Agent 不会像人一样「触景生情」",
         "同一条规则纠正多次，跨 session 后又忘了，每个新 session 从零开始",
+        "新 QA 加入当天：端口用错、流程不会、用代码审查代替实际运行",
     ]),
     ("没有流程规范", "AI 自作主张，人类失控", [
         "QA 没有截图就报验收 Pass，团队基于假结果做决策",
@@ -249,15 +249,15 @@ s = add_slide()
 add_text(s, "PHASE 2", Inches(1), Inches(0.5), Inches(2), Inches(0.4),
          font_size=14, color=PURPLE, bold=True)
 add_title(s, "Teach Once, Remember Forever", top=Inches(0.9))
-add_text(s, "You speak naturally. Your AI team learns permanently.",
-         Inches(1), Inches(1.6), Inches(10), Inches(0.5),
+add_text(s, "Today: Teach Once, Store Forever, Recall Never.\nTomorrow: Teach Once, Remember Forever.",
+         Inches(1), Inches(1.6), Inches(10), Inches(0.7),
          font_size=18, color=BLUE, bold=False)
 add_bullets(s, [
+    "场景触发式召回——Agent 执行工具前，系统自动注入精准规则（pre-tool-call hook）",
     "你说一句话 → 每个 Agent 自己识别相关规则 → 写入行为准则",
     "四层记忆保障：场景触发 / 行为前检查 / 失败记忆召回 / 渐进式强化",
     "不改模型，改 Harness——轻量、即时、可解释",
-    "纠正一次同类错误永不再犯，不是提醒，是拦截",
-], top=Inches(2.5))
+], top=Inches(2.8))
 
 # ============================================================
 # Slide 8: Flow
