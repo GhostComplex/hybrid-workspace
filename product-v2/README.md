@@ -25,10 +25,15 @@
 
 ### Build 升级
 - Agent 归属权：PM Agent 属于 Product Lead，Manager Agent 属于 Tech Lead
-- 新 agent 冷启动自动继承团队知识和潜规则
+- 模板复用、团队知识自动注入、冷启动成本最低
 - 老 agent 直接教新 agent，人不需要重复教
 
-### Train 升级（核心差异化）
+### Collaborate（v2 核心差异化 — 新增）
+- Agent 之间直接对接协作，人类不做传话筒
+- 共享工作空间 + 结构化交接 + 消息路由
+- PM Agent 写完 PRD 直接推给 Dev Agent，无需人类转发
+
+### Learn（原 Train，改名）
 三层学习模式：
 1. **自学习** — 从项目经历中学（做对沉淀方法，做错沉淀教训）
 2. **被人类教** — 纠正后规则自动沉淀（Teach Once, Remember Forever）

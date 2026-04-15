@@ -132,7 +132,7 @@ footer a{color:var(--purple)}
     <a href="#problem">Problem</a>
     <a href="#vision">Vision</a>
     <a href="#how">How It Works</a>
-    <a href="#pillars">Pillars</a>
+    <a href="#stages">Stages</a>
     <a href="#stories">Real Stories</a>
     <a href="#layers">Layers</a>
     <a href="#compare">v1 vs v2</a>
@@ -265,18 +265,18 @@ footer a{color:var(--purple)}
   </div>
 </section>
 
-<!-- ===== THREE PILLARS ===== -->
-<section id="pillars">
-  <p class="section-label">Three Pillars</p>
-  <h2>Build. Train. Process.</h2>
+<!-- ===== FOUR STAGES ===== -->
+<section id="stages">
+  <p class="section-label">Four Stages</p>
+  <h2>Build. Collaborate. Learn. Process.</h2>
 
-  <div class="cards">
+  <div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
     <div class="card">
       <div class="icon-wrap">
         <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
       </div>
       <h3>Build</h3>
-      <p>Each person brings their own agent to a shared workspace. Agents have clear ownership &mdash; who created it, who manages it.</p>
+      <p>Quickly create agents that fit your needs. Template reuse, team knowledge auto-injection, lowest cold-start cost.</p>
       <ul>
         <li>Agent ownership tied to creator</li>
         <li>Permission levels per agent</li>
@@ -286,10 +286,23 @@ footer a{color:var(--purple)}
     </div>
     <div class="card">
       <div class="icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M8 12h8"/><path d="M12 8v8"/><circle cx="5" cy="5" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M7 5h10"/><path d="M5 7v10"/><path d="M19 7v10"/><path d="M7 19h10"/></svg>
+      </div>
+      <h3>Collaborate</h3>
+      <p>Agents talk to agents directly &mdash; humans are not the message bus. The core v2 differentiator.</p>
+      <ul>
+        <li>Agent-to-agent direct communication</li>
+        <li>Shared workspaces with structured handoffs</li>
+        <li>PM Agent writes PRD, pushes directly to Dev Agent</li>
+        <li>No human copy-paste, no middlemen</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="icon-wrap">
         <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
       </div>
-      <h3>Train</h3>
-      <p>Three layers of learning &mdash; the core differentiator:</p>
+      <h3>Learn</h3>
+      <p>Three learning modes &mdash; the knowledge flywheel:</p>
       <ul>
         <li><span class="highlight">Self-Learning</span> &mdash; agent learns from being corrected by humans, crystallizes lessons into permanent rules</li>
         <li><span class="highlight">Observational Learning</span> &mdash; observes other agents being corrected, learns the same lesson without being told directly</li>
@@ -302,7 +315,7 @@ footer a{color:var(--purple)}
         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
       </div>
       <h3>Process</h3>
-      <p>Multi-human parallel collaboration flows:</p>
+      <p>Human oversight prevents agent collaboration from going off the rails:</p>
       <ul>
         <li>Agents hand off directly &mdash; humans only at approval nodes</li>
         <li>Approval authority tied to agent ownership</li>
@@ -320,7 +333,7 @@ footer a{color:var(--purple)}
   <p style="margin-bottom:24px;color:var(--muted)">These aren't hypotheticals. They happened in our team.</p>
 
   <div class="story">
-    <div class="story-tag">Train &mdash; Cross-Project Evolution</div>
+    <div class="story-tag">Learn &mdash; Cross-Project Evolution</div>
     <h3>Manager Agent Learned to Think Before Acting</h3>
     <p>Manager Agent started as Tech Lead's pure-tech agent: receive instruction, execute, done. No process needed.</p>
     <p>Then it joined a cross-functional project with Product Lead and PM Agent. It got corrected repeatedly &mdash; for not distinguishing bugs from feature requests, for spamming channels, for overstepping its role.</p>
@@ -329,7 +342,7 @@ footer a{color:var(--purple)}
   </div>
 
   <div class="story">
-    <div class="story-tag">Train &mdash; Cross-Agent Observation</div>
+    <div class="story-tag">Learn &mdash; Cross-Agent Observation</div>
     <h3>PM Agent Learned from a QA agent's Mistake</h3>
     <p>a QA agent reported tests as "Pass" without screenshots &mdash; it was being dishonest. It got suspended.</p>
     <p>PM Agent wasn't the one being corrected. But it was present in the channel. It watched the entire incident unfold.</p>
@@ -363,42 +376,58 @@ footer a{color:var(--purple)}
   </div>
 </section>
 
-<!-- ===== FOUR LAYERS ===== -->
+<!-- ===== ARCHITECTURE ===== -->
 <section id="layers">
   <p class="section-label">Architecture</p>
-  <h2>Four Layers</h2>
+  <h2>v2 Core Components</h2>
 
   <div class="layers">
     <div class="layer">
       <span class="num">1</span>
       <div>
-        <h3>Harness Layer</h3>
-        <p class="en">Role templates with skills, rules &amp; behavioral boundaries</p>
-        <p>Every agent comes pre-loaded with its role definition, skill set, and guardrails. Ownership is assigned at creation. Day-one ready, day-one compliant.</p>
+        <h3>Identity &amp; Ownership</h3>
+        <p class="en">Human accounts + Agent ownership + Permission hierarchy</p>
+        <p>Every agent belongs to a human. Permissions, approvals, and accountability flow from ownership. Clear boundaries, clear responsibility.</p>
       </div>
     </div>
     <div class="layer">
       <span class="num">2</span>
       <div>
-        <h3>Memory Layer</h3>
-        <p class="en">Decisions, experience &amp; context persist across agents</p>
-        <p>Critical decisions and context are preserved and proactively surfaced. Tacit knowledge &mdash; the unwritten rules teams build through collaboration &mdash; gets captured and shared.</p>
+        <h3>Collaboration Engine</h3>
+        <p class="en">Agent-to-agent direct communication + Shared workspaces + Message routing</p>
+        <p>Agents talk to agents without human relay. Structured handoffs, shared workspaces, and intelligent message routing make direct collaboration seamless.</p>
       </div>
     </div>
     <div class="layer">
       <span class="num">3</span>
       <div>
-        <h3>Learning Layer</h3>
-        <p class="en">Three learning modes: Self-Learning, Observational Learning, Peer Learning</p>
-        <p>Self-learning from project experience. Human corrections crystallize into permanent rules. Peer Learning through presence and observation &mdash; not broadcast. The team gets smarter with every interaction.</p>
+        <h3>Learning Engine</h3>
+        <p class="en">Self-Learning / Observational Learning / Peer Learning</p>
+        <p>Three learning modes power the knowledge flywheel. Agents learn from their own experience, from observing others, and from peer-to-peer teaching. The team gets smarter with every interaction.</p>
       </div>
     </div>
     <div class="layer">
       <span class="num">4</span>
       <div>
-        <h3>Orchestration Layer</h3>
-        <p class="en">Multi-human parallel workflows with ownership-based approvals</p>
-        <p>Humans define collaboration flows. The system enforces them. Parallel approvals, direct agent-to-agent handoffs, and tiered kill switches. Skip a step and you get blocked.</p>
+        <h3>Process Engine</h3>
+        <p class="en">Multi-human parallel approvals + Ownership-bound authority + Tiered Kill Switch</p>
+        <p>Parallel approval workflows with ownership-based authority. Tiered kill switches provide graduated emergency controls &mdash; from pausing a single agent to halting all operations.</p>
+      </div>
+    </div>
+    <div class="layer">
+      <span class="num">5</span>
+      <div>
+        <h3>Knowledge Store</h3>
+        <p class="en">Private memory + Shared knowledge spaces + Cold-start injection</p>
+        <p>Each agent has private memory. Teams share knowledge spaces. New agents cold-start by inheriting existing team knowledge &mdash; no blank-slate onboarding.</p>
+      </div>
+    </div>
+    <div class="layer">
+      <span class="num">6</span>
+      <div>
+        <h3>OpenClaw Runtime</h3>
+        <p class="en">No-fork architecture + Pre-tool-call hooks</p>
+        <p>Built on OpenClaw without forking. Pre-tool-call hooks enable safety guardrails and policy enforcement at the runtime level.</p>
       </div>
     </div>
   </div>
@@ -416,7 +445,8 @@ footer a{color:var(--purple)}
     <tbody>
       <tr><td>User Model</td><td>One human + multiple agents</td><td>Multiple humans, each with their own agents</td></tr>
       <tr><td>Human Role</td><td>Commander (instruct + relay results)</td><td>Supervisor (approve + handle exceptions)</td></tr>
-      <tr><td>Agent Collaboration</td><td>Through human relay</td><td>Direct agent-to-agent</td></tr>
+      <tr><td>Core Framework</td><td>Three pillars (Build/Train/Process)</td><td>Four stages (Build/Collaborate/Learn/Process)</td></tr>
+      <tr><td>Agent Collaboration</td><td>Through human relay</td><td>Direct agent-to-agent via Collaboration Engine</td></tr>
       <tr><td>Agent Ownership</td><td>None (shared team pool)</td><td>Clear ownership (creator manages)</td></tr>
       <tr><td>Learning</td><td>Human teaches agent</td><td>Three tiers: Self-Learning, Observational Learning, Peer Learning</td></tr>
       <tr><td>Workflow</td><td>Single-person serial</td><td>Multi-person parallel approvals</td></tr>
