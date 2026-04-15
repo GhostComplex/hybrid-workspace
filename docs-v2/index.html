@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hybrid Workspace v2 — Multi-Human, Multi-Agent Collaboration</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a14;--bg2:#12122a;--purple:#6c5ce7;--blue:#00d2ff;--white:#fff;--body:#c8c8d2;--muted:#82828e;--card:#14142a}
+body{background:var(--bg);color:var(--body);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.7;overflow-x:hidden}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+section{padding:100px 20px;max-width:1100px;margin:0 auto}
+h1,h2,h3{color:var(--white);font-weight:700}
+
+/* Nav */
+nav.topnav{position:fixed;top:0;width:100%;background:rgba(10,10,20,.92);backdrop-filter:blur(10px);z-index:100;padding:14px 24px;display:flex;align-items:center;gap:24px;border-bottom:1px solid #1a1a2e}
+nav.topnav .logo{color:var(--purple);font-weight:700;font-size:1.1rem;white-space:nowrap}
+nav.topnav a{color:var(--body);font-size:.85rem}
+nav.topnav a:hover{color:var(--white)}
+.nav-links{display:flex;gap:18px;flex-wrap:wrap}
+.nav-v1{background:rgba(108,92,231,.15);padding:4px 12px;border-radius:20px;font-size:.75rem;color:var(--purple);font-weight:600}
+
+/* Hero */
+.hero{text-align:center;padding:160px 20px 120px}
+.hero h1{font-size:clamp(2.5rem,6vw,4.5rem);letter-spacing:2px;margin-bottom:16px}
+.hero .tagline{font-size:clamp(1.1rem,2.5vw,1.6rem);color:var(--purple);margin-bottom:24px}
+.hero .sub{font-size:1.05rem;color:var(--muted);max-width:700px;margin:0 auto;line-height:1.8}
+.version-badge{display:inline-block;background:var(--purple);color:var(--white);font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:12px;margin-bottom:16px;letter-spacing:1px}
+
+/* Common */
+.divider{width:120px;height:3px;background:var(--purple);margin:24px auto;border-radius:2px}
+.section-label{font-size:.75rem;text-transform:uppercase;letter-spacing:3px;color:var(--purple);font-weight:700;margin-bottom:8px}
+section h2{font-size:clamp(1.6rem,3.5vw,2.4rem);margin-bottom:20px}
+section p,section li{font-size:1rem}
+.highlight{color:var(--purple);font-weight:700}
+.blue{color:var(--blue);font-weight:700}
+
+/* Problem */
+.problem-cards{display:grid;gap:16px;margin-top:24px}
+.problem-card{background:var(--card);border-radius:10px;padding:24px;border-left:3px solid var(--purple);display:flex;gap:16px;align-items:flex-start}
+.problem-card .icon-wrap{flex-shrink:0;width:40px;height:40px;display:flex;align-items:center;justify-content:center}
+.problem-card .icon-wrap svg{width:24px;height:24px;stroke:var(--purple);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.problem-card p{font-size:.95rem;color:var(--body);line-height:1.6}
+.problem-quote{text-align:center;margin-top:40px;font-size:1.15rem;color:var(--blue);font-style:italic;font-weight:600;padding:0 20px}
+
+/* Vision */
+.vision-points{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:30px}
+.vision-point{background:var(--card);border:1px solid #2a2a44;border-radius:12px;padding:28px 24px;text-align:center}
+.vision-point .icon-wrap{width:48px;height:48px;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;border-radius:12px;background:rgba(108,92,231,.1)}
+.vision-point .icon-wrap svg{width:24px;height:24px;stroke:var(--purple);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.vision-point h3{font-size:1rem;margin-bottom:8px}
+.vision-point p{font-size:.9rem;color:var(--muted)}
+
+/* How it works */
+.workflow{margin-top:30px}
+.team-block{background:var(--card);border-radius:12px;padding:24px;margin-bottom:16px;border-left:3px solid var(--purple)}
+.team-block h3{color:var(--purple);font-size:1rem;margin-bottom:4px}
+.team-block .role{font-size:.85rem;color:var(--muted);margin-bottom:8px}
+.team-block .agents{font-size:.95rem;color:var(--body)}
+.flow-steps{margin-top:30px;position:relative;padding-left:30px}
+.flow-steps::before{content:'';position:absolute;left:11px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--purple),var(--blue))}
+.flow-step{position:relative;padding:12px 0 12px 20px;font-size:.95rem}
+.flow-step::before{content:'';position:absolute;left:-22px;top:18px;width:10px;height:10px;border-radius:50%;background:var(--purple);border:2px solid var(--bg)}
+.flow-step .actor{color:var(--purple);font-weight:600}
+.flow-step .action{color:var(--body)}
+.flow-step .auto{color:var(--blue);font-size:.8rem;font-weight:600}
+
+/* Cards grid (pillars) */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:30px}
+.card{background:var(--card);border:1px solid #2a2a44;border-radius:12px;padding:28px 24px}
+.card .icon-wrap{width:48px;height:48px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;border-radius:12px;background:rgba(108,92,231,.1)}
+.card .icon-wrap svg{width:24px;height:24px;stroke:var(--purple);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.card h3{font-size:1.15rem;color:var(--purple);margin-bottom:8px}
+.card p{font-size:.9rem;color:var(--muted);line-height:1.6}
+
+/* Layers */
+.layers{margin-top:30px}
+.layer{display:flex;gap:20px;align-items:flex-start;padding:24px;background:var(--card);border-radius:12px;margin-bottom:12px;border-left:3px solid var(--purple)}
+.layer .num{font-size:1.5rem;font-weight:800;color:var(--purple);line-height:1;flex-shrink:0;width:30px}
+.layer h3{font-size:1.05rem;margin-bottom:4px}
+.layer .en{font-size:.85rem;color:var(--blue);margin-bottom:6px}
+.layer p{font-size:.9rem;color:var(--muted)}
+
+/* Prototype links */
+.preview-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:24px;margin-top:24px}
+.preview-links a{display:block;padding:32px;border:1px solid var(--purple);border-radius:12px;color:var(--white);font-weight:600;transition:all .2s;text-decoration:none}
+.preview-links a:hover{background:rgba(108,92,231,0.1);border-color:rgba(108,92,231,0.6)}
+.preview-links a .card-title{font-size:18px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.preview-links a .card-desc{font-size:14px;color:var(--muted);font-weight:400;line-height:1.5}
+
+/* User Zero */
+.user-zero{background:var(--card);border-radius:16px;padding:40px;margin-top:30px;text-align:center;border:1px solid #2a2a44}
+.user-zero p{font-size:1rem;color:var(--body);max-width:700px;margin:12px auto 0}
+
+/* Footer */
+footer{text-align:center;padding:60px 20px 40px;color:var(--muted);font-size:.85rem;border-top:1px solid #1a1a2e}
+footer a{color:var(--purple)}
+
+@media(max-width:600px){
+  .problem-card{flex-direction:column}
+  .flow-steps{padding-left:24px}
+}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <span class="logo">HYBRID WORKSPACE</span>
+  <div class="nav-links">
+    <a href="#problem">Problem</a>
+    <a href="#vision">Vision</a>
+    <a href="#how">How It Works</a>
+    <a href="#pillars">Pillars</a>
+    <a href="#layers">Layers</a>
+    <a href="#prototype">Prototype</a>
+    <a class="nav-v1" href="../docs/">v1</a>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <span class="version-badge">V2</span>
+  <h1>HYBRID WORKSPACE</h1>
+  <p class="tagline">Where Humans and AI Work Together &mdash; Not Through Each Other</p>
+  <div class="divider"></div>
+  <p class="sub">Multi-human, multi-agent collaboration platform.<br>AIs collaborate directly. Humans supervise and approve. No middlemen.</p>
+</section>
+
+<!-- ===== PROBLEM ===== -->
+<section id="problem">
+  <p class="section-label">The Problem</p>
+  <h2>Humans Are the Message Bus Between AIs</h2>
+  <p>Every team member has their own AI. But these AIs can't talk to each other. Humans copy-paste in between.</p>
+
+  <div class="problem-cards">
+    <div class="problem-card">
+      <div class="icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      </div>
+      <div>
+        <p>PM uses AI to write a spec, then <span class="highlight">manually copies</span> it to the developer. The developer's AI follows it blindly.</p>
+      </div>
+    </div>
+    <div class="problem-card">
+      <div class="icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      <div>
+        <p>Dev A's AI reviews code, Dev A <span class="highlight">copies the comment</span> to Dev B, then Dev B's AI fixes it. Every handoff goes through a human.</p>
+      </div>
+    </div>
+    <div class="problem-card">
+      <div class="icon-wrap">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      </div>
+      <div>
+        <p>Each person's AI is <span class="highlight">isolated</span>. No shared context, no direct collaboration. Humans are the only bridge.</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="problem-quote">"Today: Humans are the message bus between AIs.<br>Tomorrow: AIs collaborate directly, humans supervise."</p>
+</section>
+
+<!-- ===== VISION ===== -->
+<section id="vision">
+  <p class="section-label">The Vision</p>
+  <h2>AIs Collaborate. Humans Supervise.</h2>
+
+  <div class="vision-points">
+    <div class="vision-point">
+      <div class="icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <h3>Personal Agents</h3>
+      <p>Every team member brings their own AI agent to the shared workspace.</p>
+    </div>
+    <div class="vision-point">
+      <div class="icon-wrap">
+        <svg viewBox="0 0 24 24"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+      </div>
+      <h3>Direct Handoff</h3>
+      <p>PM agent writes PRD, pushes directly to Dev agent. No human copy-paste.</p>
+    </div>
+    <div class="vision-point">
+      <div class="icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      </div>
+      <h3>Owner Reviews</h3>
+      <p>PM owner reviews PRD quality. Tech lead reviews architecture. Each manages their own agent.</p>
+    </div>
+    <div class="vision-point">
+      <div class="icon-wrap">
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <h3>Three Actions Only</h3>
+      <p>Humans do three things: give instructions, approve, handle exceptions. Nothing else.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section id="how">
+  <p class="section-label">How It Works</p>
+  <h2>Our Team as the Living Example</h2>
+
+  <div class="workflow">
+    <div class="team-block">
+      <h3>Juanjuan</h3>
+      <p class="role">Product Owner</p>
+      <p class="agents">PM-Octopus &mdash; writes PRDs, designs prototypes, Juanjuan reviews quality</p>
+    </div>
+    <div class="team-block">
+      <h3>Steins</h3>
+      <p class="role">Tech Lead</p>
+      <p class="agents">SuperBoss &mdash; writes architecture, reviews PRDs, Steins reviews decisions</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:40px;font-size:1.1rem">Example: "Add Dark Mode"</h3>
+
+  <div class="flow-steps">
+    <div class="flow-step">
+      <span class="actor">Juanjuan</span> <span class="action">says "add dark mode"</span>
+    </div>
+    <div class="flow-step">
+      <span class="actor">PM-Octopus</span> <span class="action">writes PRD</span> &rarr; <span class="auto">@Juanjuan for approval</span>
+    </div>
+    <div class="flow-step">
+      <span class="actor">Juanjuan</span> <span class="action">approves</span> &rarr; <span class="auto">PRD auto-flows to Dev-Fox</span>
+    </div>
+    <div class="flow-step">
+      <span class="actor">Dev-Fox</span> <span class="action">writes code</span> &rarr; <span class="auto">@SuperBoss for review</span>
+    </div>
+    <div class="flow-step">
+      <span class="actor">SuperBoss</span> <span class="action">reviews</span> &rarr; <span class="action">Dev-Fox fixes directly</span> <span class="auto">(no human relay)</span>
+    </div>
+    <div class="flow-step">
+      <span class="actor">SuperBoss</span> <span class="action">approves</span> &rarr; <span class="auto">@Steins for final merge</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== THREE PILLARS ===== -->
+<section id="pillars">
+  <p class="section-label">Three Pillars</p>
+  <h2>Build. Train. Process.</h2>
+
+  <div class="cards">
+    <div class="card">
+      <div class="icon-wrap">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      </div>
+      <h3>Build</h3>
+      <p>Each person creates their own agent with a defined role, skills, and boundaries. Agents join a shared workspace and start collaborating.</p>
+    </div>
+    <div class="card">
+      <div class="icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      </div>
+      <h3>Train</h3>
+      <p>Team rules emerge from daily conversations and crystallize automatically. All agents share what the team learns together.</p>
+    </div>
+    <div class="card">
+      <div class="icon-wrap">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      </div>
+      <h3>Process</h3>
+      <p>Humans define collaboration workflows. The system enforces them. Skip a step? Blocked.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOUR LAYERS ===== -->
+<section id="layers">
+  <p class="section-label">Architecture</p>
+  <h2>Four Layers</h2>
+
+  <div class="layers">
+    <div class="layer">
+      <span class="num">1</span>
+      <div>
+        <h3>Harness Layer</h3>
+        <p class="en">Role templates with built-in skills, rules &amp; behavioral boundaries</p>
+        <p>Every agent comes pre-loaded with its role definition, skill set, and guardrails. Day-one ready, day-one compliant.</p>
+      </div>
+    </div>
+    <div class="layer">
+      <span class="num">2</span>
+      <div>
+        <h3>Memory Layer</h3>
+        <p class="en">Decisions, experience &amp; context persist across agents</p>
+        <p>Critical decisions and context are preserved and proactively surfaced when they matter. Nothing gets lost between sessions or handoffs.</p>
+      </div>
+    </div>
+    <div class="layer">
+      <span class="num">3</span>
+      <div>
+        <h3>Learning Layer</h3>
+        <p class="en">Autonomous learning from projects &amp; human feedback</p>
+        <p>Corrections from humans automatically crystallize into new rules. The team gets smarter with every interaction.</p>
+      </div>
+    </div>
+    <div class="layer">
+      <span class="num">4</span>
+      <div>
+        <h3>Orchestration Layer</h3>
+        <p class="en">Human-defined workflows, system-enforced execution</p>
+        <p>Humans define the process. The system enforces it. Skip a step and you get blocked. No exceptions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROTOTYPE ===== -->
+<section id="prototype">
+  <p class="section-label">Product Prototype</p>
+  <h2>See It in Action</h2>
+  <p>Interactive prototypes from v1 &mdash; v2-specific prototypes coming soon.</p>
+
+  <div class="preview-links">
+    <a href="../docs/ui-prototype-chat.html">
+      <div class="card-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Chat Workspace Prototype
+      </div>
+      <div class="card-desc">Multi-agent chat interface with agent-to-agent direct communication</div>
+    </a>
+    <a href="../docs/ui-prototype-manage.html">
+      <div class="card-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        Agent Management Prototype
+      </div>
+      <div class="card-desc">Build, configure and deploy agents into shared team workspaces</div>
+    </a>
+  </div>
+</section>
+
+<!-- ===== USER ZERO ===== -->
+<section>
+  <div class="user-zero">
+    <p class="section-label">Dogfooding</p>
+    <h2>We Are User Zero</h2>
+    <p>This isn't a concept deck. Our team &mdash; Juanjuan, Steins, PM-Octopus, SuperBoss, Dev-Fox &mdash; runs on Hybrid Workspace every day. Every feature we ship, we use first. Every pain point we solve, we felt first.</p>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <p>HYBRID WORKSPACE v2 &mdash; Multi-Human, Multi-Agent Collaboration</p>
+  <p style="margin-top:8px"><a href="../docs/">View v1</a></p>
+  <p style="margin-top:12px;font-size:.75rem;color:var(--muted)">Built by humans and AIs, working together.</p>
+</footer>
+
+</body>
+</html>
