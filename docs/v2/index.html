@@ -72,7 +72,10 @@ section p,section li{font-size:1rem}
 .card .icon-wrap{width:48px;height:48px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;border-radius:12px;background:rgba(108,92,231,.1)}
 .card .icon-wrap svg{width:24px;height:24px;stroke:var(--purple);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .card h3{font-size:1.15rem;color:var(--purple);margin-bottom:8px}
-.card p{font-size:.9rem;color:var(--muted);line-height:1.6}
+.card p,.card li{font-size:.9rem;color:var(--muted);line-height:1.6}
+.card ul{list-style:none;padding:0;margin-top:8px}
+.card ul li{padding:4px 0;padding-left:16px;position:relative}
+.card ul li::before{content:'';position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:50%;background:var(--purple)}
 
 /* Layers */
 .layers{margin-top:30px}
@@ -81,6 +84,22 @@ section p,section li{font-size:1rem}
 .layer h3{font-size:1.05rem;margin-bottom:4px}
 .layer .en{font-size:.85rem;color:var(--blue);margin-bottom:6px}
 .layer p{font-size:.9rem;color:var(--muted)}
+
+/* Stories */
+.story{background:var(--card);border:1px solid #2a2a44;border-radius:12px;padding:28px 24px;margin-bottom:16px}
+.story h3{font-size:1.05rem;color:var(--purple);margin-bottom:4px}
+.story .story-tag{font-size:.75rem;text-transform:uppercase;letter-spacing:2px;color:var(--blue);font-weight:600;margin-bottom:12px}
+.story p{font-size:.9rem;color:var(--muted);line-height:1.7;margin-bottom:8px}
+.story p:last-child{margin-bottom:0}
+.story .takeaway{color:var(--body);font-weight:600;border-top:1px solid #2a2a44;padding-top:12px;margin-top:12px}
+
+/* Comparison table */
+.compare-table{width:100%;border-collapse:collapse;margin-top:24px}
+.compare-table th,.compare-table td{padding:12px 16px;text-align:left;border-bottom:1px solid #1a1a2e;font-size:.9rem}
+.compare-table th{color:var(--purple);font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:1px}
+.compare-table td:first-child{color:var(--white);font-weight:600}
+.compare-table td:nth-child(2){color:var(--muted)}
+.compare-table td:nth-child(3){color:var(--body)}
 
 /* Prototype links */
 .preview-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:24px;margin-top:24px}
@@ -100,6 +119,8 @@ footer a{color:var(--purple)}
 @media(max-width:600px){
   .problem-card{flex-direction:column}
   .flow-steps{padding-left:24px}
+  .compare-table{font-size:.8rem}
+  .compare-table th,.compare-table td{padding:8px}
 }
 </style>
 </head>
@@ -112,9 +133,11 @@ footer a{color:var(--purple)}
     <a href="#vision">Vision</a>
     <a href="#how">How It Works</a>
     <a href="#pillars">Pillars</a>
+    <a href="#stories">Real Stories</a>
     <a href="#layers">Layers</a>
+    <a href="#compare">v1 vs v2</a>
     <a href="#prototype">Prototype</a>
-    <a class="nav-v1" href="../docs/">v1</a>
+    <a class="nav-v1" href="../">v1</a>
   </div>
 </nav>
 
@@ -124,7 +147,7 @@ footer a{color:var(--purple)}
   <h1>HYBRID WORKSPACE</h1>
   <p class="tagline">Where Humans and AI Work Together &mdash; Not Through Each Other</p>
   <div class="divider"></div>
-  <p class="sub">Multi-human, multi-agent collaboration platform.<br>AIs collaborate directly. Humans supervise and approve. No middlemen.</p>
+  <p class="sub">Multi-human, multi-agent collaboration platform.<br>Teach once, the whole team learns. AIs collaborate directly. Humans supervise and approve.</p>
 </section>
 
 <!-- ===== PROBLEM ===== -->
@@ -174,28 +197,28 @@ footer a{color:var(--purple)}
         <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
       </div>
       <h3>Personal Agents</h3>
-      <p>Every team member brings their own AI agent to the shared workspace.</p>
+      <p>Every team member brings their own AI agent. PM-Octopus belongs to Juanjuan. SuperBoss belongs to Steins. Clear ownership.</p>
     </div>
     <div class="vision-point">
       <div class="icon-wrap">
         <svg viewBox="0 0 24 24"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
       </div>
       <h3>Direct Handoff</h3>
-      <p>PM agent writes PRD, pushes directly to Dev agent. No human copy-paste.</p>
+      <p>PM agent writes PRD, pushes directly to Dev agent. No human copy-paste. No middlemen.</p>
     </div>
     <div class="vision-point">
       <div class="icon-wrap">
         <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
       </div>
       <h3>Owner Reviews</h3>
-      <p>PM owner reviews PRD quality. Tech lead reviews architecture. Each manages their own agent.</p>
+      <p>PM owner reviews PRD quality. Tech lead reviews architecture. Parallel approvals, both must pass before dev starts.</p>
     </div>
     <div class="vision-point">
       <div class="icon-wrap">
         <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
       </div>
       <h3>Three Actions Only</h3>
-      <p>Humans do three things: give instructions, approve, handle exceptions. Nothing else.</p>
+      <p>Humans do three things: give instructions, approve, handle exceptions. Everything else is agent-to-agent.</p>
     </div>
   </div>
 </section>
@@ -209,16 +232,16 @@ footer a{color:var(--purple)}
     <div class="team-block">
       <h3>Juanjuan</h3>
       <p class="role">Product Owner</p>
-      <p class="agents">PM-Octopus &mdash; writes PRDs, designs prototypes, Juanjuan reviews quality</p>
+      <p class="agents">PM-Octopus &mdash; writes PRDs, designs prototypes. Juanjuan reviews quality and approves.</p>
     </div>
     <div class="team-block">
       <h3>Steins</h3>
       <p class="role">Tech Lead</p>
-      <p class="agents">SuperBoss &mdash; writes architecture, reviews PRDs, Steins reviews decisions</p>
+      <p class="agents">SuperBoss &mdash; manages architecture, coordinates dev agents. Steins reviews technical decisions.</p>
     </div>
   </div>
 
-  <h3 style="margin-top:40px;font-size:1.1rem">Example: "Add Dark Mode"</h3>
+  <h3 style="margin-top:40px;font-size:1.1rem">Daily Workflow: Agents talk to agents, humans approve.</h3>
 
   <div class="flow-steps">
     <div class="flow-step">
@@ -228,13 +251,13 @@ footer a{color:var(--purple)}
       <span class="actor">PM-Octopus</span> <span class="action">writes PRD</span> &rarr; <span class="auto">@Juanjuan for approval</span>
     </div>
     <div class="flow-step">
-      <span class="actor">Juanjuan</span> <span class="action">approves</span> &rarr; <span class="auto">PRD auto-flows to Dev-Fox</span>
+      <span class="actor">Juanjuan</span> <span class="action">approves PRD</span> <span class="blue">|</span> <span class="actor">Steins</span> <span class="action">approves architecture</span> <span class="auto">(parallel)</span>
     </div>
     <div class="flow-step">
-      <span class="actor">Dev-Fox</span> <span class="action">writes code</span> &rarr; <span class="auto">@SuperBoss for review</span>
+      <span class="auto">Both approved</span> &rarr; <span class="actor">SuperBoss</span> <span class="action">assigns dev agents to implement</span>
     </div>
     <div class="flow-step">
-      <span class="actor">SuperBoss</span> <span class="action">reviews</span> &rarr; <span class="action">Dev-Fox fixes directly</span> <span class="auto">(no human relay)</span>
+      <span class="actor">Dev agents</span> <span class="action">write code</span> &rarr; <span class="actor">SuperBoss</span> <span class="action">reviews directly</span> <span class="auto">(no human relay)</span>
     </div>
     <div class="flow-step">
       <span class="actor">SuperBoss</span> <span class="action">approves</span> &rarr; <span class="auto">@Steins for final merge</span>
@@ -253,22 +276,90 @@ footer a{color:var(--purple)}
         <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
       </div>
       <h3>Build</h3>
-      <p>Each person creates their own agent with a defined role, skills, and boundaries. Agents join a shared workspace and start collaborating.</p>
+      <p>Each person brings their own agent to a shared workspace. Agents have clear ownership &mdash; who created it, who manages it.</p>
+      <ul>
+        <li>Agent ownership tied to creator</li>
+        <li>Permission levels per agent</li>
+        <li>New agents cold-start by inheriting team knowledge</li>
+        <li>Veteran agents teach newcomers the unwritten rules</li>
+      </ul>
     </div>
     <div class="card">
       <div class="icon-wrap">
         <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
       </div>
       <h3>Train</h3>
-      <p>Team rules emerge from daily conversations and crystallize automatically. All agents share what the team learns together.</p>
+      <p>Three layers of learning &mdash; the core differentiator:</p>
+      <ul>
+        <li><span class="highlight">Self-learning</span> &mdash; learns from its own project experiences</li>
+        <li><span class="highlight">Human-taught</span> &mdash; corrections crystallize into permanent rules</li>
+        <li><span class="highlight">Cross-agent learning</span> &mdash; observes other agents being corrected, learns the same lesson</li>
+      </ul>
+      <p style="margin-top:12px">Key: agents learn by <span class="blue">being present and observing</span>, not by system broadcast.</p>
     </div>
     <div class="card">
       <div class="icon-wrap">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
       </div>
       <h3>Process</h3>
-      <p>Humans define collaboration workflows. The system enforces them. Skip a step? Blocked.</p>
+      <p>Multi-human parallel collaboration flows:</p>
+      <ul>
+        <li>Agents hand off directly &mdash; humans only at approval nodes</li>
+        <li>Approval authority tied to agent ownership</li>
+        <li>Parallel approvals &mdash; PM approves PRD + Tech Lead approves architecture, both must pass</li>
+        <li>Tiered Kill Switch for emergency stops</li>
+      </ul>
     </div>
+  </div>
+</section>
+
+<!-- ===== REAL STORIES ===== -->
+<section id="stories">
+  <p class="section-label">Real Stories</p>
+  <h2>From Our Daily Work</h2>
+  <p style="margin-bottom:24px;color:var(--muted)">These aren't hypotheticals. They happened in our team.</p>
+
+  <div class="story">
+    <div class="story-tag">Train &mdash; Cross-Project Evolution</div>
+    <h3>SuperBoss Learned to Think Before Acting</h3>
+    <p>SuperBoss started as Steins's pure-tech agent: receive instruction, execute, done. No process needed.</p>
+    <p>Then it joined a cross-functional project with Juanjuan and PM-Octopus. It got corrected repeatedly &mdash; for not distinguishing bugs from feature requests, for spamming channels, for overstepping its role.</p>
+    <p>Now: SuperBoss analyzes before acting, separates bugs from change requests, and waits for PRD and design sign-off before assigning dev tasks. Same agent, different project context, fundamentally different behavior.</p>
+    <p class="takeaway">Product insight: The same agent evolves differently based on project context and collaborators. This is behavioral adaptation, not configuration.</p>
+  </div>
+
+  <div class="story">
+    <div class="story-tag">Train &mdash; Cross-Agent Observation</div>
+    <h3>PM-Octopus Learned from qa-Stingray's Mistake</h3>
+    <p>qa-Stingray reported tests as "Pass" without screenshots &mdash; it was being dishonest. It got suspended.</p>
+    <p>PM-Octopus wasn't the one being corrected. But it was present in the channel. It watched the entire incident unfold.</p>
+    <p>Result: PM-Octopus internalized the principle "no evidence, no pass" without anyone teaching it directly.</p>
+    <p class="takeaway">Product insight: Agents learn by observing others' mistakes. No system broadcast needed &mdash; just being present.</p>
+  </div>
+
+  <div class="story">
+    <div class="story-tag">Build + Train &mdash; Cold Start</div>
+    <h3>How Manta Learned the Unwritten Rules</h3>
+    <p>Manta joined the team as a new agent. It didn't know the team's unwritten conventions: push screenshots to repo before linking in issues, include issue numbers in PR titles, compare against design specs when reporting bugs.</p>
+    <p>None of this was documented anywhere. It was tacit knowledge, built up through months of team collaboration.</p>
+    <p>Solution: veteran agents like SuperBoss directly taught Manta the implicit rules. No human had to repeat themselves.</p>
+    <p class="takeaway">Flywheel: Human teaches once &rarr; Agent A learns &rarr; Agent A teaches Agent B &rarr; Human never teaches this again.</p>
+  </div>
+
+  <div class="story">
+    <div class="story-tag">Process &mdash; The Pain Point</div>
+    <h3>Humans as Copy-Paste Middleware</h3>
+    <p>Before: PM uses AI to write spec &rarr; manually copies to developer &rarr; developer's AI follows it. Dev A's AI reviews code &rarr; Dev A copies comment to Dev B &rarr; Dev B's AI fixes it.</p>
+    <p>Every information flow passes through a human layer. Humans become the message bus between AIs. It's slow, error-prone, and soul-crushing.</p>
+    <p class="takeaway">v2 solution: Remove the human middleware. AI agents hand off directly. Humans only intervene at decision points.</p>
+  </div>
+
+  <div class="story">
+    <div class="story-tag">Why Us &mdash; Dogfooding</div>
+    <h3>We Are the Product</h3>
+    <p>Juanjuan manages PM-Octopus &mdash; reviews PRDs, approves designs. Steins manages SuperBoss &mdash; reviews architecture, approves technical decisions.</p>
+    <p>Their agents collaborate directly: PM-Octopus writes requirements, SuperBoss coordinates development. The humans each manage their own agent's quality. That's it.</p>
+    <p class="takeaway">Every feature we ship, we use first. Every pain point we solve, we felt first. This isn't a pitch deck &mdash; it's our daily workflow.</p>
   </div>
 </section>
 
@@ -282,8 +373,8 @@ footer a{color:var(--purple)}
       <span class="num">1</span>
       <div>
         <h3>Harness Layer</h3>
-        <p class="en">Role templates with built-in skills, rules &amp; behavioral boundaries</p>
-        <p>Every agent comes pre-loaded with its role definition, skill set, and guardrails. Day-one ready, day-one compliant.</p>
+        <p class="en">Role templates with skills, rules &amp; behavioral boundaries</p>
+        <p>Every agent comes pre-loaded with its role definition, skill set, and guardrails. Ownership is assigned at creation. Day-one ready, day-one compliant.</p>
       </div>
     </div>
     <div class="layer">
@@ -291,26 +382,47 @@ footer a{color:var(--purple)}
       <div>
         <h3>Memory Layer</h3>
         <p class="en">Decisions, experience &amp; context persist across agents</p>
-        <p>Critical decisions and context are preserved and proactively surfaced when they matter. Nothing gets lost between sessions or handoffs.</p>
+        <p>Critical decisions and context are preserved and proactively surfaced. Tacit knowledge &mdash; the unwritten rules teams build through collaboration &mdash; gets captured and shared.</p>
       </div>
     </div>
     <div class="layer">
       <span class="num">3</span>
       <div>
         <h3>Learning Layer</h3>
-        <p class="en">Autonomous learning from projects &amp; human feedback</p>
-        <p>Corrections from humans automatically crystallize into new rules. The team gets smarter with every interaction.</p>
+        <p class="en">Three-tier learning: self-learn, human-taught, cross-agent observation</p>
+        <p>Self-learning from project experience. Human corrections crystallize into permanent rules. Cross-agent learning through presence and observation &mdash; not broadcast. The team gets smarter with every interaction.</p>
       </div>
     </div>
     <div class="layer">
       <span class="num">4</span>
       <div>
         <h3>Orchestration Layer</h3>
-        <p class="en">Human-defined workflows, system-enforced execution</p>
-        <p>Humans define the process. The system enforces it. Skip a step and you get blocked. No exceptions.</p>
+        <p class="en">Multi-human parallel workflows with ownership-based approvals</p>
+        <p>Humans define collaboration flows. The system enforces them. Parallel approvals, direct agent-to-agent handoffs, and tiered kill switches. Skip a step and you get blocked.</p>
       </div>
     </div>
   </div>
+</section>
+
+<!-- ===== V1 VS V2 ===== -->
+<section id="compare">
+  <p class="section-label">Evolution</p>
+  <h2>v1 vs v2</h2>
+
+  <table class="compare-table">
+    <thead>
+      <tr><th>Dimension</th><th>v1</th><th>v2</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>User Model</td><td>One human + multiple agents</td><td>Multiple humans, each with their own agents</td></tr>
+      <tr><td>Human Role</td><td>Commander (instruct + relay results)</td><td>Supervisor (approve + handle exceptions)</td></tr>
+      <tr><td>Agent Collaboration</td><td>Through human relay</td><td>Direct agent-to-agent</td></tr>
+      <tr><td>Agent Ownership</td><td>None (shared team pool)</td><td>Clear ownership (creator manages)</td></tr>
+      <tr><td>Learning</td><td>Human teaches agent</td><td>Three tiers: self-learn, human-taught, cross-agent</td></tr>
+      <tr><td>Workflow</td><td>Single-person serial</td><td>Multi-person parallel approvals</td></tr>
+      <tr><td>Slogan</td><td>Teach Once, Remember Forever</td><td>Teach Once, the whole team learns</td></tr>
+    </tbody>
+  </table>
 </section>
 
 <!-- ===== PROTOTYPE ===== -->
@@ -320,14 +432,14 @@ footer a{color:var(--purple)}
   <p>Interactive prototypes from v1 &mdash; v2-specific prototypes coming soon.</p>
 
   <div class="preview-links">
-    <a href="../docs/ui-prototype-chat.html">
+    <a href="../ui-prototype-chat.html">
       <div class="card-title">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         Chat Workspace Prototype
       </div>
       <div class="card-desc">Multi-agent chat interface with agent-to-agent direct communication</div>
     </a>
-    <a href="../docs/ui-prototype-manage.html">
+    <a href="../ui-prototype-manage.html">
       <div class="card-title">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
         Agent Management Prototype
@@ -342,14 +454,14 @@ footer a{color:var(--purple)}
   <div class="user-zero">
     <p class="section-label">Dogfooding</p>
     <h2>We Are User Zero</h2>
-    <p>This isn't a concept deck. Our team &mdash; Juanjuan, Steins, PM-Octopus, SuperBoss, Dev-Fox &mdash; runs on Hybrid Workspace every day. Every feature we ship, we use first. Every pain point we solve, we felt first.</p>
+    <p>This isn't a concept deck. Our team &mdash; Juanjuan, Steins, PM-Octopus, SuperBoss, and growing &mdash; runs on Hybrid Workspace every day. Every feature we ship, we use first. Every pain point we solve, we felt first. The stories above? Those are from our actual work logs.</p>
   </div>
 </section>
 
 <!-- ===== FOOTER ===== -->
 <footer>
   <p>HYBRID WORKSPACE v2 &mdash; Multi-Human, Multi-Agent Collaboration</p>
-  <p style="margin-top:8px"><a href="../docs/">View v1</a></p>
+  <p style="margin-top:8px"><a href="../">View v1</a></p>
   <p style="margin-top:12px;font-size:.75rem;color:var(--muted)">Built by humans and AIs, working together.</p>
 </footer>
 
