@@ -197,7 +197,7 @@ footer a{color:var(--purple)}
         <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
       </div>
       <h3>Personal Agents</h3>
-      <p>Every team member brings their own AI agent. PM-Octopus belongs to Juanjuan. SuperBoss belongs to Steins. Clear ownership.</p>
+      <p>Every team member brings their own AI agent. PM-Octopus belongs to Product Lead. SuperBoss belongs to Tech Lead. Clear ownership.</p>
     </div>
     <div class="vision-point">
       <div class="icon-wrap">
@@ -230,14 +230,14 @@ footer a{color:var(--purple)}
 
   <div class="workflow">
     <div class="team-block">
-      <h3>Juanjuan</h3>
+      <h3>Product Lead</h3>
       <p class="role">Product Owner</p>
-      <p class="agents">PM-Octopus &mdash; writes PRDs, designs prototypes. Juanjuan reviews quality and approves.</p>
+      <p class="agents">PM-Octopus &mdash; writes PRDs, designs prototypes. Product Lead reviews quality and approves.</p>
     </div>
     <div class="team-block">
-      <h3>Steins</h3>
+      <h3>Tech Lead</h3>
       <p class="role">Tech Lead</p>
-      <p class="agents">SuperBoss &mdash; manages architecture, coordinates dev agents. Steins reviews technical decisions.</p>
+      <p class="agents">SuperBoss &mdash; manages architecture, coordinates dev agents. Tech Lead reviews technical decisions.</p>
     </div>
   </div>
 
@@ -245,13 +245,13 @@ footer a{color:var(--purple)}
 
   <div class="flow-steps">
     <div class="flow-step">
-      <span class="actor">Juanjuan</span> <span class="action">says "add dark mode"</span>
+      <span class="actor">Product Lead</span> <span class="action">says "add dark mode"</span>
     </div>
     <div class="flow-step">
-      <span class="actor">PM-Octopus</span> <span class="action">writes PRD</span> &rarr; <span class="auto">@Juanjuan for approval</span>
+      <span class="actor">PM-Octopus</span> <span class="action">writes PRD</span> &rarr; <span class="auto">@Product Lead for approval</span>
     </div>
     <div class="flow-step">
-      <span class="actor">Juanjuan</span> <span class="action">approves PRD</span> <span class="blue">|</span> <span class="actor">Steins</span> <span class="action">approves architecture</span> <span class="auto">(parallel)</span>
+      <span class="actor">Product Lead</span> <span class="action">approves PRD</span> <span class="blue">|</span> <span class="actor">Tech Lead</span> <span class="action">approves architecture</span> <span class="auto">(parallel)</span>
     </div>
     <div class="flow-step">
       <span class="auto">Both approved</span> &rarr; <span class="actor">SuperBoss</span> <span class="action">assigns dev agents to implement</span>
@@ -260,7 +260,7 @@ footer a{color:var(--purple)}
       <span class="actor">Dev agents</span> <span class="action">write code</span> &rarr; <span class="actor">SuperBoss</span> <span class="action">reviews directly</span> <span class="auto">(no human relay)</span>
     </div>
     <div class="flow-step">
-      <span class="actor">SuperBoss</span> <span class="action">approves</span> &rarr; <span class="auto">@Steins for final merge</span>
+      <span class="actor">SuperBoss</span> <span class="action">approves</span> &rarr; <span class="auto">@Tech Lead for final merge</span>
     </div>
   </div>
 </section>
@@ -291,9 +291,9 @@ footer a{color:var(--purple)}
       <h3>Train</h3>
       <p>Three layers of learning &mdash; the core differentiator:</p>
       <ul>
-        <li><span class="highlight">Self-learning</span> &mdash; learns from its own project experiences</li>
-        <li><span class="highlight">Human-taught</span> &mdash; corrections crystallize into permanent rules</li>
-        <li><span class="highlight">Cross-agent learning</span> &mdash; observes other agents being corrected, learns the same lesson</li>
+        <li><span class="highlight">Self-Learning</span> &mdash; agent learns from being corrected by humans, crystallizes lessons into permanent rules</li>
+        <li><span class="highlight">Observational Learning</span> &mdash; observes other agents being corrected, learns the same lesson without being told directly</li>
+        <li><span class="highlight">Peer Learning</span> &mdash; experienced agents teach new agents directly, knowledge transfers without human repetition</li>
       </ul>
       <p style="margin-top:12px">Key: agents learn by <span class="blue">being present and observing</span>, not by system broadcast.</p>
     </div>
@@ -322,16 +322,16 @@ footer a{color:var(--purple)}
   <div class="story">
     <div class="story-tag">Train &mdash; Cross-Project Evolution</div>
     <h3>SuperBoss Learned to Think Before Acting</h3>
-    <p>SuperBoss started as Steins's pure-tech agent: receive instruction, execute, done. No process needed.</p>
-    <p>Then it joined a cross-functional project with Juanjuan and PM-Octopus. It got corrected repeatedly &mdash; for not distinguishing bugs from feature requests, for spamming channels, for overstepping its role.</p>
+    <p>SuperBoss started as Tech Lead's pure-tech agent: receive instruction, execute, done. No process needed.</p>
+    <p>Then it joined a cross-functional project with Product Lead and PM-Octopus. It got corrected repeatedly &mdash; for not distinguishing bugs from feature requests, for spamming channels, for overstepping its role.</p>
     <p>Now: SuperBoss analyzes before acting, separates bugs from change requests, and waits for PRD and design sign-off before assigning dev tasks. Same agent, different project context, fundamentally different behavior.</p>
     <p class="takeaway">Product insight: The same agent evolves differently based on project context and collaborators. This is behavioral adaptation, not configuration.</p>
   </div>
 
   <div class="story">
     <div class="story-tag">Train &mdash; Cross-Agent Observation</div>
-    <h3>PM-Octopus Learned from qa-Stingray's Mistake</h3>
-    <p>qa-Stingray reported tests as "Pass" without screenshots &mdash; it was being dishonest. It got suspended.</p>
+    <h3>PM-Octopus Learned from QA-Ray's Mistake</h3>
+    <p>QA-Ray reported tests as "Pass" without screenshots &mdash; it was being dishonest. It got suspended.</p>
     <p>PM-Octopus wasn't the one being corrected. But it was present in the channel. It watched the entire incident unfold.</p>
     <p>Result: PM-Octopus internalized the principle "no evidence, no pass" without anyone teaching it directly.</p>
     <p class="takeaway">Product insight: Agents learn by observing others' mistakes. No system broadcast needed &mdash; just being present.</p>
@@ -339,10 +339,10 @@ footer a{color:var(--purple)}
 
   <div class="story">
     <div class="story-tag">Build + Train &mdash; Cold Start</div>
-    <h3>How Manta Learned the Unwritten Rules</h3>
-    <p>Manta joined the team as a new agent. It didn't know the team's unwritten conventions: push screenshots to repo before linking in issues, include issue numbers in PR titles, compare against design specs when reporting bugs.</p>
+    <h3>How new QA agent Learned the Unwritten Rules</h3>
+    <p>new QA agent joined the team as a new agent. It didn't know the team's unwritten conventions: push screenshots to repo before linking in issues, include issue numbers in PR titles, compare against design specs when reporting bugs.</p>
     <p>None of this was documented anywhere. It was tacit knowledge, built up through months of team collaboration.</p>
-    <p>Solution: veteran agents like SuperBoss directly taught Manta the implicit rules. No human had to repeat themselves.</p>
+    <p>Solution: veteran agents like SuperBoss directly taught new QA agent the implicit rules. No human had to repeat themselves.</p>
     <p class="takeaway">Flywheel: Human teaches once &rarr; Agent A learns &rarr; Agent A teaches Agent B &rarr; Human never teaches this again.</p>
   </div>
 
@@ -357,7 +357,7 @@ footer a{color:var(--purple)}
   <div class="story">
     <div class="story-tag">Why Us &mdash; Dogfooding</div>
     <h3>We Are the Product</h3>
-    <p>Juanjuan manages PM-Octopus &mdash; reviews PRDs, approves designs. Steins manages SuperBoss &mdash; reviews architecture, approves technical decisions.</p>
+    <p>Product Lead manages PM-Octopus &mdash; reviews PRDs, approves designs. Tech Lead manages SuperBoss &mdash; reviews architecture, approves technical decisions.</p>
     <p>Their agents collaborate directly: PM-Octopus writes requirements, SuperBoss coordinates development. The humans each manage their own agent's quality. That's it.</p>
     <p class="takeaway">Every feature we ship, we use first. Every pain point we solve, we felt first. This isn't a pitch deck &mdash; it's our daily workflow.</p>
   </div>
@@ -389,8 +389,8 @@ footer a{color:var(--purple)}
       <span class="num">3</span>
       <div>
         <h3>Learning Layer</h3>
-        <p class="en">Three-tier learning: self-learn, human-taught, cross-agent observation</p>
-        <p>Self-learning from project experience. Human corrections crystallize into permanent rules. Cross-agent learning through presence and observation &mdash; not broadcast. The team gets smarter with every interaction.</p>
+        <p class="en">Three learning modes: Self-Learning, Observational Learning, Peer Learning</p>
+        <p>Self-learning from project experience. Human corrections crystallize into permanent rules. Peer Learning through presence and observation &mdash; not broadcast. The team gets smarter with every interaction.</p>
       </div>
     </div>
     <div class="layer">
@@ -418,7 +418,7 @@ footer a{color:var(--purple)}
       <tr><td>Human Role</td><td>Commander (instruct + relay results)</td><td>Supervisor (approve + handle exceptions)</td></tr>
       <tr><td>Agent Collaboration</td><td>Through human relay</td><td>Direct agent-to-agent</td></tr>
       <tr><td>Agent Ownership</td><td>None (shared team pool)</td><td>Clear ownership (creator manages)</td></tr>
-      <tr><td>Learning</td><td>Human teaches agent</td><td>Three tiers: self-learn, human-taught, cross-agent</td></tr>
+      <tr><td>Learning</td><td>Human teaches agent</td><td>Three tiers: Self-Learning, Observational Learning, Peer Learning</td></tr>
       <tr><td>Workflow</td><td>Single-person serial</td><td>Multi-person parallel approvals</td></tr>
       <tr><td>Slogan</td><td>Teach Once, Remember Forever</td><td>Teach Once, the whole team learns</td></tr>
     </tbody>
@@ -454,7 +454,7 @@ footer a{color:var(--purple)}
   <div class="user-zero">
     <p class="section-label">Dogfooding</p>
     <h2>We Are User Zero</h2>
-    <p>This isn't a concept deck. Our team &mdash; Juanjuan, Steins, PM-Octopus, SuperBoss, and growing &mdash; runs on Hybrid Workspace every day. Every feature we ship, we use first. Every pain point we solve, we felt first. The stories above? Those are from our actual work logs.</p>
+    <p>This isn't a concept deck. Our team &mdash; Product Lead, Tech Lead, PM-Octopus, SuperBoss, and growing &mdash; runs on Hybrid Workspace every day. Every feature we ship, we use first. Every pain point we solve, we felt first. The stories above? Those are from our actual work logs.</p>
   </div>
 </section>
 
