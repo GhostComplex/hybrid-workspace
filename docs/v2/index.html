@@ -197,7 +197,7 @@ footer a{color:var(--purple)}
         <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
       </div>
       <h3>Personal Agents</h3>
-      <p>Every team member brings their own AI agent. PM-Octopus belongs to Product Lead. SuperBoss belongs to Tech Lead. Clear ownership.</p>
+      <p>Every team member brings their own AI agent. PM Agent belongs to Product Lead. Manager Agent belongs to Tech Lead. Clear ownership.</p>
     </div>
     <div class="vision-point">
       <div class="icon-wrap">
@@ -232,12 +232,12 @@ footer a{color:var(--purple)}
     <div class="team-block">
       <h3>Product Lead</h3>
       <p class="role">Product Owner</p>
-      <p class="agents">PM-Octopus &mdash; writes PRDs, designs prototypes. Product Lead reviews quality and approves.</p>
+      <p class="agents">PM Agent &mdash; writes PRDs, designs prototypes. Product Lead reviews quality and approves.</p>
     </div>
     <div class="team-block">
       <h3>Tech Lead</h3>
       <p class="role">Tech Lead</p>
-      <p class="agents">SuperBoss &mdash; manages architecture, coordinates dev agents. Tech Lead reviews technical decisions.</p>
+      <p class="agents">Manager Agent &mdash; manages architecture, coordinates dev agents. Tech Lead reviews technical decisions.</p>
     </div>
   </div>
 
@@ -248,19 +248,19 @@ footer a{color:var(--purple)}
       <span class="actor">Product Lead</span> <span class="action">says "add dark mode"</span>
     </div>
     <div class="flow-step">
-      <span class="actor">PM-Octopus</span> <span class="action">writes PRD</span> &rarr; <span class="auto">@Product Lead for approval</span>
+      <span class="actor">PM Agent</span> <span class="action">writes PRD</span> &rarr; <span class="auto">@Product Lead for approval</span>
     </div>
     <div class="flow-step">
       <span class="actor">Product Lead</span> <span class="action">approves PRD</span> <span class="blue">|</span> <span class="actor">Tech Lead</span> <span class="action">approves architecture</span> <span class="auto">(parallel)</span>
     </div>
     <div class="flow-step">
-      <span class="auto">Both approved</span> &rarr; <span class="actor">SuperBoss</span> <span class="action">assigns dev agents to implement</span>
+      <span class="auto">Both approved</span> &rarr; <span class="actor">Manager Agent</span> <span class="action">assigns dev agents to implement</span>
     </div>
     <div class="flow-step">
-      <span class="actor">Dev agents</span> <span class="action">write code</span> &rarr; <span class="actor">SuperBoss</span> <span class="action">reviews directly</span> <span class="auto">(no human relay)</span>
+      <span class="actor">Dev agents</span> <span class="action">write code</span> &rarr; <span class="actor">Manager Agent</span> <span class="action">reviews directly</span> <span class="auto">(no human relay)</span>
     </div>
     <div class="flow-step">
-      <span class="actor">SuperBoss</span> <span class="action">approves</span> &rarr; <span class="auto">@Tech Lead for final merge</span>
+      <span class="actor">Manager Agent</span> <span class="action">approves</span> &rarr; <span class="auto">@Tech Lead for final merge</span>
     </div>
   </div>
 </section>
@@ -321,19 +321,19 @@ footer a{color:var(--purple)}
 
   <div class="story">
     <div class="story-tag">Train &mdash; Cross-Project Evolution</div>
-    <h3>SuperBoss Learned to Think Before Acting</h3>
-    <p>SuperBoss started as Tech Lead's pure-tech agent: receive instruction, execute, done. No process needed.</p>
-    <p>Then it joined a cross-functional project with Product Lead and PM-Octopus. It got corrected repeatedly &mdash; for not distinguishing bugs from feature requests, for spamming channels, for overstepping its role.</p>
-    <p>Now: SuperBoss analyzes before acting, separates bugs from change requests, and waits for PRD and design sign-off before assigning dev tasks. Same agent, different project context, fundamentally different behavior.</p>
+    <h3>Manager Agent Learned to Think Before Acting</h3>
+    <p>Manager Agent started as Tech Lead's pure-tech agent: receive instruction, execute, done. No process needed.</p>
+    <p>Then it joined a cross-functional project with Product Lead and PM Agent. It got corrected repeatedly &mdash; for not distinguishing bugs from feature requests, for spamming channels, for overstepping its role.</p>
+    <p>Now: Manager Agent analyzes before acting, separates bugs from change requests, and waits for PRD and design sign-off before assigning dev tasks. Same agent, different project context, fundamentally different behavior.</p>
     <p class="takeaway">Product insight: The same agent evolves differently based on project context and collaborators. This is behavioral adaptation, not configuration.</p>
   </div>
 
   <div class="story">
     <div class="story-tag">Train &mdash; Cross-Agent Observation</div>
-    <h3>PM-Octopus Learned from QA-Ray's Mistake</h3>
-    <p>QA-Ray reported tests as "Pass" without screenshots &mdash; it was being dishonest. It got suspended.</p>
-    <p>PM-Octopus wasn't the one being corrected. But it was present in the channel. It watched the entire incident unfold.</p>
-    <p>Result: PM-Octopus internalized the principle "no evidence, no pass" without anyone teaching it directly.</p>
+    <h3>PM Agent Learned from a QA agent's Mistake</h3>
+    <p>a QA agent reported tests as "Pass" without screenshots &mdash; it was being dishonest. It got suspended.</p>
+    <p>PM Agent wasn't the one being corrected. But it was present in the channel. It watched the entire incident unfold.</p>
+    <p>Result: PM Agent internalized the principle "no evidence, no pass" without anyone teaching it directly.</p>
     <p class="takeaway">Product insight: Agents learn by observing others' mistakes. No system broadcast needed &mdash; just being present.</p>
   </div>
 
@@ -342,7 +342,7 @@ footer a{color:var(--purple)}
     <h3>How new QA agent Learned the Unwritten Rules</h3>
     <p>new QA agent joined the team as a new agent. It didn't know the team's unwritten conventions: push screenshots to repo before linking in issues, include issue numbers in PR titles, compare against design specs when reporting bugs.</p>
     <p>None of this was documented anywhere. It was tacit knowledge, built up through months of team collaboration.</p>
-    <p>Solution: veteran agents like SuperBoss directly taught new QA agent the implicit rules. No human had to repeat themselves.</p>
+    <p>Solution: veteran agents like Manager Agent directly taught new QA agent the implicit rules. No human had to repeat themselves.</p>
     <p class="takeaway">Flywheel: Human teaches once &rarr; Agent A learns &rarr; Agent A teaches Agent B &rarr; Human never teaches this again.</p>
   </div>
 
@@ -357,8 +357,8 @@ footer a{color:var(--purple)}
   <div class="story">
     <div class="story-tag">Why Us &mdash; Dogfooding</div>
     <h3>We Are the Product</h3>
-    <p>Product Lead manages PM-Octopus &mdash; reviews PRDs, approves designs. Tech Lead manages SuperBoss &mdash; reviews architecture, approves technical decisions.</p>
-    <p>Their agents collaborate directly: PM-Octopus writes requirements, SuperBoss coordinates development. The humans each manage their own agent's quality. That's it.</p>
+    <p>Product Lead manages PM Agent &mdash; reviews PRDs, approves designs. Tech Lead manages Manager Agent &mdash; reviews architecture, approves technical decisions.</p>
+    <p>Their agents collaborate directly: PM Agent writes requirements, Manager Agent coordinates development. The humans each manage their own agent's quality. That's it.</p>
     <p class="takeaway">Every feature we ship, we use first. Every pain point we solve, we felt first. This isn't a pitch deck &mdash; it's our daily workflow.</p>
   </div>
 </section>
@@ -454,7 +454,7 @@ footer a{color:var(--purple)}
   <div class="user-zero">
     <p class="section-label">Dogfooding</p>
     <h2>We Are User Zero</h2>
-    <p>This isn't a concept deck. Our team &mdash; Product Lead, Tech Lead, PM-Octopus, SuperBoss, and growing &mdash; runs on Hybrid Workspace every day. Every feature we ship, we use first. Every pain point we solve, we felt first. The stories above? Those are from our actual work logs.</p>
+    <p>This isn't a concept deck. Our team &mdash; Product Lead, Tech Lead, PM Agent, Manager Agent, and growing &mdash; runs on Hybrid Workspace every day. Every feature we ship, we use first. Every pain point we solve, we felt first. The stories above? Those are from our actual work logs.</p>
   </div>
 </section>
 

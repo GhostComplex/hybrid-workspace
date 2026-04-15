@@ -24,7 +24,7 @@
 ## 2026-04-15 讨论要点
 
 ### Build 升级
-- Agent 归属权：PM-Octopus 属于 Juanjuan，SuperBoss 属于 Steins
+- Agent 归属权：PM Agent 属于 Product Lead，Manager Agent 属于 Tech Lead
 - 新 agent 冷启动自动继承团队知识和潜规则
 - 老 agent 直接教新 agent，人不需要重复教
 
@@ -47,11 +47,11 @@
 ## 真实案例
 
 ```
-Juanjuan（产品负责人）
-  └── PM-Octopus → 写 PRD、设计 prototype → Juanjuan review
+Product Lead（产品负责人）
+  └── PM Agent → 写 PRD、设计 prototype → Product Lead review
 
-Steins（技术负责人）
-  └── SuperBoss → 写技术架构、review PRD → Steins review
+Tech Lead（技术负责人）
+  └── Manager Agent → 写技术架构、review PRD → Tech Lead review
 
 Agent 之间直接对接讨论，人类各管各的 agent 质量
 ```
